@@ -1,0 +1,1 @@
+UPDATE "public"."server_info" SET "ip" = '172.30.0.154', "addresses" = '{"path":"/chatservice.api/v1/","domain":"127.0.0.1:8896","scheme":"http","api_key":"defaultkey","channel":"dev","ws_conn_path":"/chatservice.ws"}' WHERE "code" = 'chat'

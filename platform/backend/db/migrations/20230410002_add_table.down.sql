@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS "public"."agent_game_icon_list";

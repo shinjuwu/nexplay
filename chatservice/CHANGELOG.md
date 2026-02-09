@@ -1,0 +1,8 @@
+* [v0.0.1](./release-notes/v0.0.1.md) [2022-11-03]
+* [v0.0.2](./release-notes/v0.0.2.md) [2022-11-08]
+* [v0.0.3](./release-notes/v0.0.3.md) [2022-11-11]
+* [v0.0.4](./release-notes/v0.0.4.md) [2022-11-16]
+* [v0.0.5](./release-notes/v0.0.5.md) [2022-11-18]
+* [v0.0.6](./release-notes/v0.0.6.md) [2022-11-18]
+* [v0.0.7](./release-notes/v0.0.7.md) [2023-06-17]
+* [v0.0.8](./release-notes/v0.0.8.md) [2023-06-19]

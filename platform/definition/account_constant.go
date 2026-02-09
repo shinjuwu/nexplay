@@ -1,0 +1,19 @@
+package definition
+
+const (
+	ACCOUNT_READONLY_OFF = 0
+	ACCOUNT_READONLY_ON  = 1
+
+	ACCOUNT_STATUS_DISABLE = 0 // 帳號關閉
+	ACCOUNT_STATUS_OPEN    = 1 // 帳號開啟
+
+	ACCOUNT_TYPE_ALL     = 0
+	ACCOUNT_TYPE_ADMIN   = 1 // 管理後台(開發者)
+	ACCOUNT_TYPE_GENERAL = 2 // 代理後台(總代理)
+	ACCOUNT_TYPE_NORMAL  = 3 // 代理後台(子代理)
+	ACCOUNT_TYPE_MAX     = 4
+
+	STATE_TYPE_ALL      = -1
+	STATE_TYPE_DISABLED = 0
+	STATE_TYPE_ENABLED  = 1
+)

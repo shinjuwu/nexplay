@@ -1,0 +1,7 @@
+data-postgres/
+test/
+*.log
+*.exe
+frontend/node_modules/
+frontend/dist/
+backend/vue_front/

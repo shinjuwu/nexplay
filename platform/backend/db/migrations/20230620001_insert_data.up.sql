@@ -1,0 +1,1 @@
+INSERT INTO "public"."storage" ("id", "key", "value", "readonly", "create_time", "update_time") VALUES ('ee2f7e36-c647-4202-89ba-73d8c9bd24c7', 'IMAlertTG', '{"token": "5990213484:AAFgyypd0GKNsig465LMJM_-rGj_Itapquw", "chat_id": -753735474}', 'f', '2023-06-20 02:41:11.961967+00', '2023-06-20 02:41:11.961967+00');

@@ -1,0 +1,3 @@
+[submodule "definition"]
+	path = definition
+	url = https://gitlab.int.dayongtek.com/dcc/dev/backend/definition.git

@@ -1,0 +1,1 @@
+DELETE FROM "public"."server_info" WHERE "code" = 'api';

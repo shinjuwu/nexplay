@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+*.exe
+*.out
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+nul
+
+# Environment / secrets
+.env.local
+.env.*.local
+
+# Docker volumes
+dcc-pgsql-volumes/
+dcc-redis-volumes/
+dcc-pgadmin-volumes/
+
+# Logs
+*.log

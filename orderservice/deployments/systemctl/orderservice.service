@@ -1,0 +1,10 @@
+[unit]
+Description=Order Service
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/bin/order
+ExecStart=/usr/local/bin/order/dcc_orderservice
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Chat Service
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/bin/chatservice
+ExecStart=/usr/local/bin/chatservice/chatservice --config /usr/local/bin/chatservice/config.yml
+
+[Install]
+WantedBy=multi-user.target

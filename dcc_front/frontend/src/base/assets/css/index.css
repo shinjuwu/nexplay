@@ -1,0 +1,1357 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply whitespace-nowrap rounded border py-2 px-4 text-white disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply bg-indigo-400 enabled:hover:bg-indigo-500;
+  }
+  .btn-secondary {
+    @apply bg-gray-500 enabled:hover:bg-gray-600;
+  }
+  .btn-success {
+    @apply bg-emerald-400 enabled:hover:bg-emerald-500;
+  }
+  .btn-danger {
+    @apply bg-rose-400  enabled:hover:bg-rose-500;
+  }
+  .btn-light {
+    @apply bg-gray-200 text-black enabled:hover:bg-gray-300;
+  }
+  .btn-success {
+    @apply bg-emerald-400 enabled:hover:bg-emerald-500;
+  }
+  .btn-warning {
+    @apply bg-amber-400 enabled:hover:bg-amber-300;
+  }
+  .btn-info {
+    @apply bg-cyan-500 enabled:hover:bg-cyan-600;
+  }
+
+  .bg-primary {
+    @apply bg-indigo-400;
+  }
+  .bg-secondary {
+    @apply bg-gray-500;
+  }
+  .bg-success {
+    @apply bg-emerald-400;
+  }
+  .bg-danger {
+    @apply bg-rose-400;
+  }
+  .bg-light {
+    @apply bg-gray-200;
+  }
+  .bg-success {
+    @apply bg-emerald-400;
+  }
+  .bg-warning {
+    @apply bg-amber-400;
+  }
+  .bg-info {
+    @apply bg-cyan-500;
+  }
+
+  .text-primary {
+    @apply text-indigo-400;
+  }
+  .text-secondary {
+    @apply text-gray-500;
+  }
+  .text-danger {
+    @apply text-rose-400;
+  }
+  .text-light {
+    @apply text-gray-200;
+  }
+  .text-success {
+    @apply text-emerald-400;
+  }
+  .text-warning {
+    @apply text-amber-400;
+  }
+  .text-info {
+    @apply text-cyan-500;
+  }
+
+  .poker-container {
+    @apply inline-flex bg-white;
+  }
+  .poker {
+    width: 25px;
+    height: 35px;
+    background-image: url('@/base/assets/images/poker.png');
+    @apply inline-block rounded border;
+  }
+  .poker-heart {
+    background-position: -44px -40px;
+    @apply text-red-600;
+  }
+  .poker-spade {
+    background-position: 11px -41px;
+    @apply text-black;
+  }
+  .poker-diamond {
+    background-position: -94px -40px;
+    @apply text-red-600;
+  }
+  .poker-club {
+    background-position: -145px -38px;
+    @apply text-black;
+  }
+  .poker-joker {
+    background-image: none;
+  }
+  .poker-joker span {
+    @apply scale-75 flex -ml-1.5 rotate-90;
+  }
+  .poker-black-joker {
+    @apply text-black;
+  }
+  .poker-red-joker {
+    @apply text-red-600;
+  }
+
+  .colordisc-container {
+    @apply inline-flex align-bottom;
+  }
+  .colordisc {
+    width: 24px;
+    height: 24px;
+  }
+  .colordisc-red {
+    background-image: url('@/base/assets/images/colordisc/red_colordisc.png');
+  }
+  .colordisc-white {
+    background-image: url('@/base/assets/images/colordisc/white_colordisc.png');
+  }
+
+  .fruitslot {
+    width: 60px;
+    height: 60px;
+  }
+  .fruitslot-crown {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_0.png');
+  }
+  .fruitslot-crown.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_0.png');
+  }
+  .fruitslot-apple {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_1.png');
+  }
+  .fruitslot-apple.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_1.png');
+  }
+  .fruitslot-3xapple {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_2.png');
+  }
+  .fruitslot-3xapple.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_2.png');
+  }
+  .fruitslot-grape {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_3.png');
+  }
+  .fruitslot-grape.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_3.png');
+  }
+  .fruitslot-mangosteen {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_4.png');
+  }
+  .fruitslot-mangosteen.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_4.png');
+  }
+  .fruitslot-3xmangosteen {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_5.png');
+  }
+  .fruitslot-3xmangosteen.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_5.png');
+  }
+  .fruitslot-clover {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_6.png');
+  }
+  .fruitslot-clover.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_6.png');
+  }
+  .fruitslot-3xlemon {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_7.png');
+  }
+  .fruitslot-3xlemon.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_7.png');
+  }
+  .fruitslot-lemon {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_8.png');
+  }
+  .fruitslot-lemon.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_8.png');
+  }
+  .fruitslot-bell {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_9.png');
+  }
+  .fruitslot-bell.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_9.png');
+  }
+  .fruitslot-3xseven {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_10.png');
+  }
+  .fruitslot-3xseven.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_10.png');
+  }
+  .fruitslot-seven {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_11.png');
+  }
+  .fruitslot-seven.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_11.png');
+  }
+  .fruitslot-3xgrape {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_12.png');
+  }
+  .fruitslot-3xgrape.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_12.png');
+  }
+  .fruitslot-diamond {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_13.png');
+  }
+  .fruitslot-diamond.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_13.png');
+  }
+  .fruitslot-3xdiamond {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_14.png');
+  }
+  .fruitslot-3xdiamond.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_14.png');
+  }
+  .fruitslot-3xbell {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_15.png');
+  }
+  .fruitslot-3xbell.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_15.png');
+  }
+  .fruitslot-50xcrown {
+    background-image: url('@/base/assets/images/fruitslot/pic_symboldark_fruitslot_16.png');
+  }
+  .fruitslot-50xcrown.active {
+    background-image: url('@/base/assets/images/fruitslot/pic_symbol_fruitslot_16.png');
+  }
+  .fruitslot-button-container {
+    width: 73px;
+  }
+  .fruitslot-button {
+    width: 73px;
+    height: 73px;
+    @apply bg-contain bg-no-repeat;
+  }
+  .fruitslot-button-crown {
+    background-image: url('@/base/assets/images/fruitslot/btn_crown_up_fruitslot.png');
+  }
+  .fruitslot-button-apple {
+    background-image: url('@/base/assets/images/fruitslot/btn_apple_up_fruitslot.png');
+  }
+  .fruitslot-button-grape {
+    background-image: url('@/base/assets/images/fruitslot/btn_grape_up_fruitslot.png');
+  }
+  .fruitslot-button-mangosteen {
+    background-image: url('@/base/assets/images/fruitslot/btn_mangosteen_up_fruitslot.png');
+  }
+  .fruitslot-button-bell {
+    background-image: url('@/base/assets/images/fruitslot/btn_bell_up_fruitslot.png');
+  }
+  .fruitslot-button-lemon {
+    background-image: url('@/base/assets/images/fruitslot/btn_lemon_up_fruitslot.png');
+  }
+  .fruitslot-button-seven {
+    background-image: url('@/base/assets/images/fruitslot/btn_seven_up_fruitslot.png');
+  }
+  .fruitslot-button-diamond {
+    background-image: url('@/base/assets/images/fruitslot/btn_diamond_up_fruitslot.png');
+  }
+
+  .rcfishing {
+    width: 80px;
+    height: 59px;
+  }
+  .rcfishing-fish-1 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_1.png');
+  }
+  .rcfishing-fish-2 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_2.png');
+  }
+  .rcfishing-fish-3 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_3.png');
+  }
+  .rcfishing-fish-4 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_4.png');
+  }
+  .rcfishing-fish-5 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_5.png');
+  }
+  .rcfishing-fish-6 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_6.png');
+  }
+  .rcfishing-fish-7 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_7.png');
+  }
+  .rcfishing-fish-8 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_8.png');
+  }
+  .rcfishing-fish-9 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_9.png');
+  }
+  .rcfishing-fish-10 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_10.png');
+  }
+  .rcfishing-fish-11 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_11.png');
+  }
+  .rcfishing-fish-12 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_12.png');
+  }
+  .rcfishing-fish-13 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_13.png');
+  }
+  .rcfishing-fish-14 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_14.png');
+  }
+  .rcfishing-fish-15 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_15.png');
+  }
+  .rcfishing-fish-16 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_16.png');
+  }
+  .rcfishing-fish-17 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_17.png');
+  }
+  .rcfishing-fish-18 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_18.png');
+  }
+  .rcfishing-fish-19 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_19.png');
+  }
+  .rcfishing-fish-20 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_20.png');
+  }
+  .rcfishing-fish-21 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_21.png');
+  }
+  .rcfishing-fish-22 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_22.png');
+  }
+  .rcfishing-fish-23 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_23.png');
+  }
+  .rcfishing-fish-24 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_24.png');
+  }
+  .rcfishing-fish-25 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_25.png');
+  }
+  .rcfishing-fish-26 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_26.png');
+  }
+  .rcfishing-fish-27 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_27.png');
+  }
+  .rcfishing-fish-28 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_28.png');
+  }
+  .rcfishing-fish-29 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_29.png');
+  }
+  .rcfishing-fish-30 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_30.png');
+  }
+  .rcfishing-fish-31 {
+    background-image: url('@/base/assets/images/rcfishing/pic_fish_31.png');
+  }
+  .rcfishing-skill-s1 {
+    background-image: url('@/base/assets/images/rcfishing/pic_skill_s1.png');
+  }
+  .rcfishing-skill-s2 {
+    background-image: url('@/base/assets/images/rcfishing/pic_skill_s2.png');
+  }
+  .rcfishing-skill-s3 {
+    background-image: url('@/base/assets/images/rcfishing/pic_skill_s3.png');
+  }
+
+  .fruit777slot {
+    width: 128px;
+    height: 128px;
+  }
+  .fruit777slot-0 {
+    background-image: url('@/base/assets/images/fruit777slot/0.jpg');
+  }
+  .fruit777slot-1 {
+    background-image: url('@/base/assets/images/fruit777slot/1.jpg');
+  }
+  .fruit777slot-2 {
+    background-image: url('@/base/assets/images/fruit777slot/2.jpg');
+  }
+  .fruit777slot-3 {
+    background-image: url('@/base/assets/images/fruit777slot/3.jpg');
+  }
+  .fruit777slot-4 {
+    background-image: url('@/base/assets/images/fruit777slot/4.jpg');
+  }
+  .fruit777slot-5 {
+    background-image: url('@/base/assets/images/fruit777slot/5.jpg');
+  }
+  .fruit777slot-6 {
+    background-image: url('@/base/assets/images/fruit777slot/6.jpg');
+  }
+  .fruit777slot-7 {
+    background-image: url('@/base/assets/images/fruit777slot/7.jpg');
+  }
+  .fruit777slot-8 {
+    background-image: url('@/base/assets/images/fruit777slot/8.jpg');
+  }
+  .fruit777slot-9 {
+    background-image: url('@/base/assets/images/fruit777slot/9.jpg');
+  }
+
+  .fruit777slot-general {
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+  }
+  .fruit777slot-general-0 {
+    background-image: url('@/base/assets/images/fruit777slot/general_0.png');
+  }
+  .fruit777slot-general-1 {
+    background-image: url('@/base/assets/images/fruit777slot/general_1.png');
+  }
+  .fruit777slot-general-2 {
+    background-image: url('@/base/assets/images/fruit777slot/general_2.png');
+  }
+  .fruit777slot-general-3 {
+    background-image: url('@/base/assets/images/fruit777slot/general_3.png');
+  }
+  .fruit777slot-general-4 {
+    background-image: url('@/base/assets/images/fruit777slot/general_4.png');
+  }
+  .fruit777slot-general-5 {
+    background-image: url('@/base/assets/images/fruit777slot/general_5.png');
+  }
+  .fruit777slot-general-6 {
+    background-image: url('@/base/assets/images/fruit777slot/general_6.png');
+  }
+  .fruit777slot-general-7 {
+    background-image: url('@/base/assets/images/fruit777slot/general_7.png');
+  }
+  .fruit777slot-general-8 {
+    background-image: url('@/base/assets/images/fruit777slot/general_8.png');
+  }
+  .fruit777slot-general-9 {
+    background-image: url('@/base/assets/images/fruit777slot/general_9.png');
+  }
+  .fruit777slot-general-10 {
+    background-image: url('@/base/assets/images/fruit777slot/general_10.png');
+  }
+  .fruit777slot-general-11 {
+    background-image: url('@/base/assets/images/fruit777slot/general_11.png');
+  }
+  .fruit777slot-general-99 {
+    background-image: url('@/base/assets/images/fruit777slot/general_99.png');
+  }
+
+  .fruit777slot-full {
+    width: 163.5px;
+    height: 64px;
+    background-size: contain;
+  }
+  .fruit777slot-full-0 {
+    background-image: url('@/base/assets/images/fruit777slot/full_0.png');
+  }
+  .fruit777slot-full-1 {
+    background-image: url('@/base/assets/images/fruit777slot/full_1.png');
+  }
+  .fruit777slot-full-2 {
+    background-image: url('@/base/assets/images/fruit777slot/full_2.png');
+  }
+  .fruit777slot-full-3 {
+    background-image: url('@/base/assets/images/fruit777slot/full_3.png');
+  }
+  .fruit777slot-full-4 {
+    background-image: url('@/base/assets/images/fruit777slot/full_4.png');
+  }
+  .fruit777slot-full-5 {
+    background-image: url('@/base/assets/images/fruit777slot/full_5.png');
+  }
+  .fruit777slot-full-6 {
+    background-image: url('@/base/assets/images/fruit777slot/full_6.png');
+  }
+  .fruit777slot-full-7 {
+    background-image: url('@/base/assets/images/fruit777slot/full_7.png');
+  }
+  .fruit777slot-full-8 {
+    background-image: url('@/base/assets/images/fruit777slot/full_8.png');
+  }
+  .fruit777slot-full-9 {
+    background-image: url('@/base/assets/images/fruit777slot/full_9.png');
+  }
+  .fruit777slot-full-10 {
+    background-image: url('@/base/assets/images/fruit777slot/full_10.png');
+  }
+  .fruit777slot-full-11 {
+    background-image: url('@/base/assets/images/fruit777slot/full_11.png');
+  }
+  .fruit777slot-full-12 {
+    background-image: url('@/base/assets/images/fruit777slot/full_12.png');
+  }
+
+  .okeycard-container {
+    background-color: #fdf4b1;
+    width: 25px;
+    height: 35px;
+    @apply inline-flex flex-col justify-center items-center border rounded-sm border-gray-400;
+  }
+  .okeycard {
+    @apply pb-2 text-lg font-black;
+  }
+  .okeycard-red {
+    @apply text-red-500;
+  }
+  .okeycard-yellow {
+    @apply text-yellow-500;
+  }
+  .okeycard-blue {
+    @apply text-blue-600;
+  }
+
+  .megsharkslot-board {
+    height: 321px;
+    background-size: contain;
+  }
+  .megsharkslot-mg-board {
+    width: 600px;
+    padding: 10px 10px 14px 10px;
+    background-image: url('@/base/assets/images/megsharkslot/maingame.jpg');
+  }
+  .megsharkslot-fg-board {
+    width: 702px;
+    padding: 10px 10px 14px 112.5px;
+    background-image: url('@/base/assets/images/megsharkslot/freegame.jpg');
+  }
+  .megsharkslot {
+    width: 116px;
+    height: 99px;
+    background-size: contain;
+    background-position: center;
+  }
+  .megsharkslot.small {
+    width: 58px;
+    height: 49.5px;
+  }
+  .megsharkslot.active:before {
+    width: 116px;
+    height: 99px;
+    content: '';
+    display: block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('@/base/assets/images/megsharkslot/blueframe.png');
+  }
+  .megsharkslot.transform {
+    position: absolute;
+  }
+  .megsharkslot.transform.p1,
+  .megsharkslot.transform.p3 {
+    width: 70px;
+    height: 62.34375px;
+    left: 27.5px;
+  }
+  .megsharkslot.transform.p1 {
+    top: 35px;
+  }
+  .megsharkslot.transform.p3 {
+    top: 214.5px;
+  }
+  .megsharkslot.transform.p2 {
+    width: 86px;
+    height: 76.59375px;
+    top: 118.5px;
+    left: 20px;
+  }
+  .megsharkslot-1 {
+    background-image: url('@/base/assets/images/megsharkslot/h1.png');
+  }
+  .megsharkslot-2 {
+    background-image: url('@/base/assets/images/megsharkslot/h2.png');
+  }
+  .megsharkslot-3 {
+    background-image: url('@/base/assets/images/megsharkslot/h3.png');
+  }
+  .megsharkslot-4 {
+    background-image: url('@/base/assets/images/megsharkslot/h4.png');
+  }
+  .megsharkslot-11 {
+    background-image: url('@/base/assets/images/megsharkslot/l1.png');
+  }
+  .megsharkslot-12 {
+    background-image: url('@/base/assets/images/megsharkslot/l2.png');
+  }
+  .megsharkslot-13 {
+    background-image: url('@/base/assets/images/megsharkslot/l3.png');
+  }
+  .megsharkslot-14 {
+    background-image: url('@/base/assets/images/megsharkslot/l4t.png');
+  }
+  .megsharkslot-15 {
+    background-image: url('@/base/assets/images/megsharkslot/l5.png');
+  }
+  .megsharkslot-16 {
+    background-image: url('@/base/assets/images/megsharkslot/l6.png');
+  }
+  .megsharkslot-21 {
+    background-image: url('@/base/assets/images/megsharkslot/sf.png');
+  }
+  .megsharkslot-31 {
+    background-image: url('@/base/assets/images/megsharkslot/ww.png');
+  }
+
+  .midasslot-board {
+    width: 797px;
+    height: 361px;
+    padding: 12px 121px 12px 12px;
+    background-size: contain;
+  }
+  .midasslot-board.mg {
+    background-image: url('@/base/assets/images/midasslot/MG_midasslot.jpg');
+  }
+  .midasslot-board.fg {
+    background-image: url('@/base/assets/images/midasslot/FG_midasslot.jpg');
+  }
+  .midasslot {
+    width: 125.7543px;
+    height: 112px;
+    background-size: contain;
+    background-position: center;
+  }
+  .midasslot.column-1 {
+    margin-left: 9px;
+  }
+  .midasslot.column-2 {
+    margin-left: 10px;
+  }
+  .midasslot.column-3 {
+    margin-left: 6px;
+  }
+  .midasslot.column-4 {
+    margin-left: 10px;
+  }
+  .midasslot.small {
+    width: 62.87715px;
+    height: 56px;
+  }
+  .midasslot-1 {
+    background-image: url('@/base/assets/images/midasslot/h1_midasslot.png');
+  }
+  .midasslot-2 {
+    background-image: url('@/base/assets/images/midasslot/h2_midasslot.png');
+  }
+  .midasslot-3 {
+    background-image: url('@/base/assets/images/midasslot/h3_midasslot.png');
+  }
+  .midasslot-4 {
+    background-image: url('@/base/assets/images/midasslot/h4_midasslot.png');
+  }
+  .midasslot-5 {
+    background-image: url('@/base/assets/images/midasslot/h5_midasslot.png');
+  }
+  .midasslot-11 {
+    background-image: url('@/base/assets/images/midasslot/l1_midasslot.png');
+  }
+  .midasslot-12 {
+    background-image: url('@/base/assets/images/midasslot/l2_midasslot.png');
+  }
+  .midasslot-13 {
+    background-image: url('@/base/assets/images/midasslot/l3_midasslot.png');
+  }
+  .midasslot-14 {
+    background-image: url('@/base/assets/images/midasslot/l4_midasslot.png');
+  }
+  .midasslot-15 {
+    background-image: url('@/base/assets/images/midasslot/l5_midasslot.png');
+  }
+  .midasslot-21 {
+    background-image: url('@/base/assets/images/midasslot/s_midasslot.png');
+  }
+  .mg .midasslot-31 {
+    background-image: url('@/base/assets/images/midasslot/wx1m_midasslot.png');
+  }
+  .fg .midasslot-31 {
+    background-image: url('@/base/assets/images/midasslot/wx1f_midasslot.png');
+  }
+  .mg .midasslot-32 {
+    background-image: url('@/base/assets/images/midasslot/wx2m_midasslot.png');
+  }
+  .fg .midasslot-32 {
+    background-image: url('@/base/assets/images/midasslot/wx2f_midasslot.png');
+  }
+  .mg .midasslot-33 {
+    background-image: url('@/base/assets/images/midasslot/wx3m_midasslot.png');
+  }
+  .fg .midasslot-33 {
+    background-image: url('@/base/assets/images/midasslot/wx3f_midasslot.png');
+  }
+  .midasslotmulti.single {
+    width: 36px;
+    height: 55.125px;
+    background-size: contain;
+  }
+  .midasslotmulti.pos-0.single {
+    top: 76px;
+    right: 40px;
+  }
+  .midasslotmulti.double {
+    width: 32px;
+    height: 49px;
+    background-size: contain;
+  }
+  .midasslotmulti.pos-0.double {
+    top: 80px;
+    right: 65px;
+  }
+  .midasslotmulti.pos-1.double {
+    top: 80px;
+    right: 36px;
+  }
+  .midasslotmulti-0 {
+    background-image: url('@/base/assets/images/midasslot/w0_midasslot.png');
+  }
+  .midasslotmulti-1 {
+    background-image: url('@/base/assets/images/midasslot/w1_midasslot.png');
+  }
+  .midasslotmulti-2 {
+    background-image: url('@/base/assets/images/midasslot/w2_midasslot.png');
+  }
+  .midasslotmulti-3 {
+    background-image: url('@/base/assets/images/midasslot/w3_midasslot.png');
+  }
+  .midasslotmulti-4 {
+    background-image: url('@/base/assets/images/midasslot/w4_midasslot.png');
+  }
+  .midasslotmulti-5 {
+    background-image: url('@/base/assets/images/midasslot/w5_midasslot.png');
+  }
+  .midasslotmulti-6 {
+    background-image: url('@/base/assets/images/midasslot/w6_midasslot.png');
+  }
+  .midasslotmulti-7 {
+    background-image: url('@/base/assets/images/midasslot/w7_midasslot.png');
+  }
+  .midasslotmulti-8 {
+    background-image: url('@/base/assets/images/midasslot/w8_midasslot.png');
+  }
+  .midasslotmulti-9 {
+    background-image: url('@/base/assets/images/midasslot/w9_midasslot.png');
+  }
+
+  .wildgemslot-board {
+    width: 705px;
+    height: 368px;
+    padding: 15px 22px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    background-image: url('@/base/assets/images/wildgemslot/mg_wildgemslot.jpg');
+  }
+
+  .wildgemslot {
+    background-size: cover;
+  }
+  .wildgemslot-1 {
+    background-image: url('@/base/assets/images/wildgemslot/h1_wildgemslot.png');
+  }
+  .wildgemslot-2 {
+    background-image: url('@/base/assets/images/wildgemslot/h2_wildgemslot.png');
+  }
+  .wildgemslot-3 {
+    background-image: url('@/base/assets/images/wildgemslot/h3_wildgemslot.png');
+  }
+  .wildgemslot-4 {
+    background-image: url('@/base/assets/images/wildgemslot/h4_wildgemslot.png');
+  }
+  .wildgemslot-5 {
+    background-image: url('@/base/assets/images/wildgemslot/h5_wildgemslot.png');
+  }
+  .wildgemslot-11 {
+    background-image: url('@/base/assets/images/wildgemslot/l1_wildgemslot.png');
+  }
+  .wildgemslot-12 {
+    background-image: url('@/base/assets/images/wildgemslot/l2_wildgemslot.png');
+  }
+  .wildgemslot-13 {
+    background-image: url('@/base/assets/images/wildgemslot/l3_wildgemslot.png');
+  }
+  .wildgemslot-14 {
+    background-image: url('@/base/assets/images/wildgemslot/l4_wildgemslot.png');
+  }
+  .wildgemslot-15 {
+    background-image: url('@/base/assets/images/wildgemslot/l5_wildgemslot.png');
+  }
+  .wildgemslot-21 {
+    background-image: url('@/base/assets/images/wildgemslot/fg_wildgemslot.png');
+  }
+  .wildgemslot-31 {
+    background-image: url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-32 {
+    background-image: url('@/base/assets/images/wildgemslot/wp01_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-33 {
+    background-image: url('@/base/assets/images/wildgemslot/wp02_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-34 {
+    background-image: url('@/base/assets/images/wildgemslot/wp03_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-35 {
+    background-image: url('@/base/assets/images/wildgemslot/wp04_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-36 {
+    background-image: url('@/base/assets/images/wildgemslot/wp05_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-37 {
+    background-image: url('@/base/assets/images/wildgemslot/wp06_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-38 {
+    background-image: url('@/base/assets/images/wildgemslot/wp07_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-39 {
+    background-image: url('@/base/assets/images/wildgemslot/wp08_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-40 {
+    background-image: url('@/base/assets/images/wildgemslot/wp09_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-41 {
+    background-image: url('@/base/assets/images/wildgemslot/wp10_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-42 {
+    background-image: url('@/base/assets/images/wildgemslot/wp11_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-43 {
+    background-image: url('@/base/assets/images/wildgemslot/wp12_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-44 {
+    background-image: url('@/base/assets/images/wildgemslot/wp13_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-45 {
+    background-image: url('@/base/assets/images/wildgemslot/wp14_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-46 {
+    background-image: url('@/base/assets/images/wildgemslot/wp15_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-47 {
+    background-image: url('@/base/assets/images/wildgemslot/wp16_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-48 {
+    background-image: url('@/base/assets/images/wildgemslot/wp17_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-49 {
+    background-image: url('@/base/assets/images/wildgemslot/wp18_wildgemslot.png'),
+      url('@/base/assets/images/wildgemslot/wp__wildgemslot.png');
+  }
+  .wildgemslot-wild {
+    background-position: bottom, center;
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain, cover;
+  }
+  .jumphighslot-board {
+    width: 626px;
+    height: 360px;
+    background-size: contain;
+  }
+  .jumphighslot-board.mg {
+    background-image: url('@/base/assets/images/jumphighslot/MG_jumphighslot.jpg');
+    padding-top: 32px;
+  }
+  .jumphighslot-board.fg {
+    background-image: url('@/base/assets/images/jumphighslot/FG_jumphighslot.jpg');
+  }
+  .jumphighslotreelsresult {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 1.2%;
+  }
+  .jumphighslot {
+    width: 116px;
+    height: 99px;
+    background-size: contain;
+    background-position: center;
+  }
+  .jumphighslot.small {
+    width: 58px;
+    height: 49.5px;
+  }
+  .jumphighslot-1 {
+    background-image: url('@/base/assets/images/jumphighslot/h1_jumphighslot.png');
+  }
+  .jumphighslot-2 {
+    background-image: url('@/base/assets/images/jumphighslot/h2_jumphighslot.png');
+  }
+  .jumphighslot-3 {
+    background-image: url('@/base/assets/images/jumphighslot/h3_jumphighslot.png');
+  }
+  .jumphighslot-4 {
+    background-image: url('@/base/assets/images/jumphighslot/h4_jumphighslot.png');
+  }
+  .jumphighslot-11 {
+    background-image: url('@/base/assets/images/jumphighslot/l1_jumphighslot.png');
+  }
+  .jumphighslot-12 {
+    background-image: url('@/base/assets/images/jumphighslot/l2_jumphighslot.png');
+  }
+  .jumphighslot-13 {
+    background-image: url('@/base/assets/images/jumphighslot/l3_jumphighslot.png');
+  }
+  .jumphighslot-14 {
+    background-image: url('@/base/assets/images/jumphighslot/l4_jumphighslot.png');
+  }
+  .jumphighslot-21 {
+    background-image: url('@/base/assets/images/jumphighslot/sf_jumphighslot.png');
+  }
+  .jumphighslot-31 {
+    background-image: url('@/base/assets/images/jumphighslot/ww_jumphighslot.png');
+  }
+  .blueframe .blueframe_jumphighslot {
+    background-image: url('@/base/assets/images/jumphighslot/blueframe_jumphighslot.png');
+    width: 115px;
+    height: 100px;
+    background-size: 100% 100%;
+  }
+  .multiBoard {
+    width: 80px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+  }
+  .jumphighslotmulti {
+    display: flex;
+  }
+  .jumphighslotmulti-x {
+    width: 22px;
+    height: 30px;
+    margin-left: 5px;
+    background-image: url('@/base/assets/images/jumphighslot/x_jumphighslot.png');
+  }
+  .jumphighslotmulti-0 {
+    background-image: url('@/base/assets/images/jumphighslot/0_jumphighslot.png');
+  }
+  .jumphighslotmulti-1 {
+    background-image: url('@/base/assets/images/jumphighslot/1_jumphighslot.png');
+  }
+  .jumphighslotmulti-2 {
+    background-image: url('@/base/assets/images/jumphighslot/2_jumphighslot.png');
+  }
+  .jumphighslotmulti-3 {
+    background-image: url('@/base/assets/images/jumphighslot/3_jumphighslot.png');
+  }
+  .jumphighslotmulti-4 {
+    background-image: url('@/base/assets/images/jumphighslot/4_jumphighslot.png');
+  }
+  .jumphighslotmulti-5 {
+    background-image: url('@/base/assets/images/jumphighslot/5_jumphighslot.png');
+  }
+  .jumphighslotmulti-6 {
+    background-image: url('@/base/assets/images/jumphighslot/6_jumphighslot.png');
+  }
+  .jumphighslotmulti-7 {
+    background-image: url('@/base/assets/images/jumphighslot/7_jumphighslot.png');
+  }
+  .jumphighslotmulti-8 {
+    background-image: url('@/base/assets/images/jumphighslot/8_jumphighslot.png');
+  }
+  .jumphighslotmulti-9 {
+    background-image: url('@/base/assets/images/jumphighslot/9_jumphighslot.png');
+  }
+  .jumphighslotmultinum {
+    width: 25px;
+    height: 30px;
+    background-size: 100% 100%;
+    margin: 0 auto;
+  }
+
+  .pyrtreasureslot-MGboard {
+    width: 626px;
+    height: 360px;
+    background-image: url('@/base/assets/images/pyrtreasureslot/mg_pyrtreasureslot.jpg');
+    background-size: contain;
+  }
+
+  .pyrtreasureslot-BGboard {
+    width: 610px;
+    height: 547px;
+    background-image: url('@/base/assets/images/pyrtreasureslot/pyramid_pyrtreasureslot.png');
+    background-size: contain;
+  }
+
+  .pyrtreasureslotreelsresult {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 1.2%;
+  }
+
+  .pyrtreasureslot {
+    width: 99px;
+    height: 99px;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .pyrtreasureslot.small {
+    width: 60px;
+    height: 60px;
+    background-size: 100% 100%;
+  }
+
+  .pyrtreasureslot-smallPic {
+    display: flex;
+  }
+
+  .pyrtreasureslot-1 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/h1_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-2 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/h2_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-3 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/h3_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-4 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/h4_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-5 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/h5_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-11 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/l1_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-12 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/l2_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-13 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/l3_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-14 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/l4_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-15 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/l5_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-22 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/bonus_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-31 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/wild_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-41 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/treasure_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-42 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/up_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-43 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/skeleton_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-44 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/toptreasure_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-multi2 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/x2_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-multi3 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/x3_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-multi5 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/x5_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num0 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/0_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num1 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/1_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num2 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/2_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num3 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/3_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num4 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/4_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num5 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/5_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num6 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/6_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num7 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/7_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num8 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/8_pyrtreasureslot.png');
+  }
+  .pyrtreasureslot-num9 {
+    background-image: url('@/base/assets/images/pyrtreasureslot/9_pyrtreasureslot.png');
+  }
+
+  .pyrtreasureslot-bonusNum {
+    color: yellow;
+    font-size: 17px;
+    font-weight: 900;
+    margin-top: 20px;
+  }
+
+  .pyrtreasureslot-multi {
+    width: 50px;
+    height: 18px;
+    margin-top: 10px;
+    background-size: contain;
+  }
+
+  .pyrtreasureslot-boxSection {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    bottom: 0;
+    height: 66%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: 15px;
+  }
+
+  .pyrtreasureslot-bonusBoxLine {
+    display: flex;
+    justify-content: center;
+  }
+  .pyrtreasureslot-bonusBox {
+    width: 58px;
+    height: 58px;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pyrtreasureslot-bonusBox.pyrtreasureslot-44 {
+    margin: 0 auto;
+  }
+
+  .happyfishing {
+    width: 80px;
+    height: 59px;
+  }
+  .happyfishing-fish-1 {
+    background-image: url('@/base/assets/images/happyfishing/1_happyfishing.png');
+  }
+  .happyfishing-fish-2 {
+    background-image: url('@/base/assets/images/happyfishing/2_happyfishing.png');
+  }
+  .happyfishing-fish-3 {
+    background-image: url('@/base/assets/images/happyfishing/3_happyfishing.png');
+  }
+  .happyfishing-fish-4 {
+    background-image: url('@/base/assets/images/happyfishing/4_happyfishing.png');
+  }
+  .happyfishing-fish-5 {
+    background-image: url('@/base/assets/images/happyfishing/5_happyfishing.png');
+  }
+  .happyfishing-fish-6 {
+    background-image: url('@/base/assets/images/happyfishing/6_happyfishing.png');
+  }
+  .happyfishing-fish-7 {
+    background-image: url('@/base/assets/images/happyfishing/7_happyfishing.png');
+  }
+  .happyfishing-fish-8 {
+    background-image: url('@/base/assets/images/happyfishing/8_happyfishing.png');
+  }
+  .happyfishing-fish-9 {
+    background-image: url('@/base/assets/images/happyfishing/9_happyfishing.png');
+  }
+  .happyfishing-fish-10 {
+    background-image: url('@/base/assets/images/happyfishing/10_happyfishing.png');
+  }
+  .happyfishing-fish-11 {
+    background-image: url('@/base/assets/images/happyfishing/11_happyfishing.png');
+  }
+  .happyfishing-fish-12 {
+    background-image: url('@/base/assets/images/happyfishing/12_happyfishing.png');
+  }
+  .happyfishing-fish-13 {
+    background-image: url('@/base/assets/images/happyfishing/13_happyfishing.png');
+  }
+  .happyfishing-fish-14 {
+    background-image: url('@/base/assets/images/happyfishing/14_happyfishing.png');
+  }
+  .happyfishing-fish-15 {
+    background-image: url('@/base/assets/images/happyfishing/15_happyfishing.png');
+  }
+  .happyfishing-fish-16 {
+    background-image: url('@/base/assets/images/happyfishing/16_happyfishing.png');
+  }
+  .happyfishing-fish-17 {
+    background-image: url('@/base/assets/images/happyfishing/17_happyfishing.png');
+  }
+  .happyfishing-fish-18 {
+    background-image: url('@/base/assets/images/happyfishing/18_happyfishing.png');
+  }
+  .happyfishing-fish-19 {
+    background-image: url('@/base/assets/images/happyfishing/19_happyfishing.png');
+  }
+  .happyfishing-fish-20 {
+    background-image: url('@/base/assets/images/happyfishing/20_happyfishing.png');
+  }
+  .happyfishing-fish-21 {
+    background-image: url('@/base/assets/images/happyfishing/21_happyfishing.png');
+  }
+  .happyfishing-fish-22 {
+    background-image: url('@/base/assets/images/happyfishing/22_happyfishing.png');
+  }
+  .happyfishing-fish-23 {
+    background-image: url('@/base/assets/images/happyfishing/23_happyfishing.png');
+  }
+  .happyfishing-fish-24 {
+    background-image: url('@/base/assets/images/happyfishing/24_happyfishing.png');
+  }
+  .happyfishing-fish-25 {
+    background-image: url('@/base/assets/images/happyfishing/25_happyfishing.png');
+  }
+  .happyfishing-fish-26 {
+    background-image: url('@/base/assets/images/happyfishing/26_happyfishing.png');
+  }
+  .happyfishing-fish-27 {
+    background-image: url('@/base/assets/images/happyfishing/27_happyfishing.png');
+  }
+  .happyfishing-fish-28 {
+    background-image: url('@/base/assets/images/happyfishing/28_happyfishing.png');
+  }
+  .happyfishing-fish-29 {
+    background-image: url('@/base/assets/images/happyfishing/29_happyfishing.png');
+  }
+  .happyfishing-fish-30 {
+    background-image: url('@/base/assets/images/happyfishing/30_happyfishing.png');
+  }
+  .happyfishing-fish-31 {
+    background-image: url('@/base/assets/images/happyfishing/31_happyfishing.png');
+  }
+  .happyfishing-fish-32 {
+    background-image: url('@/base/assets/images/happyfishing/32_happyfishing.png');
+  }
+  .happyfishing-fish-33 {
+    background-image: url('@/base/assets/images/happyfishing/33_happyfishing.png');
+  }
+  .happyfishing-fish-34 {
+    background-image: url('@/base/assets/images/happyfishing/34_happyfishing.png');
+  }
+  .happyfishing-fish-35 {
+    background-image: url('@/base/assets/images/happyfishing/35_happyfishing.png');
+  }
+  .happyfishing-skill-s1 {
+    height: 50px;
+    background-image: url('@/base/assets/images/happyfishing/skill_happyfishing_1.png');
+  }
+  .happyfishing-skill-s2 {
+    height: 50px;
+    background-image: url('@/base/assets/images/happyfishing/skill_happyfishing_2.png');
+  }
+
+  .tooltips {
+    @apply w-fit whitespace-nowrap absolute left-1/2 -translate-y-3/4 -top-[70%] invisible -translate-x-1/2 rounded border border-gray-300 bg-white p-1 after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-8 after:border-gray-300 after:border-x-transparent after:border-b-transparent after:content-[''] group-hover:visible;
+  }
+
+  .tbl-container {
+    @apply overflow-x-auto;
+  }
+  .tbl {
+    @apply w-full whitespace-nowrap text-center;
+  }
+  .tbl tbody {
+    @apply text-slate-500;
+  }
+  .tbl-hover tr:not(.no-hover) {
+    @apply hover:bg-slate-100;
+  }
+  .tbl th {
+    @apply border-b bg-slate-100 p-3.5;
+  }
+  .tbl th.sorting {
+    @apply relative cursor-pointer pr-7;
+  }
+  .tbl th.sorting .asc,
+  .tbl th.sorting .desc {
+    @apply absolute right-2.5 border-4 border-transparent;
+  }
+  .tbl th.sorting .asc {
+    @apply top-[17px] border-b-slate-300;
+  }
+  .tbl th.sorting .asc.active {
+    @apply border-b-slate-400;
+  }
+  .tbl th.sorting .desc {
+    @apply bottom-[17px] border-t-slate-300;
+  }
+  .tbl th.sorting .desc.active {
+    @apply border-t-slate-400;
+  }
+  .tbl td {
+    @apply border-b p-3.5;
+  }
+
+  .form-label {
+    @apply text-gray-500;
+  }
+  .form-input {
+    @apply w-full rounded border border-gray-200 py-2 px-3.5 text-gray-500 outline-none placeholder:text-gray-400 focus-visible:border-gray-300;
+  }
+  .form-text {
+    @apply min-h-[42px] w-full rounded border border-gray-200 py-2 px-3.5 text-gray-500;
+  }
+  .required-mark {
+    @apply after:ml-0.5 after:text-red-500 after:content-['*'];
+  }
+
+  .after-arrow {
+    @apply after:absolute after:border-8 after:border-gray-400;
+  }
+  .after-arrow.after-arrow-up {
+    @apply after:border-x-transparent after:border-t-transparent after:-top-4 after:-translate-x-1;
+  }
+}
+
+@layer base {
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}

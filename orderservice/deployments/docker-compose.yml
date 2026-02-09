@@ -1,0 +1,76 @@
+version: '3'
+
+# volumes:
+#     dcc-pgsql-volumes:
+#         external: true 
+#     dcc-redis-volumes:
+#         external: true
+#     dcc-pgadmin-volumes:
+#         external: true
+
+networks:
+    dcc_db_net:
+        name: dcc_backend_networks
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.99.0.0/16
+                  gateway: 172.99.0.1
+
+services:
+    orderservice:
+        build:
+            dockerfile: "./backend/Dockerfile"
+            context: "../"
+            args:
+                - web_mode=docker
+        image: dcc/orderservice:1.0.0
+        container_name: dcc-orderservice
+        # depends_on:
+        #     - redis
+        #     - pgsql
+            # - migrate
+        # links:
+        #     - redis
+        #     - pgsql
+        ports:
+            - 9988:9988
+        networks:
+            dcc_db_net:
+                ipv4_address: 172.99.0.99
+        command: "./dcc_orderservice" 
+    # redis:
+    #     image: "redis:7"
+    #     container_name: dcc-redis
+    #     restart: on-failure:3
+    #     ports:
+    #         - "6379:6379"
+    #     environment:
+    #         - ALLOW_EMPTY_PASSWORD=yes
+    #     volumes: 
+    #         - dcc-redis-volumes:/data
+    #     networks:
+    #         dcc_db_net:
+    #             ipv4_address: 172.99.0.11
+    # pgsql:
+    #     image: "postgres:14.5"
+    #     container_name: dcc-pgsql
+    #     restart: on-failure:3
+    #     ports:
+    #         - "5432:5432"
+    #     volumes:
+    #         - dcc-pgsql-volumes:/var/lib/postgresql/data:cached
+    #         - ./pgsql-dump:/docker-entrypoint-initdb.d
+    #     environment:
+    #         POSTGRES_USER: postgres
+    #         POSTGRES_PASSWORD: 123456
+    #         POSTGRES_DB: dcc_game
+    #         TZ : "UTC+0"
+    #     cap_add:
+    #         - SYS_NICE  # CAP_SYS_NICE
+    #     networks:
+    #         dcc_db_net:
+    #             ipv4_address: 172.99.0.12
+
+
+             

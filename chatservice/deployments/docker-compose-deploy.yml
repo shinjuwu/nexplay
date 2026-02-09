@@ -1,0 +1,26 @@
+version: '3'
+
+networks:
+    dcc_db_net:
+        name: dcc_backend_networks
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.99.0.0/16
+                  gateway: 172.99.0.1
+
+services:
+    chatservice:
+        build:
+            dockerfile: "./cmd/baseserver/Dockerfile"
+            context: "../"
+            args:
+                - web_mode=${web_mode}
+        image: dcc/chatservice:1.0.0
+        container_name: chatservice
+        ports:
+            - 8896:8896
+        networks:
+            dcc_db_net:
+                ipv4_address: 172.99.0.21
+             

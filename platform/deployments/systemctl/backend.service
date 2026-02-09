@@ -1,0 +1,10 @@
+[unit]
+Description=Backend Service
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/bin/backend
+ExecStart=/usr/local/bin/backend/dcc_backend
+
+[Install]
+WantedBy=multi-user.target

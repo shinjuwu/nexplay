@@ -1,0 +1,1 @@
+DROP MATERIALIZED VIEW mv_cal_game_stat_hour, mv_cal_game_stat_day, mv_cal_game_stat_week, mv_cal_game_stat_month;

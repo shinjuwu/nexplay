@@ -1,0 +1,4 @@
+-- CREATE DATABASE dcc_game;
+
+CREATE DATABASE dcc_game;
+GRANT ALL PRIVILEGES ON DATABASE dcc_game TO postgres;

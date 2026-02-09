@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS "public"."rt_data_stat_day", "public"."rt_data_stat_hour";

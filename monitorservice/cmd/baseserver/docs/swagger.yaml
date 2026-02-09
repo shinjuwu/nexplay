@@ -1,0 +1,1125 @@
+definitions:
+  model.AbnormalWinAndLoseStatus:
+    properties:
+      agent_id:
+        type: integer
+      agent_name:
+        type: string
+      bet_id:
+        type: string
+      bet_time:
+        type: string
+      bonus:
+        type: number
+      create_time:
+        type: string
+      de_score:
+        type: number
+      game_id:
+        type: integer
+      game_name:
+        type: string
+      lognumber:
+        description: Platform   string    `json:"platform"`
+        type: string
+      room_name:
+        type: string
+      room_type:
+        type: integer
+      user_id:
+        type: integer
+      username:
+        type: string
+    type: object
+  model.AbnormalWinAndLoseStatusRequest:
+    properties:
+      filter:
+        description: 指定查詢單一平台(平台唯一碼)
+        type: string
+    type: object
+  model.AbnormalWinAndLoseStatusResponse:
+    properties:
+      abnormal_win_and_lose_status_list:
+        description: 狀態列表
+        items:
+          $ref: '#/definitions/model.AbnormalWinAndLoseStatus'
+        type: array
+    type: object
+  model.BlockUsersRequest:
+    properties:
+      id:
+        description: 用戶id
+        type: string
+      is_enabled:
+        description: 是否關閉帳號
+        type: boolean
+      username:
+        description: 帳號
+        type: string
+    type: object
+  model.CaptchaResponse:
+    properties:
+      captchaId:
+        description: 驗證碼id
+        type: string
+      captchaLength:
+        description: 驗證碼長度
+        type: integer
+      captchaValue:
+        description: 驗證碼(測試模式才顯示)
+        type: string
+      expiredTime:
+        description: 驗證碼過期時間
+        type: string
+      picPath:
+        description: base64 圖片字串
+        type: string
+    type: object
+  model.CoinInOutStatus:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      changeset:
+        description: 帳變內容
+        type: string
+      create_time:
+        description: '訂單時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+      id:
+        description: 訂單號
+        type: string
+      info:
+        description: 備註
+        type: string
+      kind:
+        description: 帳變類型
+        type: integer
+      status:
+        description: 訂單狀態
+        type: integer
+      user_id:
+        description: 代理用戶id
+        type: integer
+      username:
+        description: 代理用戶帳號
+        type: string
+    type: object
+  model.CoinInOutStatusRequest:
+    properties:
+      filter:
+        description: 指定查詢單一平台(平台唯一碼)
+        type: string
+    type: object
+  model.CoinInOutStatusResponse:
+    properties:
+      coin_inout_status_list:
+        description: 狀態列表
+        items:
+          $ref: '#/definitions/model.CoinInOutStatus'
+        type: array
+    type: object
+  model.CollectorAbnormalWinAndLoseRequest:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.UserPlayLog'
+        type: array
+      id:
+        type: string
+    type: object
+  model.CollectorCoinInOutRequest:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.WalletLedger'
+        type: array
+      id:
+        type: string
+    type: object
+  model.CollectorGameListRequest:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.GameList'
+        type: array
+      id:
+        type: string
+    type: object
+  model.CollectorRTPStat:
+    properties:
+      bonus:
+        type: number
+      de:
+        type: number
+      game_id:
+        type: integer
+      game_type:
+        type: integer
+      play_count:
+        type: integer
+      room_type:
+        type: integer
+      tax:
+        type: number
+      update_time:
+        type: string
+      vaild_ya:
+        type: number
+      ya:
+        type: number
+    type: object
+  model.CollectorRTPStatRequest:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.CollectorRTPStat'
+        type: array
+      id:
+        type: string
+    type: object
+  model.GameList:
+    properties:
+      code:
+        description: uni識別碼
+        type: string
+      id:
+        description: 遊戲ID
+        type: integer
+      name:
+        description: 遊戲名稱
+        type: string
+      type:
+        description: 遊戲類型
+        type: integer
+    type: object
+  model.GetUserInfoListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/model.GetUserInfoResponse'
+        type: array
+    type: object
+  model.GetUserInfoRequest:
+    properties:
+      username:
+        type: string
+    type: object
+  model.GetUserInfoResponse:
+    properties:
+      create_time:
+        type: string
+      info:
+        type: string
+      is_enabled:
+        type: boolean
+      last_login_time:
+        type: string
+      nickname:
+        type: string
+      permissions:
+        items:
+          type: string
+        type: array
+      user_metadata:
+        type: string
+      username:
+        description: Id            string    `json:"id"`
+        type: string
+    type: object
+  model.ModifyInfoRequest:
+    properties:
+      nickname:
+        description: 暱稱
+        type: string
+    type: object
+  model.ModifyPasswordRequest:
+    properties:
+      password:
+        description: 密碼(加密後的字串,不可用明碼)
+        type: string
+    type: object
+  model.ModifyUsersInfoRequest:
+    properties:
+      info:
+        description: 備註
+        type: string
+      is_enabled:
+        description: 帳號開啟狀態
+        type: boolean
+      nickname:
+        description: 暱稱
+        type: string
+      permissions:
+        description: 自訂權限，格式["dev", "qa"]
+        items:
+          type: string
+        type: array
+      username:
+        description: 用戶帳號
+        type: string
+    type: object
+  model.ModifyUsersPasswordRequest:
+    properties:
+      password:
+        description: 密碼(加密後的字串,不可用明碼)
+        type: string
+      username:
+        description: 用戶帳號
+        type: string
+    type: object
+  model.PlatformRTPStatusRequest:
+    properties:
+      filter:
+        description: 指定查詢單一平台或是全部(平台唯一碼)
+        type: string
+      time_zone:
+        description: '時間區域(UTC+X, X時間, 單位分鐘, ex: UTC+8 要傳入 -60*8=-480)'
+        type: integer
+    type: object
+  model.PlatformRTPStatusResponse:
+    properties:
+      rtp_status_day_list:
+        description: 遊戲狀態列表(本日)
+        items:
+          $ref: '#/definitions/model.RTPStatus'
+        type: array
+      rtp_status_list:
+        description: 總和狀態列表(本日、本週、本月)
+        items:
+          $ref: '#/definitions/model.RTPStatus'
+        type: array
+      rtp_status_month_list:
+        description: 遊戲狀態列表(本月)
+        items:
+          $ref: '#/definitions/model.RTPStatus'
+        type: array
+      rtp_status_week_list:
+        description: 遊戲狀態列表(本週)
+        items:
+          $ref: '#/definitions/model.RTPStatus'
+        type: array
+    type: object
+  model.RTPStatus:
+    properties:
+      bonus:
+        type: number
+      cal_et:
+        description: 計算結束時間(YYYYMMDDhh)，適配用戶端時間
+        type: string
+      cal_st:
+        description: 計算開始時間(YYYYMMDDhh)，適配用戶端時間
+        type: string
+      de:
+        type: number
+      game_type:
+        type: integer
+      play_count:
+        type: integer
+      rtp_type:
+        description: RTP 種類(month, week, day, gamename)
+        type: string
+      tax:
+        type: number
+      title:
+        description: 標題
+        type: string
+      ya:
+        type: number
+    type: object
+  model.Response:
+    properties:
+      code:
+        description: 回傳編碼
+        type: integer
+      data:
+        description: 回傳資料
+      msg:
+        description: 自定義訊息
+        type: string
+    type: object
+  model.ServiceStatus:
+    properties:
+      info:
+        description: 說明
+        type: string
+      name:
+        description: '平台碼(全部: all)'
+        type: string
+      status:
+        description: 目前服務狀態(0:正常,1:異常)
+        type: integer
+      sub_name:
+        description: 副標(那裡的服務)
+        type: string
+    type: object
+  model.ServiceStatusRequest:
+    properties:
+      filter:
+        description: '指定查詢單一平台或是全部(全部: all, 其他: 平台唯一碼)'
+        type: string
+    type: object
+  model.ServiceStatusResponse:
+    properties:
+      status_list:
+        description: 狀態列表
+        items:
+          $ref: '#/definitions/model.ServiceStatus'
+        type: array
+    type: object
+  model.UserInfoResponse:
+    properties:
+      expiresAt:
+        description: token 過期時間
+        type: integer
+      is_admin:
+        description: 是否是管理者帳號
+        type: boolean
+      login_time:
+        description: 本次登入時間
+        type: string
+      nickname:
+        description: 暱稱
+        type: string
+      permissions:
+        description: 自訂權限，格式["dev", "qa"]
+        items:
+          type: string
+        type: array
+      top_code:
+        description: 層級碼
+        type: string
+      username:
+        description: 帳號
+        type: string
+    type: object
+  model.UserLoginData:
+    properties:
+      create_time:
+        type: string
+      is_admin:
+        type: boolean
+      last_login_time:
+        type: string
+      nickname:
+        type: string
+      permissions:
+        items:
+          type: string
+        type: array
+      top_code:
+        type: string
+      user_metadata:
+        type: string
+      username:
+        type: string
+    type: object
+  model.UserPlayLog:
+    properties:
+      agent_id:
+        type: integer
+      agent_name:
+        type: string
+      bet_id:
+        type: string
+      bet_time:
+        type: string
+      bonus:
+        type: number
+      create_time:
+        type: string
+      de_score:
+        type: number
+      game_id:
+        type: integer
+      game_name:
+        type: string
+      lognumber:
+        type: string
+      room_name:
+        type: string
+      room_type:
+        type: integer
+      user_id:
+        type: integer
+      username:
+        type: string
+    type: object
+  model.UsersLoginRequest:
+    properties:
+      captcha:
+        description: 驗證碼
+        type: string
+      captchaId:
+        description: 驗證碼ID
+        type: string
+      password:
+        description: 密碼(加密後的字串,不可用明碼)
+        type: string
+      username:
+        description: 登入帳號
+        type: string
+    type: object
+  model.UsersLoginResponse:
+    properties:
+      expiresAt:
+        type: integer
+      token:
+        type: string
+      userData:
+        $ref: '#/definitions/model.UserLoginData'
+    type: object
+  model.UsersRegisterRequest:
+    properties:
+      nickname:
+        description: 自訂名稱
+        type: string
+      password:
+        description: 密碼(加密後的字串,不可用明碼)
+        type: string
+      permissions:
+        description: 自訂權限，格式["dev", "qa"]
+        items:
+          type: string
+        type: array
+      username:
+        description: 登入帳號
+        type: string
+    type: object
+  model.WalletLedger:
+    properties:
+      agent_id:
+        type: integer
+      agent_name:
+        type: string
+      changeset:
+        description: You can use map[string]interface{} for JSON
+        type: string
+      create_time:
+        type: string
+      id:
+        type: string
+      kind:
+        type: integer
+      status:
+        type: integer
+      user_id:
+        type: integer
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: This is a backend service
+  title: Swagger Monitor Service API
+  version: 0.0.1
+paths:
+  /monitor/account.api/v1/modifyinfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改帳戶資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ModifyInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 修改帳戶資料
+      tags:
+      - account.api
+  /monitor/account.api/v1/modifypassword:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改密碼，修改後原 token 失效，必須重新登入
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ModifyPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 修改密碼
+      tags:
+      - account.api
+  /monitor/account.api/v1/usersinfo:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 回傳用戶資料(在線才有資料)
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.UserInfoResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取自己的帳戶資料
+      tags:
+      - account.api
+  /monitor/account.api/v1/verifytoken:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 回傳用戶資料(在線才有資料)
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 驗證目前登入 token 是否有效
+      tags:
+      - account.api
+  /monitor/admin.api/v1/blockusers:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 指定用戶資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.BlockUsersRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 封鎖指定用戶(此API只有admin可用)
+      tags:
+      - admin.api
+  /monitor/admin.api/v1/getusersinfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 輸入用戶帳號
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetUserInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 回傳用戶資料
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.GetUserInfoResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取指定用戶的帳戶資料(此API只有admin可用)
+      tags:
+      - admin.api
+  /monitor/admin.api/v1/getusersinfolist:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 回傳用戶資料
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.GetUserInfoListResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取所有用戶的帳戶資料(此API只有admin可用)
+      tags:
+      - admin.api
+  /monitor/admin.api/v1/modifyusersinfo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改帳戶資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ModifyUsersInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 修改帳戶資料(此API只有admin可用)
+      tags:
+      - admin.api
+  /monitor/admin.api/v1/modifyuserspassword:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 修改密碼，修改後原 token 失效，必須重新登入
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ModifyUsersPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 修改密碼(此API只有admin可用)
+      tags:
+      - admin.api
+  /monitor/admin.api/v1/register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 註冊帳號參數，密碼部分轉成 base64 再送出
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UsersRegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 註冊(不開放外部注冊，此API只有admin可用)
+      tags:
+      - admin.api
+  /monitor/collector.api/v1/collectorabnormalwinandlose:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 紀錄玩家輸贏資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CollectorAbnormalWinAndLoseRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      summary: 異常輸贏資料收集
+      tags:
+      - collector.api
+  /monitor/collector.api/v1/collectorcoininout:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 紀錄玩家上下分資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CollectorCoinInOutRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      summary: 玩家上下分資料收集
+      tags:
+      - collector.api
+  /monitor/collector.api/v1/collectorgamelist:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 紀錄平台RTP資料輸贏資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CollectorGameListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      summary: 同步平台遊戲列表
+      tags:
+      - collector.api
+  /monitor/collector.api/v1/collectorrtpstat:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 紀錄平台RTP資料輸贏資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CollectorRTPStatRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      summary: RTP 統計資料收集
+      tags:
+      - collector.api
+  /monitor/login.api/v1/captcha:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 生成验证码,返回包括随机数id,base64,验证码长度
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.CaptchaResponse'
+                msg:
+                  type: string
+              type: object
+      summary: 取得驗證碼
+      tags:
+      - login.api
+  /monitor/login.api/v1/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 登入帳號參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UsersLoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 登入成功回傳帳號資料與驗證token
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.UsersLoginResponse'
+                msg:
+                  type: string
+              type: object
+      summary: 登入
+      tags:
+      - login.api
+  /monitor/monitor.api/v1/abnormalwinandlosestatus:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 指定查詢單一服務狀態資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.AbnormalWinAndLoseStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.AbnormalWinAndLoseStatusResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 異常輸贏監控(顯示最新100筆資料)
+      tags:
+      - monitor.api
+  /monitor/monitor.api/v1/coininoutstatus:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 指定查詢單一服務狀態資料(默認 上/下分5000)
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CoinInOutStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.CoinInOutStatusResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 玩家上下分監控(顯示最新100筆資料)
+      tags:
+      - monitor.api
+  /monitor/monitor.api/v1/platformrtpstatus:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 指定查詢單一服務狀態資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.PlatformRTPStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.PlatformRTPStatusResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 各平台RTP監控
+      tags:
+      - monitor.api
+  /monitor/monitor.api/v1/servicestatus:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 指定查詢全部/單一服務狀態資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ServiceStatusRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Response'
+            - properties:
+                code:
+                  type: integer
+                data:
+                  $ref: '#/definitions/model.ServiceStatusResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 平台服務在線狀態
+      tags:
+      - monitor.api
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Token
+    type: apiKey
+swagger: "2.0"

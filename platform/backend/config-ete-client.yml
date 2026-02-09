@@ -1,0 +1,58 @@
+name: "platform"
+data_dir: "./data-log/"
+shutdown_grace_sec: 5
+
+app:
+  env: "release"  # the value same as gin mode (debug, release, test)
+  addr: 9986
+  acc_manage_header: "M7NJpSXxh"
+  acc_normal_header: "aikDg57I1"
+  check_header: true
+  use_multipoint: false
+  update_redis_data: true
+  load_front: false
+  load_swagger: false
+  load_db_migration: true
+  load_api_channel: false
+  load_record_channel: false
+  load_casino_channel: false
+  load_backend_channel: true
+  load_job_scheduler: true
+
+jwt:
+  encrypt_string: "#gFn7QSEs5TC9W29B$Gx"
+  issuer: "dcc"
+  expire_time_min: 10080
+
+captcha:
+  # Digit
+  key_length: 6
+  img_width: 400
+  img_height: 90
+  gc_limit_number: 10240
+  ExpiredSec: 60
+  
+database:
+  driver_name: "postgres"
+  default_db_idx: 0
+  conn_info:
+    - "host=10.2.0.9 port=5432 user=postgres dbname=dcc_game password=postgres sslmode=disable"   # for ete
+  migrate_source_url: "file://db/migrations"
+
+logger:
+  stdout: false
+  level: "debug"
+  file: "./data-log/logfile.log"
+  rotation: true
+  max_size: 128
+
+redis:
+  address: "10.3.1.4:6379"  # for ete
+  password: "49125741-7093-491c-8bea-f3c7e76d8649"  # for ete 
+  db_index:
+    - 0
+    - 1 
+    - 2
+    - 3
+    - 4
+    - 5

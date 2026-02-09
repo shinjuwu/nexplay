@@ -1,0 +1,38 @@
+package definition
+
+/*
+內部溝通錯誤碼
+遊戲 <-> 後台
+*/
+
+const (
+	INTERCOME_ERROR_CODE_UNKNOW_WRONG                       = 600 // 未知的錯誤
+	INTERCOME_ERROR_CODE_WRONG_FORMAT_FAILED                = 601 // 資料格式解析失敗 (不須重送)
+	INTERCOME_ERROR_CODE_GAME_ID_NOT_EXIST                  = 602 // 遊戲ID未定義或找不到 (需通知後台開發人員)
+	INTERCOME_ERROR_CODE_CREATE_PLAYLOG_COMMON_FAILED       = 603 // 插入遊戲局紀錄 failed (insert失敗,須重送)
+	INTERCOME_ERROR_CODE_CREATE_USERPLAYLOG_FAILED          = 604 // 插入用戶個人遊戲紀錄 failed (insert失敗,須重送)
+	INTERCOME_ERROR_CODE_PARAMS_PARSE_FAILED                = 605 // 參數錯誤
+	INTERCOME_ERROR_CODE_GET_VERIFY_INFO_FAILED             = 606 // 取得用戶登入資訊失敗
+	INTERCOME_ERROR_CODE_DELETE_VERIFY_INFO_FAILED          = 607 // 刪除用戶登入資訊失敗
+	INTERCOME_ERROR_CODE_GET_INGAMEUSER_FAILED              = 608 // 取得在線用戶資訊失敗
+	INTERCOME_ERROR_CODE_DELETE_INGAMEUSER_FAILED           = 609 // 刪除在線用戶資訊失敗
+	INTERCOME_ERROR_CODE_RELOGIN_TOKEN_SAVE_FAILED          = 610 // 儲存斷線重連TOKEN失敗
+	INTERCOME_ERROR_CODE_SELECT_DATABASE_FAILED             = 611 // 資料庫取資料錯誤
+	INTERCOME_ERROR_CODE_PARSE_ROWS_FAILED                  = 612 // 資料庫資料解析錯誤
+	INTERCOME_ERROR_CODE_LOCALMEMORY_FAILED                 = 613 // 本地端取資料錯誤
+	INTERCOME_ERROR_CODE_LOCAL_ANALYZE_FAILED               = 614 // 解析本地端資料錯誤
+	INTERCOME_ERROR_CODE_CREATE_JACKPOTLOG_FAILED           = 615 // 插入Jackpot紀錄 failed (insert失敗,須重送)
+	INTERCOME_ERROR_CODE_GET_AGENT_GAME_USER_DATA_FAILED    = 616 // 取 AgentOfGameUserData from redis 資料失敗
+	INTERCOME_ERROR_CODE_GET_AGENT_ID_FAILED                = 617 // 取 agent id 失敗
+	INTERCOME_ERROR_CODE_AGENT_WALLET_TYPE_FAILED           = 618 // 代理錢包類型錯誤
+	INTERCOME_ERROR_CODE_ENCODE_PARAM_FAILED                = 619 // API 參數加密失敗
+	INTERCOME_ERROR_CODE_CALL_API_FAILED                    = 620 // 遠端 API 呼叫錯誤
+	INTERCOME_ERROR_CODE_API_RESULT_UNMARSHAL_FAILED        = 621 // 遠端 API 回傳結果解析錯誤
+	INTERCOME_ERROR_CODE_API_RESULT_CODE_FAILED             = 622 // 遠端 API 回傳結果錯誤
+	INTERCOME_ERROR_CODE_START_SINGLE_WALLET_LEDGER_FAILED  = 623 // 建立單一錢包紀錄失敗(1)
+	INTERCOME_ERROR_CODE_FINISH_SINGLE_WALLET_LEDGER_FAILED = 624 // 建立單一錢包紀錄失敗(2)
+	INTERCOME_ERROR_CODE_IO_TIMEOUT_FAILED                  = 625 // i/o timeout
+	INTERCOME_ERROR_CODE_SINGLE_WALLET_ID_CAN_NOT_EMPTY     = 626 // single wallet id 下分時不可為空字串
+	INTERCOME_ERROR_CODE_CREATE_FRIEND_ROOM_LOG_FAILED      = 627 // 建立好友房紀錄失敗
+	INTERCOME_ERROR_CODE_SINGLE_WALLET_FORCED_RESENDING     = 699 // 平台方強制重送上/下分
+)

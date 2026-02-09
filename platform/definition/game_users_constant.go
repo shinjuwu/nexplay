@@ -1,0 +1,9 @@
+package definition
+
+const (
+	GAMEUSERS_ID_ALL = 0 // 全部玩家遊戲
+
+	GAMEUSERS_STATUS_KILLDIVE_NORMAL     = 0 // 一般玩家
+	GAMEUSERS_STATUS_KILLDIVE_CONFIGKILL = 1 // 定點玩家
+	GAMEUSERS_STATUS_KILLDIVE_BLACKKILL  = 2 // 黑名單玩家
+)

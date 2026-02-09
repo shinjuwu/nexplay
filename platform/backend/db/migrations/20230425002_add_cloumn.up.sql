@@ -1,0 +1,1 @@
+DELETE FROM "public"."job_scheduler" WHERE "id" = 'cb7b30fb-9f2c-4137-922d-c5cda719e280';

@@ -1,0 +1,1 @@
+UPDATE "public"."game" SET "code" = 'sangong' WHERE "id" = 2002;

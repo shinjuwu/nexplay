@@ -1,0 +1,1 @@
+DELETE FROM "public"."exchange_data" WHERE "currency" = 'TRY';

@@ -1,0 +1,10 @@
+[Unit]
+Description=Chat Service
+
+[Service]
+Type=forking
+ExecStart=/home/tmp/chatservice/chatservice --config /home/tmp/chatservice/config.yml
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

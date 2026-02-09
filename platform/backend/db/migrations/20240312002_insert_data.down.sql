@@ -1,0 +1,105 @@
+ALTER TABLE "public"."user_play_log_andarbahar"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_baccarat"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_blackjack"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_bullbull"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_catte"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_chinesepoker"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_cockfight"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_colordisc"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_dogracing"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_fantan"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_fruit777slot"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_fruitslot"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_goldenflower"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_hundredsicbo"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_megsharkslot"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_midasslot"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_okey"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_plinko"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_pokdeng"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_prawncrab"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_rcfishing"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_rocket"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_rummy"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_sangong"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_teenpatti" 
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+ALTER TABLE "public"."user_play_log_texas"
+  DROP COLUMN "kill_prob",
+  DROP COLUMN "kill_level",
+  DROP COLUMN "real_players";
+

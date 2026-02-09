@@ -1,0 +1,12 @@
+package definition
+
+const (
+	TABLE_DEFAULT_LENGTH = 10
+
+	TABLE_SORT_DIRECTION_ASC  = 0
+	TABLE_SORT_DIRECTION_DESC = 1
+)
+
+var (
+	TABLE_DEFAULT_LENGTH_MENU = []int{10, 25, 50, 100}
+)

@@ -1,0 +1,1 @@
+CREATE INDEX "idx_wallet_ledger_username" ON "public"."wallet_ledger" ("username");

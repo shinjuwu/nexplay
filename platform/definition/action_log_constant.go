@@ -1,0 +1,8 @@
+package definition
+
+const (
+	ACTION_LOG_TYPE_ALL    = 0
+	ACTION_LOG_TYPE_CREATE = 1
+	ACTION_LOG_TYPE_UPDATE = 2
+	ACTION_LOG_TYPE_DELETE = 3
+)

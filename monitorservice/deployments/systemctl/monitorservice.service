@@ -1,0 +1,10 @@
+[Unit]
+Description=Monitor Service
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/bin/monitorservice
+ExecStart=/usr/local/bin/monitorservice/monitorservice --config /usr/local/bin/monitorservice/config.yml
+
+[Install]
+WantedBy=multi-user.target

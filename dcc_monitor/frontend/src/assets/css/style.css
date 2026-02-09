@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input,
+  select,
+  textarea {
+    @apply outline-none;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply whitespace-nowrap rounded py-2 px-4 disabled:opacity-60;
+  }
+  .btn-tool {
+    @apply whitespace-nowrap rounded w-full py-2 px-4 lg:py-0.5 lg:px-1 lg:w-auto text-sm disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply bg-green-500 enabled:hover:bg-green-600 text-white;
+  }
+  .btn-danger {
+    @apply bg-red-500 enabled:hover:bg-red-600 text-white;
+  }
+  .btn-light {
+    @apply bg-gray-200 enabled:hover:bg-gray-100 text-black;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-2 text-[17px];
+  }
+
+  .tbl {
+    @apply w-full text-center;
+  }
+  .tbl-td,
+  .tbl-th {
+    @apply p-3.5 border;
+  }
+  .tbl-th {
+    @apply bg-green-600 text-white;
+  }
+  .tbl-td-ellipsis {
+    @apply w-full min-w-[1px] text-ellipsis overflow-hidden lg:w-auto;
+  }
+
+  .tbl-striped .tbl-tbody .tbl-tr:nth-child(even) {
+    @apply bg-green-100;
+  }
+
+  .tbl-rwd .tbl-thead {
+    @apply hidden lg:table-header-group;
+  }
+  .tbl-rwd .tbl-tbody {
+    @apply block lg:table-row-group;
+  }
+  .tbl-rwd .tbl-tbody .tbl-tr {
+    @apply block lg:table-row;
+  }
+  .tbl-rwd .tbl-tbody .tbl-tr .tbl-td {
+    @apply relative block ps-[50%] border-b-0 pt-0 pb-0 before:h-full before:border-r before:absolute before:left-2 before:w-[45%] before:font-bold text-left lg:static lg:table-cell lg:p-3.5 lg:before:content-none lg:text-center before:text-black;
+  }
+  .tbl-rwd .tbl-tbody .tbl-tr:last-child .tbl-td {
+    @apply lg:border-b;
+  }
+  .tbl-rwd .tbl-tbody .tbl-tr:last-child .tbl-td:last-child {
+    @apply border-b;
+  }
+
+  .tbl-dom-wrapper {
+    @apply mt-6 text-center text-slate-500 md:flex md:flex-wrap md:items-center;
+  }
+  .tbl-length-wrapper {
+    @apply mb-1.5 flex items-center whitespace-nowrap md:mr-4;
+  }
+  .tbl-info-wrapper {
+    @apply mb-1.5 whitespace-nowrap py-2 md:mr-4;
+  }
+  .tbl-fast-paginate-wrapper {
+    @apply flex items-center whitespace-nowrap mb-1.5;
+  }
+  .tbl-paginate-wrapper {
+    @apply ml-auto flex items-center justify-center whitespace-nowrap pb-1;
+  }
+
+  .rtp-border-blue {
+    background-image: url('@/assets/images/monitorSystem/border_blue.png');
+    background-size: contain;
+  }
+  .rtp-border-green {
+    background-image: url('@/assets/images/monitorSystem/border_green.png');
+    background-size: contain;
+  }
+  .rtp-border-orange {
+    background-image: url('@/assets/images/monitorSystem/border_orange.png');
+    background-size: contain;
+  }
+  .rtp-border-purple {
+    background-image: url('@/assets/images/monitorSystem/border_purple.png');
+    background-size: contain;
+  }
+  .rtp-border-red {
+    background-image: url('@/assets/images/monitorSystem/border_red.png');
+    background-size: contain;
+  }
+  .rtp-needle {
+    background-image: url('@/assets/images/monitorSystem/needle.png');
+    background-size: contain;
+  }
+  .rtp-dashboard {
+    background-image: url('@/assets/images/monitorSystem/dashboard.png');
+    background-size: contain;
+  }
+}
+
+@layer utilities {
+  .bg-primary {
+    @apply bg-green-500;
+  }
+  .bg-danger {
+    @apply bg-red-500;
+  }
+
+  .text-primary {
+    @apply text-green-500;
+  }
+  .text-danger {
+    @apply text-red-500;
+  }
+
+  .border-primary {
+    @apply border-green-500;
+  }
+  .border-danger {
+    @apply border-red-500;
+  }
+}

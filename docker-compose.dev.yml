@@ -1,0 +1,23 @@
+version: '3'
+
+# Development-only services that supplement the individual service docker-compose files.
+# Usage: docker-compose -f docker-compose.dev.yml up -d
+
+networks:
+    dcc_db_net:
+        name: dcc_backend_networks
+        external: true
+
+services:
+    mock-gameserver:
+        image: python:3-alpine
+        container_name: mock-gameserver
+        working_dir: /app
+        volumes:
+            - ./mock-gameserver:/app:ro
+        command: python server.py
+        ports:
+            - "9642:9642"
+        networks:
+            dcc_db_net:
+                ipv4_address: 172.99.0.50

@@ -1,0 +1,1 @@
+DROP FUNCTION "public"."udf_game_user_finish_coin_in_cancel"("_id" varchar, "_changeset" jsonb, "_status" int2, "_error_code" int2, "_agent_id" int4, "_add_agent_wallet_amount" numeric, "_add_agent_wallet_sum_coin_out" numeric, "_user_id" int4, "_add_user_sum_coin_in" numeric);

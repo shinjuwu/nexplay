@@ -1,0 +1,1 @@
+INSERT INTO "public"."storage" ("id", "key", "value", "readonly", "create_time", "update_time") VALUES ('4e1d1db2-c9bd-4c23-8ae1-f248f751a9a5', 'ArchiveSetting', '{"archive_fire_time": 1, "delete_retain_data_batch_count": 10000, "agent_game_users_stat_min_retain_data_days": 14}', 'f', '2023-07-10 03:45:12.254971+00', '2023-07-10 03:45:12.254971+00');

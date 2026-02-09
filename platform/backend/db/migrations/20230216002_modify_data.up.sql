@@ -1,0 +1,1 @@
+UPDATE "public"."game" SET "h5_link" = 'http://172.30.0.152/client/vue/apps' WHERE "id" > 0;

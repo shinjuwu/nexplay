@@ -1,0 +1,7417 @@
+definitions:
+  global.AgentTagInfoList:
+    properties:
+      custom_tag_info:
+        additionalProperties:
+          $ref: '#/definitions/global.CustomTagInfo'
+        description: 自定義標籤資訊(array in json)
+        type: object
+      defaultTagList:
+        additionalProperties:
+          $ref: '#/definitions/global.DefaultTagInfo'
+        type: object
+    type: object
+  global.CustomTagInfo:
+    properties:
+      color:
+        description: 自定義顏色
+        type: string
+      idx:
+        description: 固定順序
+        type: integer
+      info:
+        description: 自定義備註
+        type: string
+      name:
+        description: 自定義名稱
+        type: string
+    type: object
+  global.DefaultTagInfo:
+    properties:
+      idx:
+        description: 固定順序
+        type: integer
+    type: object
+  global.ExchangeData:
+    properties:
+      currency:
+        description: pkey
+        type: string
+      id:
+        type: integer
+      to_coin:
+        type: number
+    type: object
+  global.GameIcon:
+    properties:
+      gameId:
+        description: game id (union id)
+        type: integer
+      hot:
+        description: 熱門 (0:none, 1:熱門)
+        type: integer
+      newest:
+        description: 最新 (0:none, 1:最新)
+        type: integer
+      push:
+        description: 推廣大圖 (0:none, 1:第一張大圖, 2:第二章大圖.....)
+        type: integer
+      rank:
+        description: 排行 (since from 0)
+        type: integer
+    type: object
+  model.AdminUserCreateRequest:
+    properties:
+      info:
+        description: 備註
+        type: string
+      nickname:
+        description: 用戶名
+        type: string
+      password:
+        description: 密碼(加密後的字串,不可用明碼)
+        type: string
+      role:
+        description: 角色權限群組id
+        type: string
+      username:
+        description: 用戶名
+        type: string
+    type: object
+  model.AdminUserResponse:
+    properties:
+      account_type:
+        description: 帳號類別(開發者:1, 總代理:2, 子代理:3)
+        type: integer
+      agent_id:
+        type: integer
+      cooperation:
+        description: '合作模式(代理結帳類型, 1: 買分, 2: 信用)'
+        type: integer
+      currency:
+        type: string
+      is_added:
+        description: '是否為分身帳號(分身: true, 主帳號: false)'
+        type: boolean
+      jackpot_end_time:
+        type: string
+      jackpot_start_time:
+        description: Jackpot設定
+        type: string
+      level_code:
+        type: string
+      nickname:
+        description: Password string `json:"password"`
+        type: string
+      permission:
+        description: |-
+          TODO: add 個人化設定
+          ex: 頭像,佈景主題,功能權限
+        items:
+          type: integer
+        type: array
+      username:
+        type: string
+      wallet_type:
+        description: 錢包類型(0:轉帳錢包,1:單一錢包)
+        type: integer
+    type: object
+  model.AgentGame:
+    properties:
+      agent_id:
+        type: integer
+      game_id:
+        type: integer
+      state:
+        type: integer
+    type: object
+  model.AgentIPWhitelistObj:
+    properties:
+      create_time:
+        description: 建立時間(timestamp)
+        type: integer
+      creator:
+        description: 創建人
+        type: string
+      info:
+        description: 備註(長度30)
+        type: string
+      ip_address:
+        description: ip位址
+        type: string
+    type: object
+  model.AgentList:
+    properties:
+      aes_key:
+        type: string
+      id:
+        type: integer
+      md5_key:
+        type: string
+      name:
+        type: string
+    type: object
+  model.AliveToken:
+    properties:
+      exp:
+        description: 過期時間
+        type: integer
+      iat:
+        description: 發行時間
+        type: integer
+      nickname:
+        description: 暱稱
+        type: string
+      token:
+        description: 當下token
+        type: string
+      username:
+        description: 帳戶
+        type: string
+    type: object
+  model.AliveTokenListResponse:
+    properties:
+      tokenList:
+        items:
+          $ref: '#/definitions/model.AliveToken'
+        type: array
+    type: object
+  model.AutoRiskControlSetting:
+    properties:
+      game_user_api_request_per_second_limit:
+        description: 玩家每秒可請求api最多次數(超過該次數玩家會被禁用，需要後台解鎖)
+        type: integer
+      game_user_coin_in_and_out_diff_limit:
+        description: 玩家上分與下分的最大差額(超過該數值玩家會禁止下分，需要後台解鎖)
+        type: number
+      game_user_coin_in_and_out_request_per_minute_limit:
+        description: 玩家每分鐘可請求上下分最多次數(超過該次數玩家會無法上下分，需要等待至下一分鐘才可繼續使用)
+        type: integer
+      game_user_win_rate_limit:
+        description: 玩家勝率限制(超過該比例玩家會禁止下注，需要後台解鎖)
+        type: number
+      is_enabled:
+        description: 開關
+        type: boolean
+    type: object
+  model.CaptchaResponse:
+    properties:
+      captchaId:
+        description: 驗證碼id
+        type: string
+      captchaLength:
+        description: 驗證碼長度
+        type: integer
+      captchaValue:
+        description: 驗證碼(測試模式才顯示)
+        type: string
+      expiredTime:
+        description: 驗證碼過期時間
+        type: string
+      picPath:
+        description: base64 圖片字串
+        type: string
+    type: object
+  model.CasinoHandleResponse:
+    properties:
+      d:
+        description: 數據結果
+      m:
+        description: 主操作類型
+        type: string
+      s:
+        description: 子操作類型
+        type: integer
+    type: object
+  model.ChannelHandleResponse:
+    properties:
+      d:
+        description: 數據結果
+      m:
+        description: 主操作類型
+        type: string
+      s:
+        description: 子操作類型
+        type: integer
+    type: object
+  model.ConfirmWalletLedgerRequest:
+    properties:
+      id:
+        description: 訂單號
+        type: string
+    type: object
+  model.CreateAgentPermissionRequest:
+    properties:
+      account_type:
+        description: 角色類型(0:admin 1:總代理 2:子代)
+        type: integer
+      info:
+        description: 備註(長度100)
+        type: string
+      name:
+        description: 角色名稱(長度16)
+        type: string
+      permissions:
+        description: 權限列表
+        items:
+          type: integer
+        type: array
+    type: object
+  model.CreateAgentRequest:
+    properties:
+      account:
+        description: 帳號
+        type: string
+      commission:
+        description: 分成(萬分之X)
+        type: integer
+      cooperation:
+        description: '合作模式(代理結帳類型, 1: 買分, 2: 信用)'
+        type: integer
+      currency:
+        description: 幣種
+        type: string
+      info:
+        description: 備註
+        type: string
+      ip_whitelist:
+        description: IP 白名單
+        type: string
+      nickname:
+        description: 代理商名稱(後台顯示名稱)
+        type: string
+      password:
+        description: 密碼
+        type: string
+      role:
+        description: 角色權限群組(uuid)
+        type: string
+      wallet_conninfo:
+        $ref: '#/definitions/model.WalletConnInfo'
+        description: 錢包連線方式(json)
+      wallet_type:
+        description: 錢包模式(轉帳錢包[預設]:0、單一錢包:1)
+        type: integer
+      wallet_url:
+        description: wallet url for third api
+        type: string
+    type: object
+  model.CreateAnnouncementRequest:
+    properties:
+      content:
+        description: 內文(800長度)
+        type: string
+      subject:
+        description: 主旨(20長度)
+        type: string
+      type:
+        description: '公告類型(1: 系統, 2: 活動)'
+        type: integer
+    type: object
+  model.CreateJackpotTokenRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      info:
+        description: 備註
+        type: string
+      jp_bet:
+        description: 代幣分數
+        type: number
+      username:
+        description: 玩家名稱
+        type: string
+    type: object
+  model.CreateMarqueeRequest:
+    properties:
+      content:
+        description: 內文
+        type: string
+      end_time:
+        description: 結束時間
+        type: string
+      freq:
+        description: 播放頻率(每?秒播放一次)
+        type: integer
+      lang:
+        description: 語系
+        type: string
+      order:
+        description: 順序
+        type: integer
+      start_time:
+        description: 開始時間
+        type: string
+      type:
+        description: '跑馬燈類型(1: 系統, 2: 活動)'
+        type: integer
+    type: object
+  model.DataTablesResponse:
+    properties:
+      data:
+        description: 查詢結果
+        items: {}
+        type: array
+      draw:
+        description: 計數器
+        type: integer
+      recordsTotal:
+        description: 查詢範圍資料總筆數
+        type: integer
+    type: object
+  model.DeleteAgentPermissionRequest:
+    properties:
+      id:
+        description: uuid(唯一)
+        type: string
+    type: object
+  model.DeleteAnnouncementRequest:
+    properties:
+      id:
+        description: uuid
+        type: string
+    type: object
+  model.DeleteMarqueeRequest:
+    properties:
+      id:
+        description: uuid
+        type: string
+    type: object
+  model.GameSetting:
+    properties:
+      LimitMoney:
+        description: 禁開分數
+        type: number
+      LimitOdds:
+        description: 限制倍率
+        type: number
+      LowBoundRTP:
+        description: 保底RTP
+        type: number
+      MatchGameKillRate:
+        description: 控牌殺率
+        type: number
+      MatchGameRTP:
+        description: 控牌RTP
+        type: number
+      MatchGames:
+        description: 控牌場次
+        type: integer
+      NormalMatchGameKillRate:
+        description: 單間殺率
+        type: number
+      NormalMatchGameRTP:
+        description: 單間RTP
+        type: number
+      gameId:
+        description: 遊戲id
+        type: integer
+    type: object
+  model.GameUserPlayCountData:
+    properties:
+      game_code:
+        description: 遊戲代碼 (ex :百家樂=baccarat)
+        type: string
+      newbie_limit:
+        description: 新手限制(單一遊戲限制)
+        type: integer
+      play_count:
+        description: 單一遊戲局數加總
+        type: integer
+      room_id:
+        description: '房間ID (ex : 1001X)'
+        type: integer
+    type: object
+  model.GameUsersCustomTagList:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        type: string
+      big_win_count:
+        description: 大獎次數
+        type: integer
+      bonus:
+        description: 紅利
+        type: number
+      de:
+        description: 玩家總得分
+        type: number
+      game_users_id:
+        description: 玩家id
+        type: integer
+      game_users_name:
+        description: 玩家帳號
+        type: string
+      high_risk:
+        description: 是否為高風險
+        type: boolean
+      is_enabled:
+        description: 是否為封停
+        type: boolean
+      kill_dive_state:
+        description: 殺放設定狀態(一般玩家:0、定點玩家:1、黑名單玩家:2)
+        type: integer
+      kill_dive_value:
+        description: 定點額度(只有在殺放狀態設定為定點時有效)
+        type: number
+      play_count:
+        description: 總遊玩次數
+        type: integer
+      tag_list:
+        description: 玩家自訂義標示(8bit)
+        type: string
+      tax:
+        description: 玩家總抽水
+        type: number
+      valid_ya:
+        description: 玩家總有效壓分
+        type: number
+      win_count:
+        description: 總贏次數
+        type: integer
+      ya:
+        description: 玩家總壓分
+        type: number
+    type: object
+  model.GetAdminUserInfoRequest:
+    properties:
+      username:
+        description: 用戶名
+        type: string
+    type: object
+  model.GetAdminUserInfoResponse:
+    properties:
+      info:
+        description: 備註
+        type: string
+      is_enabled:
+        description: '帳號狀態(1: 開啟, 0: 關閉)'
+        type: integer
+      role:
+        description: 角色
+        type: string
+    type: object
+  model.GetAdminUsersData:
+    properties:
+      create_time:
+        description: 創建時間
+        type: string
+      id_enabled:
+        description: '狀態 (true: 開啟,false: 關閉)'
+        type: boolean
+      login_time:
+        description: 最後登入時間
+        type: string
+      nickname:
+        description: 暱稱
+        type: string
+      role_name:
+        description: 角色權限群組名稱
+        type: string
+      top_username:
+        description: 父帳號
+        type: string
+      username:
+        description: 帳號
+        type: string
+    type: object
+  model.GetAgentCoinSupplyInfoRequest:
+    properties:
+      id:
+        description: 代理id
+        type: integer
+    type: object
+  model.GetAgentCoinSupplyInfoResponse:
+    properties:
+      coin_limit:
+        description: 買分模式分數上限
+        type: number
+      coin_use:
+        description: 已使用分數
+        type: number
+      commission:
+        description: 分成(萬分之n)
+        type: integer
+      cooperation:
+        description: '合作模式(代理結帳類型, 1: 買分, 2: 信用)'
+        type: integer
+      id:
+        type: integer
+      info:
+        description: 自動補分設定
+        type: string
+      name:
+        description: 代理名稱
+        type: string
+      role:
+        description: admin user role
+        type: string
+      role_name:
+        description: admin user role 名稱
+        type: string
+      top_agent_id:
+        type: integer
+      wallet_conninfo:
+        description: 錢包API連線位置
+        type: string
+      wallet_type:
+        description: 錢包類型(0:轉帳錢包,1:單一錢包)
+        type: integer
+    type: object
+  model.GetAgentCustomTagSettingResponse:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      custom_tag_info:
+        additionalProperties:
+          $ref: '#/definitions/global.CustomTagInfo'
+        description: 自定義標籤資訊(array in json)
+        type: object
+      update_time:
+        description: 更新時間
+        type: string
+    type: object
+  model.GetAgentGameListRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      draw:
+        description: 計數器 default(0)
+        type: integer
+      game_id:
+        description: 遊戲id
+        type: integer
+      length:
+        description: 查詢筆數 default(10)
+        type: integer
+      sort_column:
+        description: 排序欄位
+        type: string
+      sort_direction:
+        description: 排序方向 0:升冪 1:降冪
+        type: integer
+      start:
+        description: 查詢起始筆數(0表示第1筆資料)" default(0)
+        type: integer
+      state:
+        description: 代理遊戲狀態
+        type: integer
+    type: object
+  model.GetAgentGameRatioStatListRequest:
+    properties:
+      agent_id:
+        description: 代理編號
+        type: integer
+      draw:
+        description: 計數器 default(0)
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      game_id:
+        description: 遊戲編號
+        type: integer
+      length:
+        description: 查詢筆數 default(10)
+        type: integer
+      room_type:
+        description: 房間類型編號
+        type: integer
+      sort_column:
+        description: 排序欄位
+        type: string
+      sort_direction:
+        description: 排序方向 0:升冪 1:降冪
+        type: integer
+      start:
+        description: 查詢起始筆數(0表示第1筆資料)" default(0)
+        type: integer
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+    type: object
+  model.GetAgentGameRatioStatListResponse:
+    properties:
+      data:
+        description: 查詢結果
+        items: {}
+        type: array
+      draw:
+        description: 計數器
+        type: integer
+      recordsTotal:
+        description: 查詢範圍資料總筆數
+        type: integer
+      total_platform_winlose_score:
+        description: 平台總輸贏
+        type: number
+    type: object
+  model.GetAgentGameRoomListRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      game_id:
+        description: 遊戲id
+        type: integer
+    type: object
+  model.GetAgentGameRoomResponse:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      game_id:
+        description: 遊戲id
+        type: integer
+      game_room_id:
+        description: 遊戲房間id
+        type: integer
+      room_type:
+        description: 遊戲房間類型
+        type: integer
+      state:
+        description: 代理遊戲狀態
+        type: integer
+    type: object
+  model.GetAgentIncomeRatioAndGameRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      end_time:
+        description: 結束時間(UTC+0)，請前端直接依照時區送入換算後的時間
+        type: string
+      game_id:
+        description: 遊戲id
+        type: integer
+      room_type:
+        description: 房間類型
+        type: integer
+      start_time:
+        description: 開始時間(UTC+0)，請前端直接依照時區送入換算後的時間
+        type: string
+    type: object
+  model.GetAgentIncomeRatioAndGameResponse:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      bet_count:
+        description: 下注次數
+        type: integer
+      bonus:
+        description: 累積玩家總紅利(float64)
+        type: number
+      de_score:
+        description: 累積玩家總贏分(float64)
+        type: number
+      game_code:
+        description: 遊戲代碼(唯一)
+        type: string
+      game_id:
+        description: '遊戲id (no search default: 0)'
+        type: integer
+      game_type:
+        description: 遊戲類型
+        type: integer
+      id:
+        description: 唯一碼
+        type: string
+      kill_ratio:
+        description: 基礎殺率
+        type: number
+      level_code:
+        description: 層級碼
+        type: string
+      log_time:
+        description: 時間字串(YYYYMMDD)
+        type: string
+      room_type:
+        description: 房間類型
+        type: integer
+      tax:
+        description: 累積玩家總遊戲抽水(float64)
+        type: number
+      vaild_ya_score:
+        description: 累積玩家總有效投注(float64)
+        type: number
+      ya_score:
+        description: 累積玩家總投注(float64)
+        type: number
+    type: object
+  model.GetAgentIncomeRatioListRequest:
+    properties:
+      agent_id:
+        description: '代理id (no search default: 0)'
+        type: integer
+      state_type:
+        description: 狀態類型 (-1:全部,0:停用,1:啟用)
+        type: integer
+    type: object
+  model.GetAgentIncomeRatioListResponse:
+    properties:
+      agent_id:
+        description: '代理id (no search default: 0)'
+        type: integer
+      agent_name:
+        type: string
+      info:
+        description: 備註
+        type: string
+      ratio:
+        description: 總代理殺率
+        type: number
+      state:
+        description: 狀態是否啟用
+        type: boolean
+      update_time:
+        type: string
+    type: object
+  model.GetAgentIncomeRatioRequest:
+    properties:
+      agent_id:
+        description: '代理id (no search default: 0)'
+        type: integer
+    type: object
+  model.GetAgentIncomeRatioResponse:
+    properties:
+      agent_id:
+        description: '代理id (no search default: 0)'
+        type: integer
+      agent_name:
+        type: string
+      info:
+        description: 備註
+        type: string
+      ratio:
+        description: 總代理殺率
+        type: number
+      state:
+        description: 狀態是否啟用
+        type: boolean
+      update_time:
+        type: string
+    type: object
+  model.GetAgentIpWhitelistListRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+    type: object
+  model.GetAgentIpWhitelistListResponse:
+    properties:
+      admin_username:
+        description: 代理帳號名稱
+        type: string
+      api_ip_address_count:
+        description: 代理白名單數量
+        type: integer
+      id:
+        description: 代理id
+        type: integer
+      ip_address_count:
+        description: 代理白名單數量
+        type: integer
+      level_code:
+        description: 代理level代碼
+        type: string
+      name:
+        description: 代理名稱
+        type: string
+    type: object
+  model.GetAgentIpWhitelistRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+    type: object
+  model.GetAgentJackpotListRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+    type: object
+  model.GetAgentJackpotListResponse:
+    properties:
+      child_agent_count:
+        description: 子代理數量
+        type: integer
+      id:
+        description: 代理id
+        type: integer
+      jackpot_end_time:
+        description: jackpot 結束時間
+        type: string
+      jackpot_start_time:
+        description: jackpot 開始時間
+        type: string
+      jackpot_status:
+        description: jackpot 狀態(0:不參加, 1:參加, 2:限時參加)
+        type: integer
+      name:
+        description: 代理名稱
+        type: string
+    type: object
+  model.GetAgentListResponse:
+    properties:
+      admin_user_name:
+        description: 代理後台帳號
+        type: string
+      amount:
+        description: 餘額
+        type: number
+      code:
+        description: 識別碼
+        type: string
+      coin_limit:
+        description: 可使用額度上限
+        type: number
+      coin_use:
+        description: 已使用額度
+        type: number
+      commission:
+        description: 占成(萬分之n)
+        type: integer
+      cooperation:
+        description: 合作模式
+        type: integer
+      create_time:
+        description: 創建時間
+        type: string
+      currency:
+        description: 幣種
+        type: string
+      id:
+        description: 代理id
+        type: integer
+      info:
+        description: 備註
+        type: string
+      is_enabled:
+        description: 是否開放
+        type: integer
+      level_code:
+        description: 會員層級碼
+        type: string
+      member_count:
+        description: 會員數量
+        type: integer
+      name:
+        description: 代理商名稱
+        type: string
+      owner_name:
+        description: 開線人帳號(最上層id)
+        type: string
+      role_name:
+        description: 角色名稱
+        type: string
+      top_agent_id:
+        description: 上層代理ID
+        type: integer
+      top_agent_name:
+        description: 上層代理名稱
+        type: string
+      update_time:
+        description: 最後更新時間
+        type: string
+    type: object
+  model.GetAgentPermissionListRequest:
+    properties:
+      name:
+        description: 角色名稱
+        type: string
+    type: object
+  model.GetAgentPermissionListResponse:
+    properties:
+      account_type:
+        description: 角色類型
+        type: integer
+      agent_id:
+        description: 代理id
+        type: integer
+      id:
+        description: uuid(唯一)
+        type: string
+      info:
+        description: 備註
+        type: string
+      name:
+        description: 角色名稱
+        type: string
+    type: object
+  model.GetAgentPermissionRequest:
+    properties:
+      id:
+        description: uuid(唯一)
+        type: string
+    type: object
+  model.GetAgentPermissionResponse:
+    properties:
+      account_type:
+        description: 角色類型
+        type: integer
+      agent_id:
+        description: 代理id
+        type: integer
+      id:
+        description: uuid(唯一)
+        type: string
+      info:
+        description: 備註
+        type: string
+      name:
+        description: 角色名稱
+        type: string
+      permissions:
+        description: 權限列表
+        items:
+          type: integer
+        type: array
+    type: object
+  model.GetAgentSecretKeyRequest:
+    properties:
+      id:
+        description: 代理id
+        type: integer
+    type: object
+  model.GetAgentSecretKeyResponse:
+    properties:
+      aeskey:
+        type: string
+      md5key:
+        type: string
+    type: object
+  model.GetAgentWalletLedgerListRequest:
+    properties:
+      agent_id:
+        description: 代理編號 default(0)
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      id:
+        description: 訂單號碼
+        type: string
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+    type: object
+  model.GetAgentWalletLedgerResponse:
+    properties:
+      agent_name:
+        description: 代理識別編碼
+        type: string
+      changeset:
+        description: 帳變內容
+        type: string
+      creator:
+        description: 操作人
+        type: string
+      id:
+        description: 訂單號
+        type: string
+      info:
+        description: 備註
+        type: string
+      kind:
+        description: 帳變類型
+        type: integer
+      update_time:
+        description: '帳變時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+    type: object
+  model.GetAgentWalletListRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+    type: object
+  model.GetAgentWalletListResponse:
+    properties:
+      admin_user_username:
+        description: 代理帳號
+        type: string
+      balance:
+        description: 餘額
+        type: number
+      commission:
+        description: 分成
+        type: integer
+      create_time:
+        description: 創建時間
+        type: string
+      id:
+        description: 代理id
+        type: integer
+      is_enabled:
+        description: 狀態(1:啟用,0:關閉)
+        type: integer
+      level_code:
+        description: 代理層級代碼
+        type: string
+      name:
+        description: 代理名稱
+        type: string
+    type: object
+  model.GetAnnouncementRequest:
+    properties:
+      id:
+        type: string
+    type: object
+  model.GetAnnouncementResponse:
+    properties:
+      content:
+        description: 內文
+        type: string
+      create_time:
+        description: 創建時間
+        type: string
+      id:
+        description: uuid
+        type: string
+      subject:
+        description: 主旨
+        type: string
+      type:
+        description: '公告類型(1: 系統, 2: 活動)'
+        type: integer
+      update_time:
+        description: 更新時間
+        type: string
+    type: object
+  model.GetAutoRiskControlLogListRequest:
+    properties:
+      agent_id:
+        description: 代理編號 default(0)
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+      username:
+        description: 代理玩家名稱
+        type: string
+    type: object
+  model.GetAutoRiskControlLogResponse:
+    properties:
+      agent_id:
+        description: 代理編號
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      create_time:
+        description: '紀錄時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+      risk_code:
+        description: 風險代碼(1:玩家每秒請求api次數過多 2:玩家上下分的比例過高 3:玩家RTP過高 4:玩家勝率過高)
+        type: integer
+      user_id:
+        description: 代理用戶編號
+        type: integer
+      username:
+        description: 代理用戶帳號
+        type: string
+    type: object
+  model.GetAutoRiskControlSetting:
+    properties:
+      current:
+        $ref: '#/definitions/model.AutoRiskControlSetting'
+        description: 目前風控設定
+      default:
+        $ref: '#/definitions/model.AutoRiskControlSetting'
+        description: 預設風控設定
+    type: object
+  model.GetBackendActionLogListRequest:
+    properties:
+      action_type:
+        description: 操作類型
+        type: integer
+      agent_id:
+        description: 代理id
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      feature_codes:
+        description: api feature code陣列
+        items:
+          type: integer
+        type: array
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+    type: object
+  model.GetBackendActionLogResponse:
+    properties:
+      action_log:
+        description: 操作紀錄(json格式)
+        type: string
+      action_type:
+        description: 操作類型
+        type: integer
+      create_time:
+        description: 操作時間
+        type: string
+      feature_code:
+        description: 操作api代碼
+        type: integer
+      id:
+        description: 操作紀錄id
+        type: string
+      username:
+        description: 後台帳號
+        type: string
+    type: object
+  model.GetBackendLoginLogListRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+      username:
+        description: 代理玩家名稱
+        type: string
+    type: object
+  model.GetBackendLoginLogListResponse:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      error_code:
+        description: 錯誤代碼
+        type: integer
+      ip:
+        description: 登入IP
+        type: string
+      login_time:
+        description: 登入時間
+        type: string
+      username:
+        description: 後台帳號
+        type: string
+    type: object
+  model.GetBatchUserPlayLogListRequest:
+    properties:
+      agent_id:
+        description: 代理編號 default(0)
+        type: integer
+      bet_id:
+        description: 注單號
+        type: string
+      betslip_status:
+        description: 訂單狀態(0:全部,1:正常,2:異常)
+        type: integer
+      draw:
+        description: 計數器 default(0)
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      game_id:
+        description: 遊戲編號 default(0)
+        type: integer
+      length:
+        description: 查詢筆數 default(10)
+        type: integer
+      lognumber:
+        description: 局號
+        type: string
+      room_type:
+        description: 房間類型 default(0)
+        type: integer
+      single_wallet_id:
+        description: 單一錢包識別碼
+        type: string
+      sort_column:
+        description: 排序欄位
+        type: string
+      sort_direction:
+        description: 排序方向 0:升冪 1:降冪
+        type: integer
+      start:
+        description: 查詢起始筆數(0表示第1筆資料)" default(0)
+        type: integer
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+      username:
+        description: 代理玩家名稱
+        type: string
+    type: object
+  model.GetBatchUserPlayLogListResponse:
+    properties:
+      data:
+        description: 查詢結果
+        items: {}
+        type: array
+      draw:
+        description: 計數器
+        type: integer
+      recordsTotal:
+        description: 查詢範圍資料總筆數
+        type: integer
+      total_dive_games:
+        description: 總放局數
+        type: integer
+      total_jp_inject_water_score:
+        description: 總jp注水分數
+        type: number
+      total_kill_games:
+        description: 總殺局數
+        type: integer
+      total_platform_winlose_score:
+        description: 平台總輸贏
+        type: number
+      total_player_win_games:
+        description: 總玩家贏局數
+        type: integer
+      total_valid_score:
+        description: 總有效投注
+        type: number
+    type: object
+  model.GetGameResponse:
+    properties:
+      code:
+        description: 遊戲代碼
+        type: string
+      id:
+        description: 遊戲id(PK)
+        type: integer
+      state:
+        description: 遊戲狀態
+        type: integer
+    type: object
+  model.GetGameServerStateResponse:
+    properties:
+      state:
+        description: 'state: 狀態 (1: 開啟, 2: 關閉; 預設: 關閉)'
+        type: integer
+    type: object
+  model.GetGameUserBalanceRequest:
+    properties:
+      user_id:
+        description: 用戶id
+        type: integer
+    type: object
+  model.GetGameUserBalanceResponse:
+    properties:
+      user_id:
+        description: 用戶id
+        type: integer
+      wallet_balance:
+        description: 用戶錢包餘額
+        type: number
+    type: object
+  model.GetGameUserInfoRequest:
+    properties:
+      id:
+        description: 用戶id
+        type: integer
+      time_zone:
+        description: '時間區域(UTC+X, X時間, 單位分鐘, ex: UTC+8 要傳入 -60*8=-480)'
+        type: integer
+    type: object
+  model.GetGameUserInfoResponse:
+    properties:
+      bonus:
+        description: 紅利
+        type: number
+      bonus_sum:
+        description: 總紅利
+        type: number
+      info:
+        description: 備註
+        type: string
+      is_enabled:
+        description: '帳號狀態(true: 開啟)'
+        type: boolean
+      profit:
+        description: 盈利
+        type: number
+      profit_sum:
+        description: 總盈利
+        type: number
+      tax:
+        description: 抽水
+        type: number
+      tax_sum:
+        description: 總抽水
+        type: number
+      valid_bet:
+        description: 有效投注
+        type: number
+      valid_bet_sum:
+        description: 總有效投注
+        type: number
+    type: object
+  model.GetGameUserPlayCountDataRequest:
+    properties:
+      user_id:
+        description: 用戶id
+        type: integer
+    type: object
+  model.GetGameUserPlayCountDataResponse:
+    properties:
+      data:
+        description: 用戶遊戲資料歷史紀錄
+        items:
+          $ref: '#/definitions/model.GameUserPlayCountData'
+        type: array
+      total_newbie_limit:
+        description: 新手限制(所有遊戲加總限制)
+        type: integer
+      user_id:
+        description: 用戶id
+        type: integer
+    type: object
+  model.GetGameUserRiskControlTagRequest:
+    properties:
+      id:
+        description: 用戶id
+        type: integer
+    type: object
+  model.GetGameUserRiskControlTagResponse:
+    properties:
+      agent_id:
+        description: 代理商id
+        type: integer
+      agent_name:
+        description: 代理商名稱
+        type: string
+      id:
+        description: 用戶id
+        type: integer
+      risk_control_tag:
+        description: 風控處置標示(4bit) "1000":禁止登入 "0100":禁止下注 "0010":禁止上分 "0001":禁止下分
+        type: string
+      username:
+        description: 用戶名(第三方平台原始帳號)
+        type: string
+    type: object
+  model.GetGameUserWalletListRequest:
+    properties:
+      draw:
+        description: 計數器 default(0)
+        type: integer
+      length:
+        description: 查詢筆數 default(10)
+        type: integer
+      sort_column:
+        description: 排序欄位
+        type: string
+      sort_direction:
+        description: 排序方向 0:升冪 1:降冪
+        type: integer
+      start:
+        description: 查詢起始筆數(0表示第1筆資料)" default(0)
+        type: integer
+      username:
+        description: 玩家帳號
+        type: string
+    type: object
+  model.GetGameUserWalletListResponse:
+    properties:
+      agent_balance:
+        description: 代理錢包餘額
+        type: number
+      data:
+        description: 查詢結果
+        items: {}
+        type: array
+      draw:
+        description: 計數器
+        type: integer
+      recordsTotal:
+        description: 查詢範圍資料總筆數
+        type: integer
+    type: object
+  model.GetGameUsersCustomTagListRequest:
+    properties:
+      agent_id:
+        description: 代理編號
+        type: integer
+      cal_tran_inout:
+        description: 累積轉入轉出
+        type: number
+      end_time:
+        description: 結束時間(UTC+0))
+        type: string
+      rtp:
+        description: RTP
+        type: number
+      start_time:
+        description: 開始時間(UTC+0))
+        type: string
+      tag_idx:
+        description: 自定義標籤索引
+        type: integer
+      win_percent:
+        description: 勝率
+        type: number
+    type: object
+  model.GetGameUsersCustomTagListResponse:
+    properties:
+      custom_tag_info:
+        additionalProperties:
+          $ref: '#/definitions/global.CustomTagInfo'
+        description: 自定義標籤資訊(array in json)
+        type: object
+      data_list:
+        items:
+          $ref: '#/definitions/model.GameUsersCustomTagList'
+        type: array
+    type: object
+  model.GetGameUsersCustomTagRequest:
+    properties:
+      game_users_id:
+        description: 玩家id
+        type: integer
+      game_users_name:
+        description: 玩家帳號
+        type: string
+    type: object
+  model.GetGameUsersCustomTagResponse:
+    properties:
+      custom_tag_info:
+        additionalProperties:
+          $ref: '#/definitions/global.CustomTagInfo'
+        description: 自定義標籤資訊(array in json)
+        type: object
+      game_users_id:
+        description: 玩家id
+        type: integer
+      game_users_name:
+        description: 玩家帳號
+        type: string
+      high_risk:
+        description: 是否為高風險
+        type: boolean
+      kill_dive_state:
+        description: 殺放設定狀態(一般玩家:0、定點玩家:1、黑名單玩家:2)
+        type: integer
+      kill_dive_value:
+        description: 定點額度(只有在殺放狀態設定為定點時有效)
+        type: number
+      tag_list:
+        description: 玩家自訂義標示(8bit)
+        type: string
+    type: object
+  model.GetGameUsersData:
+    properties:
+      agent_id:
+        description: 代理商id
+        type: integer
+      agent_name:
+        description: 代理商名稱
+        type: string
+      coin_in:
+        description: 轉入遊戲幣總和
+        type: number
+      coin_out:
+        description: 轉出遊戲幣總和
+        type: number
+      create_time:
+        description: 帳號創建時間
+        type: string
+      custom_tag_info:
+        additionalProperties:
+          $ref: '#/definitions/global.CustomTagInfo'
+        description: 自定義標籤資訊(array in json)
+        type: object
+      high_risk:
+        description: 是否為高風險
+        type: boolean
+      id:
+        description: 用戶id
+        type: integer
+      id_enabled:
+        description: '狀態 (true: 開啟,false: 關閉)'
+        type: boolean
+      is_online:
+        description: '是否在線 (true: 在線,false: 離線)'
+        type: boolean
+      kill_dive_state:
+        description: 殺放設定狀態(一般玩家:0、定點玩家:1、黑名單玩家:2)
+        type: integer
+      kill_dive_value:
+        description: 定點額度(只有在殺放狀態設定為定點時有效)
+        type: number
+      last_login_time:
+        description: 最後登入時間
+        type: string
+      risk_control_tag_list:
+        description: 風控處置標示(4bit)
+        type: string
+      tag_list:
+        description: 玩家自訂義標示(8bit)
+        type: string
+      username:
+        description: 用戶名(第三方平台原始帳號)
+        type: string
+      vip_level:
+        description: vip 等級
+        type: integer
+      wallet_type:
+        description: 錢包模式
+        type: integer
+    type: object
+  model.GetGameUsersStatHourListRequest:
+    properties:
+      agent_id:
+        description: 代理編號
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      username:
+        description: 玩家名稱
+        type: string
+    type: object
+  model.GetGameUsersStatHourResponse:
+    properties:
+      agent_id:
+        description: 代理編號
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      bonus:
+        description: 紅利
+        type: number
+      de_score:
+        description: 總玩家得分
+        type: number
+      game_id:
+        description: 遊戲編號
+        type: string
+      play_count:
+        description: 注單數
+        type: integer
+      tax:
+        description: 總遊戲抽水
+        type: number
+      user_id:
+        description: 玩家帳號編號
+        type: integer
+      username:
+        description: 玩家名稱
+        type: string
+      ya_score:
+        description: 總投注
+        type: number
+    type: object
+  model.GetIncomeRatioListRequest:
+    properties:
+      agent_id:
+        description: '代理id (no search default: 0)'
+        type: integer
+      game_id:
+        description: '遊戲id (no search default: 0)'
+        type: integer
+      game_type:
+        description: '遊戲類型 (no search default: -1)'
+        type: integer
+      room_type:
+        description: '房間類型 (no search default: 0)'
+        type: integer
+    type: object
+  model.GetIncomeRatioListResponse:
+    properties:
+      active_num:
+        description: 啟動人數
+        type: integer
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      game_code:
+        description: 遊戲代碼(唯一)
+        type: string
+      game_id:
+        description: '遊戲id (no search default: 0)'
+        type: integer
+      game_type:
+        description: 遊戲類型
+        type: integer
+      id:
+        description: 唯一碼(pKey,修改時傳入此碼)
+        type: string
+      info:
+        description: 備註
+        type: string
+      is_parent:
+        description: 是否為上級設定
+        type: boolean
+      kill_ratio:
+        description: 基礎殺率
+        type: number
+      last_update_time:
+        description: 最後更新時間
+        type: string
+      new_kill_ratio:
+        description: 新手殺率
+        type: number
+      room_type:
+        description: 房間類型
+        type: integer
+    type: object
+  model.GetIncomeRatioRequest:
+    properties:
+      agent_id:
+        description: '代理id (no search default: 0)'
+        type: integer
+      game_id:
+        description: '遊戲id (no search default: 0)'
+        type: integer
+      game_type:
+        description: '遊戲類型 (no search default: -1)'
+        type: integer
+      room_type:
+        description: '房間類型 (no search default: 0)'
+        type: integer
+    type: object
+  model.GetIncomeRatioResponse:
+    properties:
+      active_num:
+        description: 啟動人數
+        type: integer
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      game_code:
+        description: 遊戲代碼(唯一)
+        type: string
+      game_id:
+        description: '遊戲id (no search default: 0)'
+        type: integer
+      game_type:
+        description: 遊戲類型
+        type: integer
+      id:
+        description: 唯一碼(pKey,修改時傳入此碼)
+        type: string
+      info:
+        description: 備註
+        type: string
+      is_parent:
+        description: 是否為上級設定
+        type: boolean
+      kill_ratio:
+        description: 基礎殺率
+        type: number
+      last_update_time:
+        description: 最後更新時間
+        type: string
+      new_kill_ratio:
+        description: 新手殺率
+        type: number
+      room_type:
+        description: 房間類型
+        type: integer
+    type: object
+  model.GetJackpotLeaderboardRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+    type: object
+  model.GetJackpotLeaderboardResponse:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      lose:
+        description: 總輸場次
+        type: integer
+      play_num:
+        description: 總遊戲場次
+        type: integer
+      score:
+        description: 貢獻度
+        type: number
+      total_bet:
+        description: 總有效投注
+        type: number
+      user_id:
+        description: 玩家id
+        type: integer
+      username:
+        description: 玩家帳號
+        type: string
+      win:
+        description: 總贏場次
+        type: integer
+    type: object
+  model.GetJackpotListRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      lognumber:
+        description: 局號
+        type: string
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+      token_id:
+        description: 代幣id
+        type: string
+      username:
+        description: 玩家名稱
+        type: string
+    type: object
+  model.GetJackpotListResponse:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      bet_id:
+        description: 訂單號
+        type: string
+      is_robot:
+        description: 1:是 0:否
+        type: integer
+      jp_bet:
+        description: 代幣分數
+        type: number
+      lognumber:
+        description: 局號
+        type: string
+      prize_item:
+        description: 中獎項目(4:參加獎、3:小獎、2:中獎、1:大獎)
+        type: integer
+      prize_score:
+        description: JP中獎分數
+        type: number
+      real_pool:
+        description: 真實獎池
+        type: number
+      show_pool:
+        description: 公告獎池
+        type: number
+      token_create_time:
+        description: 代幣產生時間
+        type: string
+      token_id:
+        description: 代幣id
+        type: string
+      username:
+        description: 玩家名稱
+        type: string
+      winning_time:
+        description: 中獎時間
+        type: string
+    type: object
+  model.GetJackpotPoolDataResponse:
+    properties:
+      jp_inject_water_rate:
+        description: jp注水%數
+        type: number
+      jp_show_pool:
+        description: jp公告獎池基礎值
+        type: number
+      real_pool:
+        description: 真實獎池
+        type: number
+      reserve_pool:
+        description: 預備獎池
+        type: number
+      show_pool:
+        description: 公告獎池
+        type: number
+    type: object
+  model.GetJackpotTokenListRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      lognumber:
+        description: 局號
+        type: string
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+      token_id:
+        description: 代幣id
+        type: string
+      username:
+        description: 玩家名稱
+        type: string
+    type: object
+  model.GetJackpotTokenListResponse:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      creator:
+        description: 建立者
+        type: string
+      error_code:
+        description: 錯誤碼
+        type: integer
+      id:
+        description: 紀錄id
+        type: string
+      info:
+        description: 備註
+        type: string
+      jp_bet:
+        description: 代幣分數
+        type: number
+      source_bet_id:
+        description: 代幣來源玩家遊戲訂單號
+        type: string
+      source_lognumber:
+        description: 代幣來源局號
+        type: string
+      status:
+        description: 訂單狀態
+        type: integer
+      token_create_time:
+        description: 代幣產生時間
+        type: string
+      token_id:
+        description: 代幣id
+        type: string
+      usage_count:
+        description: 使用次數
+        type: integer
+      username:
+        description: 玩家名稱
+        type: string
+    type: object
+  model.GetMarqueeRequest:
+    properties:
+      id:
+        type: string
+    type: object
+  model.GetMarqueeResponse:
+    properties:
+      content:
+        description: 內文
+        type: string
+      create_time:
+        description: 創建時間
+        type: string
+      end_time:
+        description: 結束時間
+        type: string
+      freq:
+        description: 播放頻率(每?秒播放一次)
+        type: integer
+      id:
+        description: uuid
+        type: string
+      is_enabled:
+        description: 是否啟動
+        type: boolean
+      is_open:
+        description: 是否開啟
+        type: boolean
+      lang:
+        description: 語系
+        type: string
+      order:
+        description: 順序
+        type: integer
+      start_time:
+        description: 開始時間
+        type: string
+      type:
+        description: '跑馬燈類型(1: 系統, 2: 活動)'
+        type: integer
+      update_time:
+        description: 更新時間
+        type: string
+    type: object
+  model.GetPerformanceReportListRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      end_time:
+        description: 指定結束時間
+        type: string
+      start_time:
+        description: 指定開始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+    type: object
+  model.GetPerformanceReportListResponse:
+    properties:
+      agent_commission:
+        description: 代理分成
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      agentId:
+        description: 代理id
+        type: integer
+      bet_count:
+        description: 注單數
+        type: integer
+      bet_user:
+        description: 總投注人數
+        type: integer
+      currency:
+        description: 幣種
+        type: string
+      jackpot_count:
+        description: jackpot中獎總注單數
+        type: integer
+      jackpot_user:
+        description: jackpot中獎總人數
+        type: integer
+      level_code:
+        type: string
+      sum_bonus:
+        description: 紅利
+        type: number
+      sum_de:
+        description: 總派獎
+        type: number
+      sum_jp_inject_water_score:
+        description: jp注水分數
+        type: number
+      sum_jp_prize_score:
+        description: jp中獎分數
+        type: number
+      sum_tax:
+        description: 抽水
+        type: number
+      sum_valid_ya:
+        description: 有效投注
+        type: number
+      sum_ya:
+        description: 總投注
+        type: number
+      to_coin:
+        description: 幣種換算比值
+        type: number
+    type: object
+  model.GetPerformanceReportRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      end_time:
+        description: 指定結束時間
+        type: string
+      start_time:
+        description: 指定開始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+    type: object
+  model.GetPerformanceReportResponse:
+    properties:
+      agent_name:
+        description: 代理名稱
+        type: string
+      agentId:
+        description: 代理id
+        type: integer
+      bet_count:
+        description: 注單數
+        type: integer
+      bet_user:
+        description: 總投注人數
+        type: integer
+      jackpot_count:
+        description: jackpot中獎總注單數
+        type: integer
+      jackpot_user:
+        description: jackpot中獎總人數
+        type: integer
+      log_time:
+        description: 紀錄時間 (唯一)
+        type: string
+      sum_bonus:
+        description: 紅利
+        type: number
+      sum_de:
+        description: 總派獎
+        type: number
+      sum_jp_inject_water_score:
+        description: jp注水分數
+        type: number
+      sum_jp_prize_score:
+        description: jp中獎分數
+        type: number
+      sum_tax:
+        description: 抽水
+        type: number
+      sum_valid_ya:
+        description: 有效投注
+        type: number
+      sum_ya:
+        description: 總投注
+        type: number
+    type: object
+  model.GetPlayLogCommonRequest:
+    properties:
+      lognumber:
+        description: 局號
+        type: string
+    type: object
+  model.GetPlayLogCommonResponse:
+    properties:
+      bet_time:
+        description: '遊戲結算時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+      end_time:
+        description: '遊戲結束時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+      game_code:
+        description: 遊戲代碼
+        type: string
+      game_id:
+        description: 遊戲編號
+        type: integer
+      lognumber:
+        description: 單號(局號)
+        type: string
+      play_log:
+        additionalProperties: true
+        description: 遊戲詳情
+        type: object
+      room_type:
+        description: 房間類型
+        type: integer
+      start_time:
+        description: '遊戲開始時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+    type: object
+  model.GetPlayerIncomeRatioAndGameRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      username:
+        description: 玩家username
+        type: string
+    type: object
+  model.GetPlayerIncomeRatioAndGameResponse:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      bet_result:
+        description: 輸贏結果(float64)
+        type: number
+      de_score:
+        description: 總得遊戲分(float64)
+        type: number
+      game_username:
+        description: 玩家username
+        type: string
+      game_users_id:
+        description: 玩家ID
+        type: integer
+      risk_tag:
+        description: 風險玩家旗標
+        type: string
+      vaild_ya_score:
+        description: 總有效壓遊戲分(float64)
+        type: number
+      ya_score:
+        description: 總壓遊戲分(float64)
+        type: number
+    type: object
+  model.GetRealtimeGameRatioRequest:
+    properties:
+      game_id:
+        description: 遊戲id 一次查詢一整個遊戲
+        type: integer
+    type: object
+  model.GetUserCreditLogListRequest:
+    properties:
+      agent_id:
+        description: 代理編號 default(0)
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      game_id:
+        description: 遊戲編號 default(0)
+        type: integer
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+      username:
+        description: 代理玩家名稱
+        type: string
+    type: object
+  model.GetUserCreditLogListResponse:
+    properties:
+      agent_id:
+        description: 代理編號 (輸贏報表欄位)
+        type: integer
+      agent_name:
+        description: 代理名稱 (輸贏報表欄位)
+        type: string
+      credit_code:
+        description: 單一錢包識別碼 / JP 代幣ID (合併欄位)
+        type: string
+      credit_id:
+        description: 遊戲局號 / 上下分訂單號 (合併欄位)
+        type: string
+      credit_time:
+        description: '遊戲結算時間 / 訂單時間(UTC+0, format: 2006-01-02T15:04:05.000Z) (合併欄位)'
+        type: string
+      de_score:
+        description: 總得遊戲分 (輸贏報表欄位)
+        type: number
+      end_score:
+        description: 玩家壓注後遊戲分 (輸贏報表欄位)
+        type: number
+      game_id:
+        description: 遊戲編號 (輸贏報表欄位)
+        type: integer
+      kill_type:
+        description: 殺放狀態 (輸贏報表欄位)
+        type: integer
+      start_score:
+        description: 玩家壓注前遊戲分 (輸贏報表欄位)
+        type: number
+      username:
+        description: 代理用戶帳號 (輸贏報表欄位)
+        type: string
+      wallet_coin_amount:
+        description: 執行分數 (帳變欄位)
+        type: number
+      wallet_error_code:
+        description: 錯誤訊息代碼 (帳變欄位)
+        type: integer
+      wallet_kind:
+        description: 帳變類型 (帳變欄位)
+        type: integer
+      wallet_status:
+        description: 訂單狀態 (帳變欄位)
+        type: integer
+      ya_score:
+        description: 總壓遊戲分 (輸贏報表欄位)
+        type: number
+    type: object
+  model.GetUserPlayLogListRequest:
+    properties:
+      agent_id:
+        description: 代理編號 default(0)
+        type: integer
+      bet_id:
+        description: 注單號
+        type: string
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      game_id:
+        description: 遊戲編號 default(0)
+        type: integer
+      lognumber:
+        description: 局號
+        type: string
+      room_type:
+        description: 房間類型 default(0)
+        type: integer
+      single_wallet_id:
+        description: 單一錢包識別碼
+        type: string
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+      username:
+        description: 代理玩家名稱
+        type: string
+    type: object
+  model.GetUserPlayLogResponse:
+    properties:
+      agent_id:
+        description: 代理編號
+        type: integer
+      agent_name:
+        description: 代理名稱
+        type: string
+      bet_id:
+        description: 注單號
+        type: string
+      bet_time:
+        description: '遊戲結算時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+      bonus:
+        description: 紅利
+        type: number
+      de_score:
+        description: 總得遊戲分
+        type: number
+      desk_id:
+        description: 桌子編號
+        type: integer
+      end_score:
+        description: 玩家壓注後遊戲分
+        type: number
+      game_id:
+        description: 遊戲編號
+        type: integer
+      jp_inject_water_rate:
+        description: jp注水%數
+        type: number
+      jp_inject_water_score:
+        description: jp注水分數
+        type: number
+      kill_level:
+        description: 殺放層級 (預設值-1)
+        type: integer
+      kill_prob:
+        description: 殺放設定機率
+        type: number
+      kill_type:
+        description: 殺放狀態(0. 一般、1. 基礎追殺、2. 放水、3. 控牌追殺、4. 單間追殺、5. 限制倍率、6. 禁開分數)
+        type: integer
+      lognumber:
+        description: 局號
+        type: string
+      real_players:
+        description: 真實玩家人數 (預設值-1)
+        type: integer
+      room_type:
+        description: 房間類型編號
+        type: integer
+      seat_id:
+        description: 座位編號
+        type: integer
+      start_score:
+        description: 玩家壓注前遊戲分
+        type: number
+      tax:
+        description: 遊戲抽水
+        type: number
+      username:
+        description: 代理用戶帳號
+        type: string
+      valid_score:
+        description: 有效投注
+        type: number
+      wallet_ledger_id:
+        description: 單一錢包識別碼
+        type: string
+      ya_score:
+        description: 總壓遊戲分
+        type: number
+    type: object
+  model.GetWalletLedgerListRequest:
+    properties:
+      agent_id:
+        description: 代理編號 default(0)
+        type: integer
+      end_time:
+        description: 查詢範圍結束時間
+        type: string
+      id:
+        description: 訂單號
+        type: string
+      kind:
+        description: 帳變類型 default(0)
+        type: integer
+      single_wallet_id:
+        description: 單一錢包識別碼
+        type: string
+      start_time:
+        description: 查詢範圍起始時間
+        type: string
+      timezone_offset:
+        description: UTC+0時間與本地時間差(分鐘) default(0)
+        type: integer
+      username:
+        description: 代理玩家名稱
+        type: string
+    type: object
+  model.GetWalletLedgerResponse:
+    properties:
+      agent_id:
+        description: 代理id
+        type: string
+      agent_name:
+        description: 代理名稱
+        type: string
+      changeset:
+        description: 帳變內容
+        type: string
+      coin_amount:
+        description: 執行分數
+        type: number
+      create_time:
+        description: '訂單時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+      creator:
+        description: 操作人
+        type: string
+      error_code:
+        description: 錯誤訊息代碼
+        type: integer
+      id:
+        description: 訂單號
+        type: string
+      info:
+        description: 備註
+        type: string
+      kind:
+        description: 帳變類型
+        type: integer
+      single_wallet_id:
+        description: 單一錢包上下分群組識別碼(對應一次上/下分)
+        type: string
+      status:
+        description: 訂單狀態
+        type: integer
+      username:
+        description: 代理用戶帳號
+        type: string
+    type: object
+  model.JackpotLogRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      is_robot:
+        description: 1:是 0:否
+        type: integer
+      jp_bet:
+        description: jp bet
+        type: number
+      lognumber:
+        description: 局號
+        type: string
+      prize_item:
+        description: 中獎項目(4:參加獎、3:小獎、2:中獎、1:大獎)
+        type: integer
+      prize_score:
+        description: JP中獎分數
+        type: number
+      real_pool:
+        description: 真實獎池
+        type: number
+      show_pool:
+        description: 公告獎池
+        type: number
+      token_create_time:
+        description: token 建立時間
+        type: integer
+      token_id:
+        description: token id
+        type: string
+      user_id:
+        description: 用戶id
+        type: integer
+      username:
+        description: 用戶名稱
+        type: string
+      winning_time:
+        description: 中獎時間
+        type: integer
+    type: object
+  model.JackpotSetting:
+    properties:
+      jackpot_switch:
+        description: jackpot開關
+        type: boolean
+    type: object
+  model.Login:
+    properties:
+      captcha:
+        description: 驗證碼
+        type: string
+      captchaId:
+        description: 驗證碼ID
+        type: string
+      password:
+        description: 密碼(加密後的字串,不可用明碼)
+        type: string
+      username:
+        description: 用戶名
+        type: string
+    type: object
+  model.LoginGameResponse:
+    properties:
+      agent_code:
+        description: 代理層級碼
+        type: string
+      agent_id:
+        description: 代理id
+        type: integer
+      coin:
+        description: 遊戲幣
+        type: number
+      game_icon_list:
+        description: 遊戲icon list
+        type: string
+      game_link:
+        description: 遊戲 h5 link
+        type: string
+      id:
+        description: user id
+        type: integer
+      is_new:
+        description: 是否創建新帳號
+        type: boolean
+      is_not_kill_dive_cal:
+        description: 是否計算殺放(內部測試代理，不計算殺放)(計算殺放[預設]:false、不計算:true)
+        type: boolean
+      is_relogin:
+        description: 是否斷線重連
+        type: boolean
+      kill_dive_state:
+        description: 殺放設定狀態(一般玩家:0、定點玩家:1、黑名單玩家:2)
+        type: integer
+      kind_id:
+        description: 遊戲id
+        type: integer
+      last_login_time:
+        description: 上次登入時間
+        type: string
+      level_code:
+        description: 代理層級碼
+        type: string
+      login_time:
+        description: 登入時間
+        type: string
+      order_id:
+        description: 加款訂單號
+        type: string
+      server_info_code:
+        description: 遊戲service id(紀錄玩家在哪個服務)
+        type: string
+      token:
+        description: 驗證token
+        type: string
+      trans_username:
+        description: 轉換後帳號
+        type: string
+      user_metadata:
+        description: 遊戲用戶個人資訊
+        type: string
+      username:
+        description: 原始帳號
+        type: string
+      wallet_type:
+        description: 錢包模式(轉帳錢包[預設]:0、單一錢包:1)
+        type: integer
+    type: object
+  model.LoginResponse:
+    properties:
+      expiresAt:
+        type: integer
+      token:
+        type: string
+      userData:
+        $ref: '#/definitions/model.AdminUserResponse'
+        description: 用戶個人資料
+    type: object
+  model.MarqueeSettingDataResponse:
+    properties:
+      content:
+        description: |-
+          IsEnabled  bool      `json:"is_enabled"`  // 是否啟動
+          IsOpen     bool      `json:"is_open"`     // 是否開啟
+        type: string
+      end_time:
+        description: 結束時間
+        type: string
+      freq:
+        description: 播放頻率(每?秒播放一次)
+        type: integer
+      id:
+        description: uuid
+        type: string
+      lang:
+        description: 語系
+        type: string
+      order:
+        description: 順序
+        type: integer
+      start_time:
+        description: 開始時間
+        type: string
+      type:
+        description: '跑馬燈類型(1: 系統, 2: 活動)'
+        type: integer
+    type: object
+  model.PlayLogRequest:
+    properties:
+      bet_time:
+        description: '遊戲結算時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: integer
+      bonus:
+        description: 紅利(float64)
+        type: number
+      de_score:
+        description: 總得遊戲分(float64)
+        type: number
+      desk_id:
+        description: 桌子id
+        type: integer
+      end_time:
+        description: '遊戲結束時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: integer
+      exchange:
+        description: 一幣分值(沒有就填1)
+        type: number
+      game_id:
+        description: UserId     int     `json:"user_id"`     //用戶id
+        type: integer
+      is_big_win:
+        description: 是否為大獎
+        type: boolean
+      is_issue:
+        description: 是否為問題單
+        type: boolean
+      lognumber:
+        description: 單號
+        type: string
+      playlog:
+        description: 遊戲記錄(json format)
+        type: string
+      room_type:
+        description: 房間類型
+        type: integer
+      start_time:
+        description: '遊戲開始時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: integer
+      tax:
+        description: 抽水(float64)
+        type: number
+      valid_score:
+        description: 有效投注(float64)
+        type: number
+      ya_score:
+        description: 總壓遊戲分(float64)
+        type: number
+    type: object
+  model.PlayLogResponse:
+    type: object
+  model.RecalculateGAmeRecordRequest:
+    properties:
+      end_time:
+        description: '結束時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+      start_time:
+        description: '開始時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: string
+    type: object
+  model.ResetPasswordRequest:
+    properties:
+      username:
+        description: 用戶名
+        type: string
+    type: object
+  model.ResetPasswordResponse:
+    properties:
+      new_password:
+        description: 新密碼
+        type: string
+      username:
+        description: 用戶名
+        type: string
+    type: object
+  model.RoloadGlobalDateRequest:
+    properties:
+      id:
+        description: 資料種類id
+        type: integer
+    type: object
+  model.ServerInfoSetting:
+    properties:
+      common_report_time_before_days:
+        description: 一般報表可查詢多久前的時間(天)
+        type: integer
+      common_report_time_minute_increment:
+        description: 一般報表查詢的分鐘間格(分)
+        type: integer
+      common_report_time_range:
+        description: 一般報表可查詢時間的範圍長度(天)
+        type: integer
+      earning_report_time_minute_increment:
+        description: 業績報表查詢的分鐘間格(分)
+        type: integer
+      winlose_report_time_before_days:
+        description: 輸贏報表可查詢多久前的時間(天)
+        type: integer
+      winlose_report_time_range:
+        description: 輸贏報表可查詢時間範圍長度(分鐘)
+        type: integer
+    type: object
+  model.ServiceParams:
+    properties:
+      id:
+        description: 伺服器id (長度20以內)
+        type: string
+    type: object
+  model.SetAgentCoinSupplyInfoRequest:
+    properties:
+      commission:
+        description: 分成(萬分之n)
+        type: integer
+      id:
+        description: 代理id
+        type: integer
+      info:
+        type: string
+      name:
+        description: 代理名稱
+        type: string
+      role:
+        description: 權限群組id(uuid)
+        type: string
+      wallet_conninfo:
+        description: 錢包API連線位置
+        type: string
+    type: object
+  model.SetAgentCustomTagSettingListRequest:
+    properties:
+      agent_id:
+        description: 代理編號
+        type: integer
+      custom_tag_info:
+        additionalProperties:
+          $ref: '#/definitions/global.CustomTagInfo'
+        description: 自定義標籤資訊(array in json)
+        type: object
+    type: object
+  model.SetAgentGameRoomStateGameRoomRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      game_room_id:
+        description: 遊戲房間id
+        type: integer
+      state:
+        description: 代理遊戲狀態
+        type: integer
+    type: object
+  model.SetAgentGameRoomStateRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      game_id:
+        description: 遊戲id
+        type: integer
+      list:
+        description: 代理遊戲房間狀態
+        items:
+          $ref: '#/definitions/model.SetAgentGameRoomStateGameRoomRequest'
+        type: array
+    type: object
+  model.SetAgentGameStateGameRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      game_id:
+        description: 遊戲id
+        type: integer
+    type: object
+  model.SetAgentGameStateRequest:
+    properties:
+      list:
+        items:
+          $ref: '#/definitions/model.SetAgentGameStateGameRequest'
+        type: array
+      state:
+        description: 代理遊戲狀態
+        type: integer
+    type: object
+  model.SetAgentIncomeRatioRequest:
+    properties:
+      agent_id:
+        description: '代理id (no search default: 0)'
+        type: integer
+      info:
+        description: 備註
+        type: string
+      ratio:
+        description: 總代理殺率
+        type: number
+      state:
+        description: 狀態是否啟用
+        type: boolean
+    type: object
+  model.SetAgentIpWhitelistRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      ip_whitelist:
+        description: 代理ip白名單
+        items:
+          $ref: '#/definitions/model.AgentIPWhitelistObj'
+        type: array
+    type: object
+  model.SetAgentJackpotRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      jackpot_end_time:
+        description: jackpot 結束時間
+        type: string
+      jackpot_start_time:
+        description: jackpot 開始時間
+        type: string
+      jackpot_status:
+        description: jackpot 狀態(0:不參加, 1:參加, 2:限時參加)
+        type: integer
+    type: object
+  model.SetAgentPermissionRequest:
+    properties:
+      account_type:
+        description: 角色類型(0:admin 1:總代理 2:子代)
+        type: integer
+      id:
+        description: uuid(唯一)
+        type: string
+      info:
+        description: 備註(長度100)
+        type: string
+      name:
+        description: 角色名稱(長度16)
+        type: string
+      permissions:
+        description: 權限列表
+        items:
+          type: integer
+        type: array
+    type: object
+  model.SetAgentWalletRequest:
+    properties:
+      agent_id:
+        description: 代理id
+        type: integer
+      change_amount:
+        description: 變更點數
+        type: number
+      info:
+        description: 備註
+        type: string
+    type: object
+  model.SetGameStateRequest:
+    properties:
+      game_id:
+        description: 遊戲id(PK)
+        type: integer
+      state:
+        description: 遊戲狀態
+        type: integer
+    type: object
+  model.SetGameUserRiskControlTagRequest:
+    properties:
+      id:
+        description: 用戶id
+        type: integer
+      risk_control_tag:
+        description: 風控處置標示(4bit) "1000":禁止登入 "0100":禁止下注 "0010":禁止上分 "0001":禁止下分
+        type: string
+    type: object
+  model.SetGameUserWalletRequest:
+    properties:
+      change_amount:
+        description: 變更點數
+        type: number
+      info:
+        description: 備註
+        type: string
+      user_id:
+        description: 玩家id
+        type: integer
+    type: object
+  model.SetGameUsersCustomTagRequest:
+    properties:
+      custom_tag_info:
+        additionalProperties:
+          $ref: '#/definitions/global.CustomTagInfo'
+        description: 自定義標籤資訊,對應TagList內每個位置的字串(array length:8)
+        type: object
+      game_username:
+        description: 玩家帳號
+        type: string
+      game_users_id:
+        description: 玩家id
+        type: integer
+      high_risk:
+        description: 是否為高風險
+        type: boolean
+      kill_dive_state:
+        description: 殺放設定狀態(一般玩家:0、定點玩家:1、黑名單玩家:2)
+        type: integer
+      kill_dive_value:
+        description: 定點額度(只有在殺放狀態設定為定點時有效)
+        type: number
+      tag_list:
+        description: 玩家自訂義標示(8bit)
+        type: string
+    type: object
+  model.SetIncomeRatioRequest:
+    properties:
+      active_num:
+        description: 啟動人數
+        type: integer
+      id:
+        description: 唯一碼(pKey,修改時傳入此碼)
+        type: string
+      info:
+        description: 備註
+        type: string
+      kill_ratio:
+        description: 基礎殺率
+        type: number
+      new_kill_ratio:
+        description: 新手殺率
+        type: number
+    type: object
+  model.SetIncomeRatiosRequest:
+    properties:
+      active_num:
+        description: 啟動人數
+        type: integer
+      agent_id_list:
+        description: 代理 id list
+        items:
+          type: integer
+        type: array
+      game_id_list:
+        description: 遊戲 id list
+        items:
+          type: integer
+        type: array
+      info:
+        description: 備註
+        type: string
+      kill_ratio:
+        description: 基礎殺率
+        type: number
+      new_kill_ratio:
+        description: 新手殺率
+        type: number
+      room_type_list:
+        description: 房間類型list
+        items:
+          type: integer
+        type: array
+    type: object
+  model.SetIncomeRatiosResponse:
+    properties:
+      error_list:
+        description: 錯誤列表會提供 agent_id, game_id, room_type
+        items:
+          additionalProperties:
+            type: integer
+          type: object
+        type: array
+    type: object
+  model.SetPersonalInfoRequest:
+    properties:
+      nickname:
+        description: 暱稱
+        type: string
+    type: object
+  model.SetPersonalPasswordRequest:
+    properties:
+      confirm_password:
+        description: 確認新密碼(8~16)
+        type: string
+      new_password:
+        description: 新密碼(8~16)
+        type: string
+      old_password:
+        description: 舊密碼(8~16)
+        type: string
+    type: object
+  model.SingleWalletRequest:
+    properties:
+      bet_id:
+        description: 局號
+        type: string
+      command:
+        description: 命令(1:取餘額；2:上分；3:下分)
+        type: integer
+      game_id:
+        description: 遊戲id
+        type: integer
+      point:
+        description: 目前點數
+        type: number
+      room_id:
+        description: 房間id
+        type: integer
+      user_id:
+        description: 玩家id
+        type: integer
+      username:
+        description: 玩家帳號
+        type: string
+      wallet_ledger_id:
+        description: 單一錢包上下分群組識別碼
+        type: string
+    type: object
+  model.SingleWalletResponse:
+    properties:
+      command:
+        description: 命令(1:取餘額；2:上分；3:下分)
+        type: integer
+      money:
+        description: 平台餘額
+        type: number
+      point:
+        description: 目前點數
+        type: number
+      wallet_ledger_id:
+        description: 單一錢包上下分群組識別碼
+        type: string
+    type: object
+  model.UpdateAdminUserInfoRequest:
+    properties:
+      info:
+        description: 備註
+        type: string
+      is_enabled:
+        description: '帳號狀態(1: 開啟, 0: 關閉)'
+        type: integer
+      role:
+        description: 角色權限id
+        type: string
+      username:
+        description: 用戶名
+        type: string
+    type: object
+  model.UpdateAnnouncementRequest:
+    properties:
+      content:
+        description: 內文(800長度)
+        type: string
+      id:
+        description: uuid
+        type: string
+      subject:
+        description: 主旨(20長度)
+        type: string
+      type:
+        description: '公告類型(1: 系統, 2: 活動)'
+        type: integer
+    type: object
+  model.UpdateGameUserInfoRequest:
+    properties:
+      id:
+        description: 用戶id
+        type: integer
+      info:
+        description: 備註
+        type: string
+      is_enabled:
+        description: '帳號狀態(true: 開啟)'
+        type: boolean
+    type: object
+  model.UpdateMarqueeRequest:
+    properties:
+      content:
+        description: 內文
+        type: string
+      end_time:
+        description: 結束時間
+        type: string
+      freq:
+        description: 播放頻率(每?秒播放一次)
+        type: integer
+      id:
+        description: uuid
+        type: string
+      is_enabled:
+        description: 是否啟動
+        type: boolean
+      lang:
+        description: 語系
+        type: string
+      order:
+        description: 順序
+        type: integer
+      start_time:
+        description: 開始時間
+        type: string
+      type:
+        description: '跑馬燈類型(1: 系統, 2: 活動)'
+        type: integer
+    type: object
+  model.WalletConnInfo:
+    properties:
+      api_key:
+        type: string
+      domain:
+        type: string
+      path:
+        description: "{\n\t\t\"path\": \"/dev-tools/channelHandle\",\n\t\t\"domain\":
+          \"172.30.0.152\",\n\t\t\"scheme\": \"http\",\n\t\t\"api_key\": \"\"\n\t
+          \ }"
+        type: string
+      scheme:
+        type: string
+    type: object
+  response.Response:
+    properties:
+      code:
+        description: 回傳編碼
+        type: integer
+      data:
+        description: 回傳資料
+      msg:
+        type: string
+    type: object
+  system.GetGameLeaderboardsData:
+    properties:
+      game_id:
+        description: 遊戲Id
+        type: integer
+      game_name:
+        description: 遊戲名稱
+        type: string
+      total_bonus:
+        description: 總紅利
+        type: number
+      total_de:
+        description: 總派獎
+        type: number
+      total_tax:
+        description: 總抽水
+        type: number
+      total_valid_ya:
+        description: 總有效投注
+        type: number
+      total_ya:
+        description: 總投注
+        type: number
+    type: object
+  system.GetIntervalDaysBettorDataResponse:
+    properties:
+      active_player:
+        description: 活躍玩家(不重複)
+        type: integer
+      log_time:
+        description: 日期(YYYYMMDD)
+        type: string
+      number_bettors:
+        description: 投注人數(不重複)
+        type: integer
+    type: object
+  system.GetIntervalRealtimeUserDataResponse:
+    properties:
+      log_time:
+        description: 時段
+        type: string
+      total_online_game_user_count:
+        description: 總人數
+        type: integer
+    type: object
+  system.GetIntervalTodayTotalScoreDataResponse:
+    properties:
+      game_id:
+        description: 遊戲id
+        type: integer
+      game_name:
+        description: 遊戲名稱
+        type: string
+      log_time:
+        description: 時段
+        type: string
+      total_bonus:
+        description: 總紅利
+        type: number
+      total_de_score:
+        description: 總德分
+        type: number
+      total_tax_score:
+        description: 總抽水
+        type: number
+      total_valid_ya_score:
+        description: 總有效壓分
+        type: number
+      total_ya_score:
+        description: 總壓分
+        type: number
+    type: object
+  system.GetIntervalTotalBettorInfoDataResponse:
+    properties:
+      game_id:
+        description: 遊戲id
+        type: integer
+      game_name:
+        description: 遊戲名稱
+        type: string
+      log_time:
+        description: 時段
+        type: string
+      total_bet_count:
+        description: 總注單數
+        type: integer
+      total_bettor:
+        description: 總投注人數
+        type: integer
+    type: object
+  system.GetRiskUserListData:
+    properties:
+      total_bonus:
+        description: 總紅利
+        type: number
+      total_de:
+        description: 總派獎
+        type: number
+      total_tax:
+        description: 總抽水
+        type: number
+      total_vaild_ya:
+        description: 總有效投注
+        type: number
+      total_ya:
+        description: 總投注
+        type: number
+      user_id:
+        description: 玩家id
+        type: integer
+      username:
+        description: 玩家帳號
+        type: string
+    type: object
+  system.GetStatDataDataResponse:
+    properties:
+      active_player:
+        description: 活躍玩家(不重複)
+        type: integer
+      game_tax:
+        description: 遊戲抽水
+        type: integer
+      number_bettors:
+        description: 投注人數(不重複)
+        type: integer
+      number_registrants:
+        description: 註冊人數(不重複)
+        type: integer
+      odd_number:
+        description: 注單數
+        type: integer
+      platform_total_score:
+        description: 平台總輸贏分數
+        type: integer
+      total_betting:
+        description: 總投注
+        type: integer
+    type: object
+  system.MaintainPageSetting:
+    properties:
+      end_time:
+        description: 結束時間 YYYY-MM-DD HH:mm
+        type: string
+      start_time:
+        description: 開始時間 YYYY-MM-DD HH:mm
+        type: string
+      timezone:
+        description: 時區
+        type: string
+    type: object
+  system.getGameIconData:
+    properties:
+      code:
+        description: 遊戲代碼
+        type: string
+      hot:
+        description: 熱門 (0:none, 1:熱門)
+        type: integer
+      id:
+        description: 遊戲id(PK)
+        type: integer
+      name:
+        description: 遊戲名稱
+        type: string
+      newest:
+        description: 最新 (0:none, 1:最新)
+        type: integer
+      push:
+        description: 推廣大圖 (0:none, 1:大圖1, 2:大圖2...)
+        type: integer
+      rank:
+        description: 排行 (since from 0)
+        type: integer
+      type:
+        description: 遊戲類型
+        type: integer
+    type: object
+  system.getGameIconListResponse:
+    properties:
+      create_time:
+        description: 創建時間
+        type: string
+      default_gameicon_list_data:
+        description: 預設遊戲ICON 列表(上級)
+        items:
+          $ref: '#/definitions/system.getGameIconData'
+        type: array
+      gameicon_list_data:
+        description: 遊戲ICON 列表
+        items:
+          $ref: '#/definitions/system.getGameIconData'
+        type: array
+      is_admin:
+        description: 是否為總代理預設值(只能有一個)
+        type: boolean
+      is_default:
+        description: 是否讀取預設值
+        type: boolean
+      update_time:
+        description: 更新時間
+        type: string
+    type: object
+  system.notifygameserverRequest:
+    properties:
+      game_id:
+        type: integer
+      state:
+        type: integer
+    type: object
+  system.setGameIconListRequest:
+    properties:
+      game_icon_list:
+        description: 遊戲 icon 設定
+        items:
+          $ref: '#/definitions/global.GameIcon'
+        type: array
+      is_default:
+        description: 是否讀取預設值
+        type: boolean
+    type: object
+  system.setgameserverstateRequest:
+    properties:
+      state:
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: This is a backend service
+  title: Swagger DCC backend API
+  version: 0.0.1
+paths:
+  /api/v1/agent/createagent:
+    post:
+      parameters:
+      - description: 添加代理必要資訊
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateAgentRequest'
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 創建代理帳號
+      tags:
+      - 代理帳號管理/代理帳號
+  /api/v1/agent/createagentpermission:
+    post:
+      parameters:
+      - description: 創建代理權限群組參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateAgentPermissionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 創建代理權限群組
+      tags:
+      - 代理帳號管理/權限群組管理
+  /api/v1/agent/deleteagentpermission:
+    post:
+      parameters:
+      - description: 刪除代理權限群組參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DeleteAgentPermissionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 刪除代理權限群組
+      tags:
+      - 代理帳號管理/權限群組管理
+  /api/v1/agent/getagentapiipwhitelist:
+    post:
+      parameters:
+      - description: 取得代理API IP資訊
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentIpWhitelistRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.AgentIPWhitelistObj'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理後台IP資訊
+      tags:
+      - 系統管理/後台IP白名單
+  /api/v1/agent/getagentcoinsupplyinfo:
+    post:
+      parameters:
+      - description: 指定代理id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentCoinSupplyInfoRequest'
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAgentCoinSupplyInfoResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得指定代理補分相關資料設定
+      tags:
+      - 代理帳號管理/代理帳號
+  /api/v1/agent/getagentgamelist:
+    post:
+      parameters:
+      - description: 取得代理遊戲列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentGameListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.DataTablesResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理遊戲列表
+      tags:
+      - 遊戲設置/遊戲管理
+  /api/v1/agent/getagentgameroomlist:
+    post:
+      parameters:
+      - description: 取得代理遊戲房間列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentGameRoomListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAgentGameRoomResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理遊戲房間列表
+      tags:
+      - 遊戲設置/遊戲管理
+  /api/v1/agent/getagentipwhitelist:
+    post:
+      parameters:
+      - description: 取得代理後台IP資訊參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentIpWhitelistRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.AgentIPWhitelistObj'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理後台IP資訊
+      tags:
+      - 系統管理/後台IP白名單
+  /api/v1/agent/getagentipwhitelistlist:
+    post:
+      parameters:
+      - description: 取得代理後台IP資訊列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentIpWhitelistListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAgentIpWhitelistListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理後台IP資訊列表
+      tags:
+      - 系統管理/後台IP白名單
+  /api/v1/agent/getagentlist:
+    post:
+      parameters:
+      - description: 指定代理id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentSecretKeyRequest'
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAgentListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理底下所有代理資料
+      tags:
+      - 代理帳號管理/代理帳號
+  /api/v1/agent/getagentpermission:
+    post:
+      parameters:
+      - description: 取得代理權限群組參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentPermissionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAgentPermissionResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理權限群組
+      tags:
+      - 代理帳號管理/權限群組管理
+  /api/v1/agent/getagentpermissionlist:
+    post:
+      parameters:
+      - description: 取得代理權限群組列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentPermissionListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAgentPermissionListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理權限群組列表
+      tags:
+      - 代理帳號管理/權限群組管理
+  /api/v1/agent/getagentpermissiontemplateinfo:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  additionalProperties:
+                    items:
+                      type: integer
+                    type: array
+                  type: object
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理權限群組權限樣板
+      tags:
+      - 代理帳號管理/權限群組管理
+  /api/v1/agent/getagentsecretkey:
+    post:
+      parameters:
+      - description: 指定代理id(0:找自己)
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentSecretKeyRequest'
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAgentSecretKeyResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 秘鑰資訊顯示
+      tags:
+      - 代理帳號管理/代理帳號
+  /api/v1/agent/getagentwalletlist:
+    post:
+      parameters:
+      - description: 取得代理錢包餘額列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentWalletListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAgentWalletListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理錢包餘額列表
+      tags:
+      - 運營管理/後台代理上下分
+  /api/v1/agent/setagentapiipwhitelist:
+    post:
+      parameters:
+      - description: 設置代理API IP資訊
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentIpWhitelistRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設置代理後台IP資訊
+      tags:
+      - 系統管理/後台IP白名單
+  /api/v1/agent/setagentcoinsupplyinfo:
+    post:
+      parameters:
+      - description: 指定代理id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentCoinSupplyInfoRequest'
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 修改指定代理補分相關資料設定
+      tags:
+      - 代理帳號管理/代理帳號
+  /api/v1/agent/setagentgameroomstate:
+    post:
+      parameters:
+      - description: 設置代理遊戲房狀態必要資訊
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentGameRoomStateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設置代理遊戲房間狀態
+      tags:
+      - 遊戲設置/遊戲管理
+  /api/v1/agent/setagentgamestate:
+    post:
+      parameters:
+      - description: 設置代理遊戲狀態必要資訊
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentGameStateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設置代理遊戲狀態
+      tags:
+      - 遊戲設置/遊戲管理
+  /api/v1/agent/setagentipwhitelist:
+    post:
+      parameters:
+      - description: 設置代理後台IP資訊參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentIpWhitelistRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設置代理後台IP資訊
+      tags:
+      - 系統管理/後台IP白名單
+  /api/v1/agent/setagentpermission:
+    post:
+      parameters:
+      - description: 修改代理權限群組參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentPermissionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 修改代理權限群組
+      tags:
+      - 代理帳號管理/權限群組管理
+  /api/v1/agent/setagentwallet:
+    post:
+      parameters:
+      - description: 設置代理錢包餘額參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentWalletRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設置代理錢包餘額
+      tags:
+      - 運營管理/後台代理上下分
+  /api/v1/cal/calperformancereport:
+    post:
+      description: 此接口用來重新計算業績報表
+      parameters:
+      - description: '指定計算開始時間，格式: 2006-01-02T15:04:05Z'
+        in: formData
+        name: startDate
+        required: true
+        type: string
+      - description: '指定計算結束時間，格式: 2006-01-02T15:04:05Z'
+        in: formData
+        name: endDate
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Cal performance report
+      tags:
+      - 報表管理/業績報表
+  /api/v1/cal/getperformancereport:
+    post:
+      parameters:
+      - description: 指定時間區段下層代理時間區段的統計資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetPerformanceReportRequest'
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetPerformanceReportResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 指定時間區段下層代理時間區段的統計資料
+      tags:
+      - 報表管理/業績報表
+  /api/v1/cal/getperformancereportlist:
+    post:
+      parameters:
+      - description: 指定時間區段下層代理總和的資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetPerformanceReportListRequest'
+      produces:
+      - multipart/form-data
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetPerformanceReportListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 指定時間區段下層代理總和的資料
+      tags:
+      - 報表管理/業績報表
+  /api/v1/game/getgameiconlist:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/system.getGameIconListResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得遊戲icon list
+      tags:
+      - 遊戲設置/遊戲設置
+  /api/v1/game/getgamelist:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetGameResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得遊戲列表
+      tags:
+      - 遊戲設置/遊戲設置
+  /api/v1/game/getgameserverstate:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  additionalProperties: true
+                  type: object
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得遊戲server狀態
+      tags:
+      - 遊戲設置/遊戲設置
+  /api/v1/game/notifygameserver:
+    post:
+      parameters:
+      - description: 送通知給遊戲伺服器
+        in: body
+        name: game_id
+        required: true
+        schema:
+          $ref: '#/definitions/system.notifygameserverRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 創建更新遊戲相關設定(遊戲server維護中才可以使用)
+      tags:
+      - 遊戲設置/遊戲設置
+  /api/v1/game/setgameiconlist:
+    post:
+      parameters:
+      - description: 設置遊戲icon list參數(只能改自己)
+        in: body
+        name: state
+        required: true
+        schema:
+          $ref: '#/definitions/system.setGameIconListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設置遊戲icon list
+      tags:
+      - 遊戲設置/遊戲設置
+  /api/v1/game/setgameserverstate:
+    post:
+      parameters:
+      - description: 設置遊戲server狀態
+        in: body
+        name: state
+        required: true
+        schema:
+          $ref: '#/definitions/system.setgameserverstateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設置遊戲server狀態
+      tags:
+      - 遊戲設置/遊戲設置
+  /api/v1/game/setgamestate:
+    post:
+      parameters:
+      - description: 修改遊戲狀態參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetGameStateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 修改遊戲狀態
+      tags:
+      - 遊戲設置/遊戲設置
+  /api/v1/global/getagentadminuserpermissionlist:
+    get:
+      description: 此接口用來取得代理父帳號權限list(供下拉選單使用,Drop Down Menu)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    type: integer
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get agent parent admin user permission list
+      tags:
+      - Global
+  /api/v1/global/getagentcustomtagsettinglist:
+    get:
+      description: 此接口用來取得玩家標示設定下拉選單資料list(供下拉選單使用,Drop Down Menu)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/global.AgentTagInfoList'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get agent custom tag setting list
+      tags:
+      - Global
+  /api/v1/global/getagentlist:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    additionalProperties: true
+                    type: object
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得全部代理商list(供下拉選單使用)
+      tags:
+      - Global
+  /api/v1/global/getagentpermissionlist:
+    get:
+      parameters:
+      - description: 層級
+        in: query
+        name: account_type
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    additionalProperties: true
+                    type: object
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得權限群組層級list(供下拉選單使用)
+      tags:
+      - Global
+  /api/v1/global/getallgamelist:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    type: integer
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得全部遊戲list(供下拉選單使用)
+      tags:
+      - Global
+  /api/v1/global/getgamelist:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    type: integer
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得上線及維護中的遊戲list(供下拉選單使用)
+      tags:
+      - Global
+  /api/v1/global/getroomtypelist:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    type: integer
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得房間類型list(供下拉選單使用)
+      tags:
+      - Global
+  /api/v1/global/roloadglobaldata:
+    post:
+      description: 此接口用來重新載入本地端資料
+      parameters:
+      - description: '指定資料 id (0: all)'
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.RoloadGlobalDateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.AgentGame'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Roload global date
+      tags:
+      - Global
+  /api/v1/health/health:
+    get:
+      consumes:
+      - application/json
+      description: 檢查伺服器是否活著
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Response'
+      summary: check serice isn't still live
+      tags:
+      - Health
+  /api/v1/intercom/creategamerecord:
+    post:
+      description: 此接口用來創建遊戲紀錄(不做參數檢查)
+      parameters:
+      - description: 代理識別碼, 遊戲紀錄(json), 總變動分數...
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.PlayLogRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.PlayLogResponse'
+                msg:
+                  type: string
+              type: object
+      summary: create game record
+      tags:
+      - IntercomApi
+  /api/v1/intercom/createjackpotrecord:
+    post:
+      description: 此接口用來創建jackpot紀錄(不做參數檢查)
+      parameters:
+      - description: 代理識別碼, 遊戲紀錄(json), 總變動分數...
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.JackpotLogRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      summary: create jackpot record
+      tags:
+      - IntercomApi
+  /api/v1/intercom/getagentlist:
+    get:
+      description: 此接口供遊戲伺服器取得代理列表(僅回傳已啟用的代理資料)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.AgentList'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      summary: get agent list
+      tags:
+      - IntercomApi
+  /api/v1/intercom/getgameserverstate:
+    get:
+      description: 此接口供遊戲伺服器取得設定遊戲全局開關設定列表
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetGameServerStateResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      summary: get game global switch
+      tags:
+      - IntercomApi
+  /api/v1/intercom/getmarqueesetting:
+    get:
+      description: 此接口供遊戲伺服器取得跑馬燈設定列表
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.MarqueeSettingDataResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      summary: get marquee setting
+      tags:
+      - IntercomApi
+  /api/v1/intercom/logingame:
+    get:
+      description: 此接口用以驗證遊戲帳號，如果帳號不存在則創建遊戲帳號並為帳號上分。(server use)
+      parameters:
+      - description: token
+        in: query
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.LoginGameResponse'
+                msg:
+                  type: string
+              type: object
+      summary: login game
+      tags:
+      - IntercomApi
+  /api/v1/intercom/logoutgame:
+    get:
+      description: 此接口用以登出遊戲帳號(server use)
+      parameters:
+      - description: 用戶id
+        in: query
+        name: user_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      summary: logout game
+      tags:
+      - IntercomApi
+  /api/v1/intercom/recalculategamerecord:
+    post:
+      description: 此接口用來重新計算代理遊戲平台營收統計表(要做參數檢查)
+      parameters:
+      - description: 代理識別碼, 遊戲紀錄(json), 總變動分數...
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.RecalculateGAmeRecordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      summary: recalculate game record
+      tags:
+      - IntercomApi
+  /api/v1/intercom/servicerestart:
+    post:
+      description: 此接口用於遊戲服務重啟時，通知後臺使用
+      parameters:
+      - description: service param
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ServiceParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      summary: notify backend service, whem game service restart
+      tags:
+      - IntercomApi
+  /api/v1/intercom/singlewallet:
+    post:
+      description: 此接口用於單一錢包 Api 整合
+      parameters:
+      - description: service param
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SingleWalletRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.SingleWalletResponse'
+                msg:
+                  type: string
+              type: object
+      summary: notify backend service, single wallet get balance
+      tags:
+      - IntercomApi
+  /api/v1/jackpot/createjackpottoken:
+    post:
+      description: 建立jackpot代幣(只有開發商(營運商)可使用)
+      parameters:
+      - description: 建立jackpot代幣參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateJackpotTokenRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetJackpotTokenListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: create jackpot token
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/getagentjackpot:
+    post:
+      description: 取得指定總代理jackpot設定(只有開發商(營運商)可使用)
+      parameters:
+      - description: 取得指定總代理jackpot參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentJackpotListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAgentJackpotListResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: get gernal agent jackpot
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/getagentjackpotlist:
+    post:
+      description: 取得總代理jackpot設定列表(只有開發商(營運商)可使用)
+      parameters:
+      - description: 取得總代理jackpot列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentJackpotListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAgentJackpotListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: get gernal agent jackpot list
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/getjackpotleaderboard:
+    post:
+      description: 取得jackpot玩家貢獻度(只有開發商(營運商)可使用)
+      parameters:
+      - description: 取得jackpot玩家貢獻度參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetJackpotLeaderboardRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetJackpotLeaderboardResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: get jackpot game user leaderboard
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/getjackpotlist:
+    post:
+      description: 取得jackpot紀錄列表
+      parameters:
+      - description: 取得jackpot紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetJackpotListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetJackpotListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: get jackpot list
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/getjackpotpooldata:
+    get:
+      description: 取得jackpot獎池資訊(只有開發商(營運商)可使用)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetJackpotPoolDataResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: get jackpot pool data
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/getjackpotsetting:
+    get:
+      description: 取得平台jackpot設定(只有開發商(營運商)可使用)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.JackpotSetting'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: get systen jackpot setting
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/getjackpottokenlist:
+    post:
+      description: 取得jackpot代幣紀錄列表(只有開發商(營運商)可使用)
+      parameters:
+      - description: 取得jackpot代幣紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetJackpotTokenListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetJackpotTokenListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: get jackpot token list
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/notifygameserveragentjackpotinfo:
+    post:
+      description: server同步jackpot資訊(只有開發商(營運商)可使用)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: send current all agent jackpot info to game server
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/setagentjackpot:
+    post:
+      description: 設定總代理jackpot(只有開發商(營運商)可使用)
+      parameters:
+      - description: 設定總代理jackpot參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentJackpotRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: set gernal agent jackpot
+      tags:
+      - JP功能管理
+  /api/v1/jackpot/setjackpotsetting:
+    post:
+      description: 設定平台jackpot設定(只有開發商(營運商)可使用)
+      parameters:
+      - description: 設定jackpot總開關參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.JackpotSetting'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: set systen jackpot setting
+      tags:
+      - JP功能管理
+  /api/v1/login/autologin:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回包括用戶信息,token,過期時間
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.LoginResponse'
+                msg:
+                  type: string
+              type: object
+      summary: 自動登錄(測試用, login role is admin)
+      tags:
+      - Login
+  /api/v1/login/captcha:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 生成验证码,返回包括随机数id,base64,验证码长度
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.CaptchaResponse'
+                msg:
+                  type: string
+              type: object
+      summary: 取得驗證碼
+      tags:
+      - Login
+  /api/v1/login/login:
+    post:
+      parameters:
+      - description: 用戶名, 密碼, 驗證碼
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.Login'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回包括用戶信息,token,過期時間
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.LoginResponse'
+                msg:
+                  type: string
+              type: object
+      summary: 用戶登錄
+      tags:
+      - Login
+  /api/v1/manage/createannouncement:
+    post:
+      consumes:
+      - application/json
+      description: 添加後台公告功能（開發者）
+      parameters:
+      - description: id, 創建內容相關參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateAnnouncementRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: create new announcement
+      tags:
+      - 運營管理/後台公告
+  /api/v1/manage/createmarquee:
+    post:
+      consumes:
+      - application/json
+      description: 添加跑馬燈功能（開發者）：管理後台才可添加【活動】類型跑馬燈
+      parameters:
+      - description: id, 創建內容相關參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateMarqueeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: create new marquee
+      tags:
+      - 運營管理/跑馬燈設定
+  /api/v1/manage/deleteannouncement:
+    post:
+      consumes:
+      - application/json
+      description: 刪除後台公告功能（開發者）
+      parameters:
+      - description: id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DeleteAnnouncementRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: delete announcement
+      tags:
+      - 運營管理/後台公告
+  /api/v1/manage/deletemarquee:
+    post:
+      consumes:
+      - application/json
+      description: 刪除跑馬燈功能（開發者）：管理後台才可刪除【活動】類型跑馬燈
+      parameters:
+      - description: id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.DeleteMarqueeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: delete marquee
+      tags:
+      - 運營管理/跑馬燈設定
+  /api/v1/manage/getannouncement:
+    post:
+      consumes:
+      - application/json
+      description: 指定取得某筆後台公告設定
+      parameters:
+      - description: id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAnnouncementRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAnnouncementResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get announcement
+      tags:
+      - 運營管理/後台公告
+  /api/v1/manage/getannouncementlist:
+    post:
+      consumes:
+      - application/json
+      description: 取得目前後台公告列表：開發者、總代理、子代理，皆可查看跑馬燈資訊全內容
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAnnouncementResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get announcement list
+      tags:
+      - 運營管理/後台公告
+  /api/v1/manage/getgameleaderboards:
+    get:
+      description: 此接口用來取得今日遊戲輸贏排行榜(UTC+0)
+      parameters:
+      - description: 查詢目標層級碼
+        in: query
+        name: level_code
+        type: string
+      - description: '時間區域(UTC+X, X時間, 單位分鐘, ex: UTC+8 要傳入 -60*8=-480)'
+        in: query
+        name: time_zone
+        required: true
+        type: integer
+      - description: 查詢是否包含自身以下層級資料(1:是, other:否)
+        in: query
+        name: is_search_all
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/system.GetGameLeaderboardsData'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get game leaderboards
+      tags:
+      - 運營管理/數據總覽
+  /api/v1/manage/getintervaldaysbettordata:
+    get:
+      description: 此接口用來取得最近一段時間(預設30日)的活躍玩家數&日投注人數(UTC+0)
+      parameters:
+      - description: 查詢目標層級碼
+        in: query
+        name: level_code
+        type: string
+      - description: '時間區域(UTC+X, X時間, 單位分鐘, ex: UTC+8 要傳入 -60*8=-480)'
+        in: query
+        name: time_zone
+        required: true
+        type: integer
+      - description: 查詢是否包含自身以下層級資料(1:是, other:否)
+        in: query
+        name: is_search_all
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/system.GetIntervalDaysBettorDataResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get game winning leaderboard
+      tags:
+      - 運營管理/數據總覽
+  /api/v1/manage/getintervalrealtimeuserdata:
+    get:
+      description: 此接口用來取得今日昨日的各時段線上人數
+      parameters:
+      - description: 查詢目標層級碼
+        in: query
+        name: level_code
+        type: string
+      - description: '時間區域(UTC+X, X時間, 單位分鐘, ex: UTC+8 要傳入 -60*8=-480)'
+        in: query
+        name: time_zone
+        required: true
+        type: integer
+      - description: 查詢是否包含自身以下層級資料(1:是, other:否)
+        in: query
+        name: is_search_all
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/system.GetIntervalRealtimeUserDataResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get today and yesterday online people info
+      tags:
+      - 運營管理/數據總覽
+  /api/v1/manage/getintervaltotalbettorinfodata:
+    get:
+      description: 此接口用來取得今日各時段、各遊戲投注人數(昨日&今日)
+      parameters:
+      - description: 查詢目標層級碼
+        in: query
+        name: level_code
+        type: string
+      - description: '時間區域(UTC+X, X時間, 單位分鐘, ex: UTC+8 要傳入 -60*8=-480)'
+        in: query
+        name: time_zone
+        required: true
+        type: integer
+      - description: 查詢是否包含自身以下層級資料(1:是, other:否)
+        in: query
+        name: is_search_all
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  additionalProperties:
+                    items:
+                      $ref: '#/definitions/system.GetIntervalTotalBettorInfoDataResponse'
+                    type: array
+                  type: object
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get number of bettors for each time period and game today
+      tags:
+      - 運營管理/數據總覽
+  /api/v1/manage/getintervaltotalscoredata:
+    get:
+      description: 此接口用來取得今日各時段輸贏(昨日&今日)
+      parameters:
+      - description: 查詢目標層級碼
+        in: query
+        name: level_code
+        type: string
+      - description: '時間區域(UTC+X, X時間, 單位分鐘, ex: UTC+8 要傳入 -60*8=-480)'
+        in: query
+        name: time_zone
+        required: true
+        type: integer
+      - description: 查詢是否包含自身以下層級資料(1:是, other:否)
+        in: query
+        name: is_search_all
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  additionalProperties:
+                    items:
+                      $ref: '#/definitions/system.GetIntervalTodayTotalScoreDataResponse'
+                    type: array
+                  type: object
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get today's winners and losers
+      tags:
+      - 運營管理/數據總覽
+  /api/v1/manage/getmaintainpagesetting:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/system.MaintainPageSetting'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得維護頁設定(只有開發商(營用商)可以使用)
+      tags:
+      - 運營管理/維護頁設定
+  /api/v1/manage/getmarquee:
+    post:
+      consumes:
+      - application/json
+      description: 指定取得某筆跑馬燈設定
+      parameters:
+      - description: id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetMarqueeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetMarqueeResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get marquee
+      tags:
+      - 運營管理/跑馬燈設定
+  /api/v1/manage/getmarqueelist:
+    post:
+      consumes:
+      - application/json
+      description: 取得目前跑馬燈設定列表：開發者、總代理、子代理，皆可查看跑馬燈資訊全內容
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetMarqueeResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get marquee list
+      tags:
+      - 運營管理/跑馬燈設定
+  /api/v1/manage/getriskuserlist:
+    get:
+      description: 此接口用來取得今日風險玩家清單(前100名)(UTC+0)
+      parameters:
+      - description: 查詢目標層級碼
+        in: query
+        name: level_code
+        type: string
+      - description: '時間區域(UTC+X, X時間, 單位分鐘, ex: UTC+8 要傳入 -60*8=-480)'
+        in: query
+        name: time_zone
+        required: true
+        type: integer
+      - description: 查詢是否包含自身以下層級資料(1:是, other:否)
+        in: query
+        name: is_search_all
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/system.GetRiskUserListData'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get risk user list
+      tags:
+      - 運營管理/數據總覽
+  /api/v1/manage/getstatdata:
+    get:
+      description: 此接口用來取得當天資訊總覽的資料(UTC+0)
+      parameters:
+      - description: 查詢目標層級碼
+        in: query
+        name: level_code
+        type: string
+      - description: 查詢時間類型
+        in: query
+        name: date_type
+        required: true
+        type: string
+      - description: '時間區域(UTC+X, X時間, 單位分鐘, ex: UTC+8 要傳入 -60*8=-480)'
+        in: query
+        name: time_zone
+        required: true
+        type: integer
+      - description: 查詢是否包含自身以下層級資料(1:是, other:否)
+        in: query
+        name: is_search_all
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/system.GetStatDataDataResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get statistical data
+      tags:
+      - 運營管理/數據總覽
+  /api/v1/manage/setmaintainpagesetting:
+    post:
+      parameters:
+      - description: 維護頁設資料
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/system.MaintainPageSetting'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設定維護頁設定(只有開發商(營用商)可以使用)
+      tags:
+      - 運營管理/維護頁設定
+  /api/v1/manage/updateannouncement:
+    post:
+      consumes:
+      - application/json
+      description: 編輯後台公告功能（開發者）
+      parameters:
+      - description: id, 更新內容相關參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateAnnouncementRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetMarqueeResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: update new announcement
+      tags:
+      - 運營管理/後台公告
+  /api/v1/manage/updatemarquee:
+    post:
+      consumes:
+      - application/json
+      description: 編輯跑馬燈功能（開發者）：管理後台才可編輯【活動】類型跑馬燈
+      parameters:
+      - description: id, 更新內容相關參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateMarqueeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetMarqueeResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: update new marquee
+      tags:
+      - 運營管理/跑馬燈設定
+  /api/v1/notify/getchatserviceconnInfo:
+    get:
+      description: 此接口用來取得chat service 連線資訊
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get chat service connect information
+      tags:
+      - 即時通訊功能
+  /api/v1/notify/notifybroadcastmessage:
+    post:
+      description: 此接口用來即時通知後台前端新訊息發佈
+      parameters:
+      - description: 通知訊息
+        in: formData
+        name: message
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Notify user real time
+      tags:
+      - 即時通訊功能
+  /api/v1/record/confirmwalletledger:
+    post:
+      parameters:
+      - description: 更新玩家分數紀錄狀態參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ConfirmWalletLedgerRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 更新玩家分數紀錄狀態
+      tags:
+      - 報表管理/玩家分數紀錄
+  /api/v1/record/getagentgameratiostatlist:
+    post:
+      parameters:
+      - description: 取得日結算報表列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentGameRatioStatListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAgentGameRatioStatListResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得日結算報表列表
+      tags:
+      - 報表管理/日結算報表
+  /api/v1/record/getagentwalletledgerlist:
+    post:
+      parameters:
+      - description: 取得代理分數紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentWalletLedgerListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAgentWalletLedgerResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得代理分數紀錄列表
+      tags:
+      - 報表管理/代理分數紀錄
+  /api/v1/record/getautoriskcontrolloglist:
+    post:
+      parameters:
+      - description: 取得自動風控列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAutoRiskControlLogListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAutoRiskControlLogResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得自動風控列表(只有開發商（營運商）可使用)
+      tags:
+      - 風控管理/自動風控紀錄
+  /api/v1/record/getbackendactionloglist:
+    post:
+      parameters:
+      - description: 取得後台操作紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetBackendActionLogListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetBackendActionLogResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得後台操作紀錄列表
+      tags:
+      - 運營管理/後台操作紀錄
+  /api/v1/record/getbackendloginloglist:
+    post:
+      parameters:
+      - description: 取得後台登入紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetBackendLoginLogListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetBackendLoginLogListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得後台登入紀錄列表
+      tags:
+      - 系統管理/後台登入紀錄
+  /api/v1/record/getbatchuserplayloglist:
+    post:
+      parameters:
+      - description: 取得個人遊戲紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetBatchUserPlayLogListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetBatchUserPlayLogListResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 分批取得個人遊戲紀錄列表
+      tags:
+      - 報表管理/輸贏報表
+  /api/v1/record/getgameusersstathourlist:
+    post:
+      parameters:
+      - description: 取得玩家遊玩紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetGameUsersStatHourListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetGameUsersStatHourResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得玩家遊玩紀錄列表
+      tags:
+      - 報表管理/玩家遊玩紀錄
+  /api/v1/record/getplaylogcommon:
+    post:
+      parameters:
+      - description: 取得遊戲局記錄參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetPlayLogCommonRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetPlayLogCommonResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得遊戲局記錄
+      tags:
+      - 運營管理/遊戲日誌解析
+  /api/v1/record/getusercreditloglist:
+    post:
+      parameters:
+      - description: 取得個人遊戲紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetUserCreditLogListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetUserCreditLogListResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得玩家帳變紀錄列表(only 管理可用)
+      tags:
+      - 報表管理/玩家帳變紀錄
+  /api/v1/record/getuserplayloglist:
+    post:
+      parameters:
+      - description: 取得個人遊戲紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetUserPlayLogListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetUserPlayLogResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得個人遊戲紀錄列表
+      tags:
+      - 報表管理/輸贏報表
+  /api/v1/record/getwalletledgerlist:
+    post:
+      parameters:
+      - description: 取得玩家分數紀錄列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetWalletLedgerListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetWalletLedgerResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得玩家分數紀錄列表
+      tags:
+      - 報表管理/玩家分數紀錄
+  /api/v1/riskcontrol/getagentcustomtagsettinglist:
+    post:
+      description: 此接口用來取得玩家標示設定資料(只有總代理、子代理可以使用)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAgentCustomTagSettingResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get agent custom tag setting list
+      tags:
+      - 風控功能/玩家標示設定
+  /api/v1/riskcontrol/getagentincomeratio:
+    post:
+      description: 此接口用來取得指定id總代理風控設定資料(只有管理可以使用)
+      parameters:
+      - description: 取得指定id總代理風控設定資料參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentIncomeRatioRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAgentIncomeRatioResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get income ratio by target id
+      tags:
+      - 風控功能/總代理風控設定
+  /api/v1/riskcontrol/getagentincomeratioandgamedata:
+    post:
+      description: 此接口用來取得代理設定機率&遊戲輸贏結果
+      parameters:
+      - description: 取得平台機率設定列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentIncomeRatioAndGameRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAgentIncomeRatioAndGameResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get the agent sets the probability & the outcome of the game
+      tags:
+      - 風控功能/代理風控統計
+  /api/v1/riskcontrol/getagentincomeratiolist:
+    post:
+      description: 此接口用來取得當前總代理風控設定資料列表(只有管理可以使用)
+      parameters:
+      - description: 取得總代理風控設定資料列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAgentIncomeRatioListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAgentIncomeRatioListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get income ratio list by level code of agent
+      tags:
+      - 風控功能/總代理風控設定
+  /api/v1/riskcontrol/getautoriskcontrolsetting:
+    post:
+      description: 此接口用來取得自動風控設定(只有開發商（營運商）可使用)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAutoRiskControlSetting'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get auto risk control setting
+      tags:
+      - 風控功能/自動風控設定
+  /api/v1/riskcontrol/getgamesetting:
+    post:
+      description: 此接口用來取得遊戲基礎設定(只有開發商（營運商）可使用)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GameSetting'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get game setting
+      tags:
+      - 風控功能/遊戲基礎設定
+  /api/v1/riskcontrol/getgameuserriskcontroltag:
+    post:
+      description: 此接口用來取得指定玩家的處置設定(只有開發商（營運商）可使用)
+      parameters:
+      - description: 取得指定玩家的處置設定參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetGameUserRiskControlTagRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetGameUserRiskControlTagResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Set auto risk control setting
+      tags:
+      - 風控功能/玩家處置設定
+  /api/v1/riskcontrol/getgameuserscustomtag:
+    post:
+      description: 此接口用來取得單一標示玩家資料(開發商（營運商）不可使用；總代理、子代理只可設定自身的玩家帳號)
+      parameters:
+      - description: 取得玩家標示資料參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetGameUsersCustomTagRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetGameUsersCustomTagResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get tag from game users
+      tags:
+      - 風控功能/玩家標示
+  /api/v1/riskcontrol/getgameuserscustomtaglist:
+    post:
+      description: 此接口用來取得玩家標示資料列表(開發商（營運商）可看到全部代理商資訊；總代理、子代理可看到自身&下級)
+      parameters:
+      - description: 取得玩家標示資料參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetGameUsersCustomTagListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetGameUsersCustomTagListResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get tag setting list
+      tags:
+      - 風控功能/玩家標示
+  /api/v1/riskcontrol/getincomeratio:
+    post:
+      description: 此接口用來取得指定id平台機率設定資料(只有管理可以使用)
+      parameters:
+      - description: 取得平台機率設定列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetIncomeRatioRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetIncomeRatioResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get income ratio by target id
+      tags:
+      - 風控功能/遊戲風控設定
+  /api/v1/riskcontrol/getincomeratiolist:
+    post:
+      description: 此接口用來取得當前平台機率設定列表(只有管理可以使用)
+      parameters:
+      - description: 取得平台風控設定列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetIncomeRatioListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetIncomeRatioListResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get income ratio list by level code of agent
+      tags:
+      - 風控功能/遊戲風控設定
+  /api/v1/riskcontrol/getplayerincomeratioandgamedata:
+    post:
+      description: 此接口用來取得玩家設定機率&遊戲輸贏結果
+      parameters:
+      - description: 取得平台機率設定列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetPlayerIncomeRatioAndGameRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetPlayerIncomeRatioAndGameResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get players set the probability & the outcome of the game
+      tags:
+      - 風控功能/代理機率統計
+  /api/v1/riskcontrol/getrealtimegameratio:
+    post:
+      description: 此接口用來取得遊戲即時殺率資訊(只有開發商（營運商）可使用)
+      parameters:
+      - description: 設定參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetRealtimeGameRatioRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get realtime game ratio
+      tags:
+      - 風控功能/遊戲即時殺率資訊
+  /api/v1/riskcontrol/setagentcustomtagsettinglist:
+    post:
+      description: 此接口用來設定玩家標示設定資料(只有總代理、子代理可以使用)
+      parameters:
+      - description: 設定玩家標示設定資料參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentCustomTagSettingListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Set agent custom tag setting list
+      tags:
+      - 風控功能/玩家標示設定
+  /api/v1/riskcontrol/setagentincomeratio:
+    post:
+      description: 此接口用來設定指定id總代理風控設定資料(只有管理可以使用)
+      parameters:
+      - description: 設定總代理風控設定資料參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetAgentIncomeRatioRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get income ratio by target id
+      tags:
+      - 風控功能/總代理風控設定
+  /api/v1/riskcontrol/setautoriskcontrolsetting:
+    post:
+      description: 此接口用來設定自動風控設定(只有開發商（營運商）可使用)
+      parameters:
+      - description: 設定自動風控設定參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.AutoRiskControlSetting'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Set auto risk control setting
+      tags:
+      - 風控功能/自動風控設定
+  /api/v1/riskcontrol/setgamesetting:
+    post:
+      description: 此接口用來設定遊戲基礎設定(只有開發商（營運商）可使用)
+      parameters:
+      - description: 設定遊戲基礎設定參數
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/model.GameSetting'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Set game setting
+      tags:
+      - 風控功能/遊戲基礎設定
+  /api/v1/riskcontrol/setgameuserriskcontroltag:
+    post:
+      description: 此接口用來設定指定玩家的處置設定(只有開發商（營運商）可使用)
+      parameters:
+      - description: 設定指定玩家的處置設定參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetGameUserRiskControlTagRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Set auto risk control setting
+      tags:
+      - 風控功能/玩家處置設定
+  /api/v1/riskcontrol/setgameuserscustomtag:
+    post:
+      description: 此接口用來設定標示玩家資料(開發商（營運商）不可使用；總代理、子代理只可設定自身的玩家帳號)
+      parameters:
+      - description: 設定玩家標示資料參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetGameUsersCustomTagRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Set tag to game users
+      tags:
+      - 風控功能/玩家標示
+  /api/v1/riskcontrol/setincomeratio:
+    post:
+      description: 此接口用來設定指定id平台機率設定資料(只有管理可以使用)
+      parameters:
+      - description: 設定平台機率設定列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetIncomeRatioRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get income ratio by target id
+      tags:
+      - 風控功能/遊戲風控設定
+  /api/v1/riskcontrol/setincomeratios:
+    post:
+      description: 此接口用來批次設定殺數設定資料(只有管理可以使用)
+      parameters:
+      - description: 設定平台機率設定列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetIncomeRatiosRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.SetIncomeRatiosResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get income ratio by target id
+      tags:
+      - 風控功能/遊戲風控設定
+  /api/v1/servicestatus/getjobshedulerlist:
+    get:
+      description: 此接口用來取得當前 job 的資訊清單
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get job scheduler rutnime info list
+      tags:
+      - 服務狀態
+  /api/v1/system/getexchangedatalist:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/global.ExchangeData'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得匯率設定
+      tags:
+      - 系統/匯率設定
+  /api/v1/system/getserversetting:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.ServerInfoSetting'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得伺服器設定
+      tags:
+      - 系統/取得伺服器設定
+  /api/v1/system/setexchangedatalist:
+    post:
+      parameters:
+      - description: 匯率設定資料
+        in: body
+        name: data
+        required: true
+        schema:
+          items:
+            $ref: '#/definitions/global.ExchangeData'
+          type: array
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設定匯率設定
+      tags:
+      - 系統/匯率設定
+  /api/v1/user/blacktoken:
+    post:
+      parameters:
+      - description: token
+        in: formData
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 將用戶 token 列入黑名單(主動使已登入後台帳號強制登出)
+      tags:
+      - 代理帳號管理/後台帳號
+  /api/v1/user/createadminuser:
+    post:
+      parameters:
+      - description: 代理編號, 用戶名, 密碼
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.AdminUserCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 創建後台帳號(只能創建自己的後台帳號)
+      tags:
+      - 代理帳號管理/後台帳號
+  /api/v1/user/getadminuserinfo:
+    post:
+      parameters:
+      - description: 用戶id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetAdminUserInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetAdminUserInfoResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 指定查詢某後台帳號狀態
+      tags:
+      - 代理帳號管理/後台帳號
+  /api/v1/user/getadminusers:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetAdminUsersData'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 依照查詢者角色權限列出自身權限下的後台帳號列表
+      tags:
+      - 代理帳號管理/後台帳號
+  /api/v1/user/getalivetokenlist:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.AliveTokenListResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得目前已產生的有效 token list(已登入後台帳號列表)
+      tags:
+      - 代理帳號管理/後台帳號
+  /api/v1/user/getgameuserbalance:
+    post:
+      parameters:
+      - description: 取得玩家目前餘額參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetGameUserBalanceRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetGameUserBalanceResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得玩家目前餘額
+      tags:
+      - 運營管理/玩家帳號相關
+  /api/v1/user/getgameuserinfo:
+    post:
+      parameters:
+      - description: 用戶id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetGameUserInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetGameUserInfoResponse'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 指定查詢某遊戲會員帳號信息
+      tags:
+      - 運營管理/玩家帳號相關
+  /api/v1/user/getgameuserplaycountdata:
+    post:
+      parameters:
+      - description: 取得玩家目前遊戲局數狀態
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetGameUserPlayCountDataRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetGameUserPlayCountDataResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 此接口用來取得玩家目前遊戲局數狀態
+      tags:
+      - 運營管理/玩家帳號相關
+  /api/v1/user/getgameusers:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/model.GetGameUsersData'
+                  type: array
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 依照查詢者角色權限列出遊戲會員帳號清單
+      tags:
+      - 運營管理/玩家帳號相關
+  /api/v1/user/getgameuserwalletlist:
+    post:
+      parameters:
+      - description: 取得玩家錢包餘額列表參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.GetGameUserWalletListRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.GetGameUserWalletListResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 取得玩家錢包餘額列表
+      tags:
+      - 運營管理/後台玩家上下分
+  /api/v1/user/ping:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: ping
+      tags:
+      - User
+  /api/v1/user/resetpassword:
+    post:
+      parameters:
+      - description: 重置密碼參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.ResetPasswordResponse'
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 重置密碼
+      tags:
+      - 帳號/重置密碼
+  /api/v1/user/setgameuserwallet:
+    post:
+      parameters:
+      - description: 設置玩家錢包餘額參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetGameUserWalletRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 設置玩家錢包餘額
+      tags:
+      - 運營管理/後台玩家上下分
+  /api/v1/user/setpersonalinfo:
+    post:
+      parameters:
+      - description: 修改個人資訊參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetPersonalInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 修改個人資訊
+      tags:
+      - 個人資訊/修改個人資訊
+  /api/v1/user/setpersonalpassword:
+    post:
+      parameters:
+      - description: 修改個人密碼參數
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.SetPersonalPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 修改個人密碼
+      tags:
+      - 個人資訊/修改個人密碼
+  /api/v1/user/updateadminuserinfo:
+    post:
+      parameters:
+      - description: 用戶id
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateAdminUserInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 指定設定某後台帳號狀態
+      tags:
+      - 代理帳號管理/後台帳號
+  /api/v1/user/updategameuserinfo:
+    post:
+      parameters:
+      - description: '用戶id, '
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateGameUserInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      security:
+      - BearerAuth: []
+      summary: 指定修改某遊戲會員帳號信息
+      tags:
+      - 運營管理/玩家帳號相關
+  /casino/casinoHandle:
+    get:
+      parameters:
+      - description: 命令
+        in: query
+        name: s
+        required: true
+        type: string
+      - description: 用戶帳號
+        in: query
+        name: account
+        required: true
+        type: string
+      - description: 用戶密碼
+        in: query
+        name: password
+        required: true
+        type: string
+      - default: en-us
+        description: 語系
+        in: query
+        name: lang
+        type: string
+      - default: "0"
+        description: 充值分數
+        in: query
+        name: coin
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            $ref: '#/definitions/model.CasinoHandleResponse'
+      summary: 娛樂城遊戲API
+      tags:
+      - Casion
+  /channel/channelHandle:
+    get:
+      parameters:
+      - description: 代理編號（平台提供）
+        in: query
+        name: agent
+        required: true
+        type: string
+      - default: "1234567890123"
+        description: 時間戳(Unix 時間戳帶上毫秒)
+        in: query
+        name: timestamp
+        required: true
+        type: string
+      - description: 參數加密字符串(先用AES加密, 再使用base64加密成字串)
+        in: query
+        name: param
+        required: true
+        type: string
+      - default: hongkong3345678
+        description: Md5 校驗字符串(Encrypt.MD5(agent+timestamp+MD5Key))
+        in: query
+        name: key
+        required: true
+        type: string
+      - default: en-us
+        description: 語系
+        in: query
+        name: lang
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            $ref: '#/definitions/model.ChannelHandleResponse'
+      summary: 遊戲API
+      tags:
+      - Channel
+  /record/getRecordHandle:
+    get:
+      parameters:
+      - description: 代理編號（平台提供）
+        in: query
+        name: agent
+        required: true
+        type: string
+      - default: "1234567890123"
+        description: 時間戳(Unix 時間戳帶上毫秒)
+        in: query
+        name: timestamp
+        required: true
+        type: string
+      - description: 參數加密字符串(aes 加密)
+        in: query
+        name: param
+        required: true
+        type: string
+      - description: Md5 校驗字符串(Encrypt.MD5(agent+timestamp+MD5Key))
+        in: query
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            $ref: '#/definitions/model.ChannelHandleResponse'
+      summary: 第三方取遊戲記錄
+      tags:
+      - Channel
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Dcc-Token
+    type: apiKey
+swagger: "2.0"

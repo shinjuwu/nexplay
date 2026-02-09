@@ -1,0 +1,20 @@
+package definition
+
+const (
+	GS_STATE_OPEN    = 1
+	GS_STATE_CLOSE   = 2
+	GS_STATE_DEFAULT = GS_STATE_CLOSE
+
+	STORAGE_KEY_GAMESERVERINFO            = "GameServerInfo"
+	STORAGE_KEY_GAMEKILLDIVEINFO          = "GameKillDiveInfo"
+	STORAGE_KEY_GAMEKILLDIVEINFORESET     = "GameKillDiveInfoReset"
+	STORAGE_KEY_GAMEAGENTCUSTOMTAGRESET   = "GameAgentCustomTagReset"
+	STORAGE_KEY_GAMEICONLISTDEFAULTRESET  = "GameIconListDefaultReset"
+	STORAGE_KEY_GAMEICONLISTDEFAULT       = "GameIconListDefault"
+	STORAGE_KEY_SERVERINFO_SETTING        = "ServerInfoSetting"
+	STORAGE_KEY_AUTO_RISK_CONTROL_SETTING = "AutoRiskControlSetting"
+	STORAGE_KEY_IM_ALERT_TG               = "IMAlertTG"
+	STORAGE_KEY_ARCHIVE_SETTING           = "ArchiveSetting"
+	STORAGE_KEY_JACKPOT_SETTING           = "JackpotSetting"
+	STORAGE_KEY_GAMESETTINGSUPPORTINFO    = "GameSettingSupportInfo"
+)

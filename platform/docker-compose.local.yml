@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:14.5
+    container_name: dcc-postgres-local
+    environment:
+      POSTGRES_DB: dcc_game
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/db/init:/docker-entrypoint-initdb.d
+    networks:
+      - dcc-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: dcc-redis-local
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - dcc-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  dcc-network:
+    driver: bridge

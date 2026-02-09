@@ -1,0 +1,1 @@
+DROP VIEW "public"."view_agent_game_room_ratio_log";

@@ -1,0 +1,43 @@
+version: '3'
+
+volumes:
+    dcc-pgsql-volumes:
+        external: true 
+    dcc-redis-volumes:
+        external: true
+
+networks:
+    dcc_db_net:
+        name: dcc_backend_networks
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.99.0.0/16
+                  gateway: 172.99.0.1
+
+services:
+    backend:
+        build:
+            dockerfile: "./backend/Dockerfile"
+            context: "../"
+            args:
+                - web_mode=ete-client
+        image: dcc/backend:1.0.0
+        container_name: dcc-backend
+        ports:
+            - 9986:9986
+        # depends_on:
+        #     - migrate
+        networks:
+            dcc_db_net:
+                ipv4_address: 172.99.0.10
+    # migrate:
+    #     image: migrate/migrate
+    #     container_name: dcc-pgsql-migrate
+    #     command: ["-path", "/migrations", "-database",  "postgres://postgres:postgres@10.2.0.9:5432/dcc_game?sslmode=disable", "up"]
+    #     volumes:
+    #         - ./db/migrations:/migrations
+    #     networks:
+    #         dcc_db_net:
+    #             ipv4_address: 172.99.0.13
+             

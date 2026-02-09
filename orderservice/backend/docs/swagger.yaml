@@ -1,0 +1,140 @@
+definitions:
+  model.ChannelHandleResponse:
+    properties:
+      d:
+        description: 數據結果
+      m:
+        description: 主操作類型
+        type: string
+      s:
+        description: 子操作類型
+        type: integer
+    type: object
+  model.PlayLogRequest:
+    properties:
+      bet_time:
+        description: '遊戲結算時間(UTC+0, format: 2006-01-02T15:04:05.000Z)'
+        type: integer
+      bonus:
+        description: 紅利(float64)
+        type: number
+      de_score:
+        description: 總得遊戲分(float64)
+        type: number
+      desk_id:
+        description: 桌子id
+        type: integer
+      exchange:
+        description: 一幣分值(沒有就填1)
+        type: number
+      game_id:
+        description: 遊戲id
+        type: integer
+      is_big_win:
+        description: 是否為大獎
+        type: boolean
+      is_issue:
+        description: 是否為問題單
+        type: boolean
+      lognumber:
+        description: 單號
+        type: string
+      playlog:
+        description: 遊戲記錄(json format)
+        type: string
+      room_type:
+        description: 房間類型
+        type: integer
+      tax:
+        description: 抽水(float64)
+        type: number
+      valid_score:
+        description: 有效投注(float64)
+        type: number
+      ya_score:
+        description: 總壓遊戲分(float64)
+        type: number
+    type: object
+  response.Response:
+    properties:
+      code:
+        description: 回傳編碼
+        type: integer
+      data:
+        description: 回傳資料
+      msg:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: This is a backend service
+  title: Swagger DCC backend API
+  version: 0.0.1
+paths:
+  /intercomorder/rechargeorder:
+    post:
+      description: 注單服務內部補單使用
+      parameters:
+      - description: 代理識別碼, 遊戲紀錄(json), 總變動分數...
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/model.PlayLogRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Response'
+            - properties:
+                data:
+                  type: string
+                msg:
+                  type: string
+              type: object
+      summary: order api service of intercom
+      tags:
+      - IntercomOrderApi
+  /record/getRecordHandle:
+    get:
+      parameters:
+      - description: 代理編號（平台提供）
+        in: query
+        name: agent
+        required: true
+        type: string
+      - default: "1234567890123"
+        description: 時間戳(Unix 時間戳帶上毫秒)
+        in: query
+        name: timestamp
+        required: true
+        type: string
+      - description: 參數加密字符串(aes 加密)
+        in: query
+        name: param
+        required: true
+        type: string
+      - description: Md5 校驗字符串(Encrypt.MD5(agent+timestamp+MD5Key))
+        in: query
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回成功或失敗訊息
+          schema:
+            $ref: '#/definitions/model.ChannelHandleResponse'
+      summary: 第三方取遊戲記錄
+      tags:
+      - Channel
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Dcc-Token
+    type: apiKey
+swagger: "2.0"

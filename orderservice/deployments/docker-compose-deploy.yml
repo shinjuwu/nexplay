@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+    dcc_db_net:
+        name: dcc_backend_networks
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.99.0.0/16
+                  gateway: 172.99.0.1
+
+services:
+    orderservice:
+        build:
+            dockerfile: "./backend/Dockerfile"
+            context: "../"
+            args:
+                - web_mode=${web_mode}
+        image: dcc/orderservice:1.0.0
+        container_name: dcc-orderservice
+        ports:
+            - 9988:9988
+        networks:
+            dcc_db_net:
+                ipv4_address: 172.99.0.99
+
+             

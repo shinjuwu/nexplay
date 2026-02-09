@@ -1,0 +1,2 @@
+DELETE FROM "public"."permission_list" WHERE "feature_code" = 100243 AND "api_path" = '/api/v1/cal/calperformancereport';
+DELETE FROM "public"."permission_list" WHERE "feature_code" = 100244 AND "api_path" = '/api/v1/cal/getjobshedulerlist';

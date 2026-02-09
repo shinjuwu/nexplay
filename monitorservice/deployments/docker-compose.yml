@@ -1,0 +1,65 @@
+version: '3'
+
+volumes:
+    pgsql-volumes:
+        external: true 
+    redis-volumes:
+        external: true
+
+networks:
+    db_net:
+        name: dcc_backend_networks
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.99.0.0/16
+                  gateway: 172.99.0.1
+
+services:
+    monitorservice:
+        build:
+            dockerfile: "./cmd/baseserver/Dockerfile"
+            context: "../"
+            # args:
+            #     - web_mode=docker
+        image: dcc_service/monitorservice:1.0.0
+        container_name: monitorservice
+        ports:
+            - 17782:17782
+        networks:
+            db_net:
+                ipv4_address: 172.99.0.21
+    redis:
+        image: "redis:7"
+        container_name: redis
+        restart: on-failure:3
+        ports:
+            - "6379:6379"
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+        volumes: 
+            - redis-volumes:/data
+        networks:
+            db_net:
+                ipv4_address: 172.99.0.11
+    pgsql:
+        image: "postgres:14.5"
+        container_name: pgsql
+        restart: on-failure:3
+        ports:
+            - "5432:5432"
+        volumes:
+            - pgsql-volumes:/var/lib/postgresql/data:cached
+            - ./pgsql-dump:/docker-entrypoint-initdb.d
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: 123456
+            POSTGRES_DB: monitor
+            TZ : "UTC+0"
+        cap_add:
+            - SYS_NICE  # CAP_SYS_NICE
+        networks:
+            db_net:
+                ipv4_address: 172.99.0.12
+
+             

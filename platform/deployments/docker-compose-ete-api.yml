@@ -1,0 +1,32 @@
+version: '3'
+
+volumes:
+    dcc-pgsql-volumes:
+        external: true 
+    dcc-redis-volumes:
+        external: true
+
+networks:
+    dcc_db_net:
+        name: dcc_backend_networks
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.99.0.0/16
+                  gateway: 172.99.0.1
+
+services:
+    backend:
+        build:
+            dockerfile: "./backend/Dockerfile"
+            context: "../"
+            args:
+                - web_mode=ete-api
+        image: dcc/backend:1.0.0
+        container_name: dcc-backend
+        ports:
+            - 9986:9986
+        networks:
+            dcc_db_net:
+                ipv4_address: 172.99.0.10
+             

@@ -1,0 +1,1 @@
+INSERT INTO "public"."server_info" ("code", "ip", "addresses", "info", "is_enabled", "create_time", "update_time") VALUES ('monitor', '35.240.129.194', '{"path": "/monitor/collector.api/v1/", "domain": "35.240.129.194:17782", "scheme": "http", "api_key": "", "channel": "", "ws_conn_path": ""}', '', 'f', '2023-09-01 08:37:44.33365+00', '2023-09-01 08:37:44.33365+00');

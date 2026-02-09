@@ -190,13 +190,6 @@ export const menuItems = [
     role: roleItemKey.GameManagementRead,
     component: defineAsyncComponent(() => import('@/base/views/GameSetting/GameManagement/GameManagement.vue')),
   }),
-  // 遊戲排序
-  new MenuItem({
-    folderKey: menuFolderKey.GameSetting,
-    key: menuItemKey.GameSorting,
-    role: roleItemKey.GameSortingRead,
-    component: defineAsyncComponent(() => import('@/base/views/GameSetting/GameSorting/GameSorting.vue')),
-  }),
   // 遊戲罐頭語
   new MenuItem({
     folderKey: menuFolderKey.GameSetting,

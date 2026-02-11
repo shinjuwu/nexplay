@@ -107,7 +107,7 @@
             :disabled="newAgentForm.walletType !== constant.AgentWallet.Single"
           />
         </div>
-        <div v-if="!isNotAdmin" class="col-span-2 space-x-3 md:col-span-1">
+        <!-- <div v-if="!isNotAdmin" class="col-span-2 space-x-3 md:col-span-1">
           <label
             v-for="agentLobbySwitch in agentLobbySwitches"
             :key="`agentLobbySwitch__${agentLobbySwitch}`"
@@ -122,7 +122,7 @@
             <input v-model="newAgentForm.cannedSwitch" type="checkbox" />
             <span>{{ t('textEmojiCannedLanguage') }}</span>
           </label>
-        </div>
+        </div> -->
         <div class="col-span-2">
           <label class="form-label">{{ t('textRemark') }}</label>
           <textarea v-model="newAgentForm.remark" class="form-input" type="text" maxlength="100" rows="4" />
@@ -169,7 +169,6 @@ const { t } = useI18n()
 const {
   accountType,
   agentWalletOptions,
-  agentLobbySwitches,
   header,
   isNotAdmin,
   newAgentForm,

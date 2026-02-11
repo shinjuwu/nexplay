@@ -28,6 +28,7 @@ export function createConfig(input) {
       },
       server: {
         open: true,
+        hmr: { overlay: false },
         port: env.VITE_SERVER_CLI_PORT,
         proxy: {
           [env.VITE_SERVER_PROXY_API_PATHNAME]: {

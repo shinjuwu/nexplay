@@ -6,7 +6,6 @@ import {
   ExclamationTriangleIcon,
   PuzzlePieceIcon,
   UsersIcon,
-  CurrencyDollarIcon,
 } from '@heroicons/vue/24/outline'
 import {
   MenuFolder,
@@ -50,11 +49,11 @@ export const menuFolders = [
     key: menuFolderKey.RiskManagement,
     icon: ExclamationTriangleIcon,
   }),
-  // #Jackpot功能管理
-  new MenuFolder({
-    key: menuFolderKey.JackpotManagement,
-    icon: CurrencyDollarIcon,
-  }),
+  // // #Jackpot功能管理
+  // new MenuFolder({
+  //   key: menuFolderKey.JackpotManagement,
+  //   icon: CurrencyDollarIcon,
+  // }),
 ]
 
 export const menuItems = [
@@ -340,42 +339,42 @@ export const menuItems = [
       import('@/base/views/RiskManagement/RealTimeGameRatio/RealTimeGameRatio.vue')
     ),
   }),
-  // #Jackpot功能管理
-  // Jackpot參加設定
-  new MenuItem({
-    folderKey: menuFolderKey.JackpotManagement,
-    key: menuItemKey.JackpotSetting,
-    role: roleItemKey.JackpotSettingRead,
-    component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotSetting.vue')),
-  }),
-  // Jackpot獎池資訊
-  new MenuItem({
-    folderKey: menuFolderKey.JackpotManagement,
-    key: menuItemKey.JackpotPrizeInfo,
-    role: roleItemKey.JackpotPrizeInfoRead,
-    component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotPrizeInfo.vue')),
-  }),
-  // 玩家貢獻度
-  new MenuItem({
-    folderKey: menuFolderKey.JackpotManagement,
-    key: menuItemKey.PlayerContribution,
-    role: roleItemKey.PlayerContributionRead,
-    component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/PlayerContribution.vue')),
-  }),
-  // Jackpot中獎紀錄
-  new MenuItem({
-    folderKey: menuFolderKey.JackpotManagement,
-    key: menuItemKey.JackpotPrizeRecord,
-    role: roleItemKey.JackpotPrizeRecordRead,
-    component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotPrizeRecord.vue')),
-  }),
-  // Jackpot代幣紀錄
-  new MenuItem({
-    folderKey: menuFolderKey.JackpotManagement,
-    key: menuItemKey.JackpotTokenRecord,
-    role: roleItemKey.JackpotTokenRecordRead,
-    component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotTokenRecord.vue')),
-  }),
+  // // #Jackpot功能管理
+  // // Jackpot參加設定
+  // new MenuItem({
+  //   folderKey: menuFolderKey.JackpotManagement,
+  //   key: menuItemKey.JackpotSetting,
+  //   role: roleItemKey.JackpotSettingRead,
+  //   component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotSetting.vue')),
+  // }),
+  // // Jackpot獎池資訊
+  // new MenuItem({
+  //   folderKey: menuFolderKey.JackpotManagement,
+  //   key: menuItemKey.JackpotPrizeInfo,
+  //   role: roleItemKey.JackpotPrizeInfoRead,
+  //   component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotPrizeInfo.vue')),
+  // }),
+  // // 玩家貢獻度
+  // new MenuItem({
+  //   folderKey: menuFolderKey.JackpotManagement,
+  //   key: menuItemKey.PlayerContribution,
+  //   role: roleItemKey.PlayerContributionRead,
+  //   component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/PlayerContribution.vue')),
+  // }),
+  // // Jackpot中獎紀錄
+  // new MenuItem({
+  //   folderKey: menuFolderKey.JackpotManagement,
+  //   key: menuItemKey.JackpotPrizeRecord,
+  //   role: roleItemKey.JackpotPrizeRecordRead,
+  //   component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotPrizeRecord.vue')),
+  // }),
+  // // Jackpot代幣紀錄
+  // new MenuItem({
+  //   folderKey: menuFolderKey.JackpotManagement,
+  //   key: menuItemKey.JackpotTokenRecord,
+  //   role: roleItemKey.JackpotTokenRecordRead,
+  //   component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotTokenRecord.vue')),
+  // }),
 ]
 
 export const menuItemMap = menuItems.reduce((obj, item) => {

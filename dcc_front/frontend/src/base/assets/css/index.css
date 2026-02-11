@@ -274,6 +274,9 @@
   .rcfishing {
     width: 80px;
     height: 59px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
   .rcfishing-fish-1 {
     background-image: url('@/base/assets/images/rcfishing/pic_fish_1.png');

@@ -60,7 +60,7 @@
             type="text"
           />
         </div>
-        <div class="col-span-2 md:col-span-1">
+        <!-- <div class="col-span-2 md:col-span-1">
           <div v-if="props.isEditEnabled && user.accountType === constant.AccountType.Admin" class="text-danger">
             {{ t('textLobbySwitchDirection') }}
           </div>
@@ -94,7 +94,7 @@
               <span>{{ t('textEmojiCannedLanguage') }}</span>
             </label>
           </div>
-        </div>
+        </div> -->
         <div class="col-span-2">
           <label class="form-label">{{ t('textRemark') }}</label>
           <textarea
@@ -152,5 +152,5 @@ const props = defineProps({
 const emit = defineEmits(['searchRecords', 'close'])
 
 const { t } = useI18n()
-const { user, show, agent, agentLobbySwitches, submit, close } = useAgentAccountSetting(props, emit)
+const { user, show, agent, submit, close } = useAgentAccountSetting(props, emit)
 </script>

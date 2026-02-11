@@ -7,8 +7,8 @@
           <FormAgentListDropdown v-model="formInput.agent" class="mb-1 w-full md:w-3/12" />
           <label class="form-label mb-1 w-full pr-2 md:w-1/12 md:text-right">{{ t('textGame') }}</label>
           <FormAllGameListDropdown v-model="formInput.game" class="mb-1 w-full md:w-3/12" />
-          <label class="form-label mb-1 w-full pr-2 md:w-1/12 md:text-right">{{ t('textRoomType') }}</label>
-          <FormRoomTypeListDropdown v-model="formInput.roomType" class="mb-1 w-full md:w-3/12" />
+          <!-- <label class="form-label mb-1 w-full pr-2 md:w-1/12 md:text-right">{{ t('textRoomType') }}</label>
+          <FormRoomTypeListDropdown v-model="formInput.roomType" class="mb-1 w-full md:w-3/12" /> -->
         </div>
         <div class="flex flex-wrap items-center">
           <label class="form-label mb-1 w-full pr-2 md:w-1/12 md:text-right">{{ t('textBetId') }}</label>
@@ -177,9 +177,9 @@
                   <PageTableSortableTh column="gameid" :is-sort-icon-active="isSortIconActive" @sorting="sorting">
                     <template #default>{{ t('textGameName') }}</template>
                   </PageTableSortableTh>
-                  <PageTableSortableTh column="roomtype" :is-sort-icon-active="isSortIconActive" @sorting="sorting">
+                  <!-- <PageTableSortableTh column="roomtype" :is-sort-icon-active="isSortIconActive" @sorting="sorting">
                     <template #default>{{ t('textRoomType') }}</template>
-                  </PageTableSortableTh>
+                  </PageTableSortableTh> -->
                   <th>{{ t('textBeforeBetScore') }}</th>
                   <PageTableSortableTh column="yascore" :is-sort-icon-active="isSortIconActive" @sorting="sorting">
                     <template #default>{{ t('textBet') }}</template>
@@ -259,7 +259,7 @@
                     <td>{{ time.utcTimeStrToLocalTimeFormat(record.betTime) }}</td>
                     <td>{{ record.userName }}</td>
                     <td>{{ t(`game__${record.gameId}`) }}</td>
-                    <td>{{ t(`roomType__${roomTypeNameIndex(record.gameId, record.roomType)}`) }}</td>
+                    <!-- <td>{{ t(`roomType__${roomTypeNameIndex(record.gameId, record.roomType)}`) }}</td> -->
                     <td>{{ numberToStr(record.startScore) }}</td>
                     <td>{{ numberToStr(record.yaScore) }}</td>
                     <td>{{ numberToStr(record.validScore) }}</td>
@@ -352,14 +352,14 @@ import { useI18n } from 'vue-i18n'
 import { useWinLoseReport } from '@/base/composable/reportManagement/winLoseReport/useWinLoseReport'
 import { numberToStr } from '@/base/utils/formatNumber'
 import time from '@/base/utils/time'
-import { roomTypeNameIndex } from '@/base/utils/room'
+// import { roomTypeNameIndex } from '@/base/utils/room'
 
 import ToggleHeader from '@/base/components/Page/ToggleHeader.vue'
 import FormDateTimeInput from '@/base/components/Form/FormDateTimeInput.vue'
 import FormDropdown from '@/base/components/Form/Dropdown/FormDropdown.vue'
 import FormAgentListDropdown from '@/base/components/Form/Dropdown/FormAgentListDropdown.vue'
 import FormAllGameListDropdown from '@/base/components/Form/Dropdown/FormAllGameListDropdown.vue'
-import FormRoomTypeListDropdown from '@/base/components/Form/Dropdown/FormRoomTypeListDropdown.vue'
+// import FormRoomTypeListDropdown from '@/base/components/Form/Dropdown/FormRoomTypeListDropdown.vue'
 import PageTableMenuLength from '@/base/components/Page/Table/PageTableMenuLength.vue'
 import PageServersideTable from '@/base/components/Page/Table/PageServersideTable.vue'
 import PageTableInfo from '@/base/components/Page/Table/PageTableInfo.vue'

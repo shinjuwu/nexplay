@@ -5,7 +5,6 @@ import {
   Cog6ToothIcon,
   ExclamationTriangleIcon,
   UsersIcon,
-  CurrencyDollarIcon,
 } from '@heroicons/vue/24/outline'
 import {
   MenuFolder,
@@ -44,11 +43,11 @@ export const menuFolders = [
     key: menuFolderKey.RiskManagement,
     icon: ExclamationTriangleIcon,
   }),
-  // #Jackpot功能管理
-  new MenuFolder({
-    key: menuFolderKey.JackpotManagement,
-    icon: CurrencyDollarIcon,
-  }),
+  // // #Jackpot功能管理
+  // new MenuFolder({
+  //   key: menuFolderKey.JackpotManagement,
+  //   icon: CurrencyDollarIcon,
+  // }),
 ]
 
 export const menuItems = [
@@ -92,15 +91,15 @@ export const menuItems = [
       import('@/base/views/OperationManagement/BackendAgentWalletLedger/BackendAgentWalletLedger.vue')
     ),
   }),
-  //後台玩家上下分
-  new MenuItem({
-    folderKey: menuFolderKey.OperationManagement,
-    key: menuItemKey.BackendUpdateGameUserWallet,
-    role: roleItemKey.BackendUpdateGameUserWalletRead,
-    component: defineAsyncComponent(() =>
-      import('@/base/views/OperationManagement/BackendGameUserWalletLedger/BackendGameUserWalletLedger.vue')
-    ),
-  }),
+  // //後台玩家上下分
+  // new MenuItem({
+  //   folderKey: menuFolderKey.OperationManagement,
+  //   key: menuItemKey.BackendUpdateGameUserWallet,
+  //   role: roleItemKey.BackendUpdateGameUserWalletRead,
+  //   component: defineAsyncComponent(() =>
+  //     import('@/base/views/OperationManagement/BackendGameUserWalletLedger/BackendGameUserWalletLedger.vue')
+  //   ),
+  // }),
   // 後台操作紀錄
   new MenuItem({
     folderKey: menuFolderKey.OperationManagement,
@@ -227,14 +226,14 @@ export const menuItems = [
       import('@/base/views/RiskManagement/PlayerBadgeSetting/PlayerBadgeSetting.vue')
     ),
   }),
-  // #Jackpot功能管理
-  // Jackpot中獎紀錄
-  new MenuItem({
-    folderKey: menuFolderKey.JackpotManagement,
-    key: menuItemKey.JackpotPrizeRecord,
-    role: roleItemKey.JackpotPrizeRecordRead,
-    component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotPrizeRecord.vue')),
-  }),
+  // // #Jackpot功能管理
+  // // Jackpot中獎紀錄
+  // new MenuItem({
+  //   folderKey: menuFolderKey.JackpotManagement,
+  //   key: menuItemKey.JackpotPrizeRecord,
+  //   role: roleItemKey.JackpotPrizeRecordRead,
+  //   component: defineAsyncComponent(() => import('@/base/views/JackpotManagement/JackpotPrizeRecord.vue')),
+  // }),
 ]
 
 export const menuItemMap = menuItems.reduce((obj, item) => {
